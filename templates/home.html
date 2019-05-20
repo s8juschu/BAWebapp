@@ -81,9 +81,22 @@
   <!-- Page Content -->
   <div class="container">
     <div class="row">
-        <p>Test</p>
+         <div class="col-lg-8">
+            <h2 class="mt-4">Hello  <span id="username"></span>! What would you like to do?</h2>
+        </div>
     </div>
   </div>
+
+  <script>
+
+    function fill_profile_info (data) {
+        data = JSON.parse(data);
+        window.username.innerText = data['username'];
+    }
+
+
+</script>
+
 
   <!-- Bootstrap core JavaScript -->
   <script src="{% static '/vendor/jquery/jquery.slim.min.js' %}"></script>
