@@ -16,3 +16,8 @@ def home(request):
     else:
         return render(request, 'index.html')
 
+
+def about(request):
+    return render(request, 'aboutlog.html')
+
+
