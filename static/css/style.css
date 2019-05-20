@@ -13,3 +13,13 @@
     font-weight: bold;
     font-size: 3.5rem;
 }
+.aboutsub{
+    color: white;
+    font-weight: bold;
+    font-size: 2.0rem;
+}
+.abouttext{
+    margin-top: 0.5rem;
+    margin-left: 1.5rem;
+    margin-right: 0.5rem;
+}

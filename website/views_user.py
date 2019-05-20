@@ -5,6 +5,10 @@ from django.contrib.auth.models import User
 
 from . import models
 
+def return_status(status):
+    resp = HttpResponse()
+    resp.status_code = status
+    return resp
 
 def registration(request):
     username = request.POST.get('user', None)
@@ -19,7 +23,7 @@ def registration(request):
         user_profile.user = user
         user_profile.save()
         auth_login(request, user)
-        return HttpResponseRedirect(reverse('index'))
+        return HttpResponseRedirect(reverse('home'))
     else:
         return_status(500)
 
@@ -32,11 +36,11 @@ def login_view(request):
     user = authenticate(request=request, username=user, password=pwd)
     if user is not None and user.is_active:
         auth_login(request, user)
-        return HttpResponseRedirect(reverse('index'))
+        return HttpResponseRedirect(reverse('home'))
     else:
         return return_status(418)
 
 
 def logout_view(request):
     logout(request)
-    return HttpResponseRedirect(reverse('index'))
+    return HttpResponseRedirect(reverse('home'))
