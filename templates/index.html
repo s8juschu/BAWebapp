@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+  <meta content="" name="description">
+  <meta content="" name="author">
+
+  {% load static %}
+  <link rel="icon" href="{% static 'img/favicon.png' %}">
+  <title>SwimPlanner</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+	  
+  <!-- Custom fonts for this template-->
+  <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+
+  <style>
+          body {
+            background-image: url({% static 'img/pool3.jpg' %});
+            background-size: cover;
+          }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+      <button aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarResponsive" data-toggle="collapse" type="button">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+		  <li class="nav-item dropdown no-arrow mx-1">
+			<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="messagesDropdown" role="button">
+					Trainings
+			</a>
+			<div aria-labelledby="messagesDropdown" class="dropdown-menu dropdown-menu-right">
+			  <a class="dropdown-item" href="#">Trainings</a>
+			  <a class="dropdown-item" href="#">Another action</a>
+			  <div class="dropdown-divider"></div>
+			  <a class="dropdown-item" href="#">Something else here</a>
+			</div>
+		  </li>
+		   <li class="nav-item dropdown no-arrow">
+			<a aria-expanded="false" aria-haspopup="true" class="nav-link " data-toggle="dropdown" href="#" id="userDropdown" role="button">
+			  <i class="fas fa-user-circle fa-fw"></i>
+			</a>
+			<div aria-labelledby="userDropdown" class="dropdown-menu dropdown-menu-right">
+			  <a class="dropdown-item" href="#">Settings</a>
+			  <a class="dropdown-item" href="#">Log Out</a>
+			  <div class="dropdown-divider"></div>
+			  <a class="dropdown-item" data-target="#logoutModal" data-toggle="modal" href="#">Logout</a>
+			</div>
+		  </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h1 class="mt-5">Welcome to SwimPlanner</h1>
+      </div>
+    </div>
+  </div>
+  <br>
+          <!-- Login View -->
+        <div class="container login-dialog" id="login" >
+            <div class="card bg-light text-dark">
+                <div class="card-body">
+                    <form action="{% url 'login' %}" method="post">
+                        <div class="form-group">
+                            <label for="user">Username:</label>
+                            <input class="form-control" id="user" name="user" type="text">
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">Password:</label>
+                            <input class="form-control" id="pwd" name="pwd" type="password">
+                        </div>
+                        <br>
+                        <button class="btn btn-primary" type="submit">Login</button>
+                        <button class="btn btn-secondary" onclick="toggle_view();" type="button">Register</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Registration View -->
+        <div class="container register-dialog" hidden id="register">
+            <div class="card bg-light text-dark">
+                <div class="card-body">
+                    <form action="{% url 'registration' %}" method="post">
+                        <div class="form-group">
+                            <label for="email">Email address:</label>
+                            <input class="form-control" id="email" name="email" type="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="user">Username:</label>
+                            <input class="form-control" id="user" name="user" type="text">
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd1">Password:</label>
+                            <input class="form-control" id="pwd1" name="pwd1" type="password">
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd2">Password (again):</label>
+                            <input class="form-control" id="pwd2" name="pwd2" type="password">
+                        </div>
+                        <br>
+                        <button type="button" class="btn btn-secondary" onclick="toggle_view();">Login</button>
+                        <button type="submit" class="btn btn-primary">Register</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script>
+            var toggle_view = function() {
+                a = document.getElementById('login');
+                b = document.getElementById('register');
+                a.hidden = !a.hidden
+                b.hidden = !b.hidden
+            }
+        </script>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static '/vendor/jquery/jquery.slim.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,15 @@
+.login-dialog {
+    width: 35%;
+    max-width: 40%;
+    margin-top: 3%;
+}
+.register-dialog {
+    max-width: 40%;
+    margin-top: 3%;
+    width: 35%;
+}
+.col-lg-12 h1{
+    color: white;
+    font-weight: bold;
+    font-size: 3.5rem;
+}
