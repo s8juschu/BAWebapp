@@ -28,3 +28,12 @@ def settings(request):
 
 def help(request):
     return render(request, 'help.html')
+
+def manageplans(request):
+    return render(request, 'manageplans.html')
+
+def group(request):
+    return render(request, 'group.html')
+
+def managegroups(request):
+    return render(request, 'managegroups.html')
