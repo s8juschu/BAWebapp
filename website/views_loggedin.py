@@ -20,4 +20,11 @@ def home(request):
 def about(request):
     return render(request, 'aboutlog.html')
 
+def newplan(request):
+    return render(request, 'newplan.html')
 
+def settings(request):
+    return render(request, 'settings.html')
+
+def help(request):
+    return render(request, 'help.html')

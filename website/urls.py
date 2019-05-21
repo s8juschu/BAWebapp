@@ -10,5 +10,6 @@ urlpatterns = [
     #user logged in urls
     path('home', views_loggedin.home, name='home'),
     path('aboutlog', views_loggedin.about, name='aboutlog'),
+    path('newplan', views_loggedin.newplan, name='newplan'),
 
 ]
