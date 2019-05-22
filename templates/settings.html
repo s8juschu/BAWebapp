@@ -37,10 +37,19 @@
 					Trainings
 			</a>
 			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
-			  <a class="dropdown-item" href="#">Trainings</a>
-			  <a class="dropdown-item" href="#">Another action</a>
+			  <a class="dropdown-item" href="newplan">New plan</a>
+			  <a class="dropdown-item" href="manageplans">Library</a>
 			  <div class="dropdown-divider"></div>
 			  <a class="dropdown-item" href="#">Something else here</a>
+			</div>
+		  </li>
+          <li class="nav-item dropdown no-arrow mx-1">
+			<a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					Group
+			</a>
+			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
+			  <a class="dropdown-item" href="group">My group</a>
+			  <a class="dropdown-item" href="managegroups">Change group</a>
 			</div>
 		  </li>
 		   <li class="nav-item dropdown no-arrow active">
@@ -84,11 +93,31 @@
     <div class="row">
       <div class="col-lg-12 text-center">
         <h1 class="mt-5">Settings</h1>
-        <p class="lead">Bla</p>
+        <p class="lead">Here you can change your profile informations</p>
       </div>
     </div>
+    <div class="tab-content" style="padding:15px;">
+    <div class="tab-pane active" id="profile">
+        <div class="card">
+            <div class="card-header">Profile Settings for <b>{{user}}:</b></div>
+            <div class="card-body">
+                <ul class="list-group" style="margin:0px">
+                    <li class="list-group-item">E-Mail:
+                        <input type="text" id="email" class="form-control" style="width:66%;float:right;" value="{{user.email}}" onchange="changeProfile(this);">
+                    </li>
+                    <li class="list-group-item">First Name: <input type="text" id="first_name" class="form-control" style="width:66%;float:right;" value="{{user}}" onchange="changeProfile(this);">
+                    </li>
+                    <li class="list-group-item">Last Name: <input type="text" id="last_name" class="form-control" style="width:66%;float:right;" value="" onchange="changeProfile(this);">
+                    </li>
+                </ul>
+            </div>
+            <div style="margin-bottom: 2.0%">
+              <button type="button" class="btn btn-success" style="margin-left: 2.0%; padding-left: 2.0%;padding-right: 2.0%;">Save</button>
+              <button type="button" class="btn btn-danger">Cancel </button>
+          </div>
+        </div>
+    </div>
   </div>
-
     <!-- Footer -->
     <footer class="page-footer font-small blue">
 

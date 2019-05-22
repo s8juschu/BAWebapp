@@ -14,13 +14,16 @@
 
   <!-- Bootstrap core CSS -->
   <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/plan.css' %}" rel="stylesheet">
 
   <!-- Custom fonts for this template-->
   <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+
+  <!-- ICON NEEDS FONT AWESOME FOR CHEVRON UP ICON -->
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 </head>
 
 <body>
-
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
     <div class="container">
@@ -35,13 +38,21 @@
 		  <li class="nav-item dropdown no-arrow mx-1 active">
 			<a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					Trainings
-				<span class="sr-only">(current)</span>
 			</a>
 			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
-			  <a class="dropdown-item" href="#">Trainings</a>
-			  <a class="dropdown-item" href="#">Another action</a>
+			  <a class="dropdown-item active" href="#">New plan</a>
+			  <a class="dropdown-item" href="manageplans">Library</a>
 			  <div class="dropdown-divider"></div>
 			  <a class="dropdown-item" href="#">Something else here</a>
+			</div>
+		  </li>
+          <li class="nav-item dropdown no-arrow mx-1">
+			<a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					Group
+			</a>
+			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
+			  <a class="dropdown-item" href="group">My group</a>
+			  <a class="dropdown-item" href="managegroups">Change group</a>
 			</div>
 		  </li>
 		   <li class="nav-item dropdown no-arrow">
@@ -59,6 +70,27 @@
       </div>
     </div>
   </nav>
+
+  <!-- Dash Navbar Left -->
+   <!--<div class="dash-navbar-left">
+    <div class="container" style="margin-top: 60%;">
+      <div>
+        <ul class="navbar-nav ml-auto">
+		  <li id="sidenav">
+			<button type="button" class="btn btn-success">Save</button>
+            <button type="button" class="btn btn-danger">Exit </button>
+		  </li>
+          <li>
+              <p>Zeit:</p>
+              <p>Distanz:</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>-->
+  <!-- /.dash-navbar-left -->
+
+
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -76,16 +108,48 @@
             </div>
         </div>
     </div>
-   </div>
+  </div>
 
   <!-- Page Content -->
   <div class="container">
     <div class="row">
       <div class="col-lg-12 text-center">
-        <h1 class="mt-5">New Plan</h1>
-        <p class="lead">Bla</p>
+        <h1 class="mt-5">Create a new training plan</h1>
       </div>
     </div>
+    <form>
+      <div class="form-group row" style="margin-top: 5%;">
+      </div>
+    </form>
+    <form>
+      <div class="form-group row" >
+        <label for="inputName" class="col-sm-2 col-form-label"><p style="font-weight: bold;">Name</p></label>
+        <div class="col-sm-10">
+          <input type="name" class="form-control" id="inputName" placeholder="Enter the name of your plan">
+        </div>
+      </div>
+    </form>
+    <form>
+      <div class="form-group row">
+          <label for="exampleFormControlSelect1" class="col-sm-2 col-form-label"><p style="font-weight: bold;">Schwimmbadgröße</p></label>
+           <div class="col-sm-5">
+                <select class="form-control" id="exampleFormControlSelect1">
+                  <option>25 m</option>
+                  <option>50 m</option>
+                </select>
+           </div>
+          <div class="col-sm-5">
+              <button type="button" class="btn btn-success float-right" style="margin-left: 1.4%; padding-left: 3.8%;padding-right: 3.8%;">Save</button>
+              <button type="button" class="btn btn-danger float-right">Cancel </button>
+          </div>
+      </div>
+    </form>
+  </div>
+  <div class="container" style="max-width: 1340px;">
+    <!-- Editable table -->
+    {% include 'table.html' %}
+    <!-- Editable table -->
+     <p>Total Distance:</p>
   </div>
 
     <!-- Footer -->
@@ -103,6 +167,7 @@
   <!-- Bootstrap core JavaScript -->
   <script src="{% static '/vendor/jquery/jquery.slim.min.js' %}"></script>
   <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
 
 </body>
 
