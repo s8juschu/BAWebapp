@@ -24,7 +24,8 @@ def newplan(request):
     return render(request, 'newplan.html')
 
 def settings(request):
-    return render(request, 'settings.html')
+    user = request.user
+    return render(request, 'settings.html', context={'user': user.username, 'email': user.email, 'first_name': user.first_name, 'last_name': user.last_name})
 
 def help(request):
     return render(request, 'help.html')

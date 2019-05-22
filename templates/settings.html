@@ -99,15 +99,15 @@
     <div class="tab-content" style="padding:15px;">
     <div class="tab-pane active" id="profile">
         <div class="card">
-            <div class="card-header">Profile Settings for <b>{{user}}:</b></div>
+            <div class="card-header">Profile Settings for <b>{{user.username}}:</b></div>
             <div class="card-body">
                 <ul class="list-group" style="margin:0px">
                     <li class="list-group-item">E-Mail:
                         <input type="text" id="email" class="form-control" style="width:66%;float:right;" value="{{user.email}}" onchange="changeProfile(this);">
                     </li>
-                    <li class="list-group-item">First Name: <input type="text" id="first_name" class="form-control" style="width:66%;float:right;" value="{{user}}" onchange="changeProfile(this);">
+                    <li class="list-group-item">First Name: <input type="text" id="first_name" class="form-control" style="width:66%;float:right;" value="{{user.first_name}}" onchange="changeProfile(this);">
                     </li>
-                    <li class="list-group-item">Last Name: <input type="text" id="last_name" class="form-control" style="width:66%;float:right;" value="" onchange="changeProfile(this);">
+                    <li class="list-group-item">Last Name: <input type="text" id="last_name" class="form-control" style="width:66%;float:right;" value="{{user.last_name}}" onchange="changeProfile(this);">
                     </li>
                 </ul>
             </div>

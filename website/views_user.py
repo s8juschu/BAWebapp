@@ -2,6 +2,7 @@ from django.contrib.auth import authenticate, logout, login as auth_login
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, reverse
 from django.contrib.auth.models import User
+from django.contrib import messages
 
 from . import models
 
@@ -13,8 +14,11 @@ def return_status(status):
 def registration(request):
     username = request.POST.get('user', None)
     password = request.POST.get('pwd1', None)
+    #confirmpassword = request.POST.get('pwd2', None)
     email = request.POST.get('email', None)
     user = User.objects.create_user(username=username, password=password)
+    #if confirmpassword != password:
+    #    return
     if user is not None:
         user.save()
         user_profile = models.UserProfile()
