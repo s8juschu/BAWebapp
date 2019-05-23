@@ -12,3 +12,26 @@ class UserProfile(models.Model):
 
     #def __str__(self):
     #    return self.username
+
+class Plan(models.Model):
+    name = models.CharField(max_length=128)
+    size = models.CharField(max_length=30)
+    reps1 = models.CharField(max_length=30)
+    reps2 = models.CharField(max_length=30)
+    distance = models.IntegerField()
+    resttype = models.CharField(max_length=30)
+    resttime = models.IntegerField()
+    style = models.CharField(max_length=30)
+    comments = models.CharField(max_length=828)
+    tools = models.CharField(max_length=30)
+    distance = models.IntegerField()
+    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+
+
+class Swimmer(models.Model):
+    email = models.CharField(max_length=30)
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)
+    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+
+

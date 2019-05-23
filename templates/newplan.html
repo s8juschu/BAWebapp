@@ -131,7 +131,7 @@
     </form>
     <form>
       <div class="form-group row">
-          <label for="exampleFormControlSelect1" class="col-sm-2 col-form-label"><p style="font-weight: bold;">Schwimmbadgröße</p></label>
+          <label for="exampleFormControlSelect1" class="col-sm-2 col-form-label"><p style="font-weight: bold;">Pool size</p></label>
            <div class="col-sm-5">
                 <select class="form-control" id="exampleFormControlSelect1">
                   <option>25 m</option>
@@ -140,7 +140,7 @@
            </div>
           <div class="col-sm-5">
               <button type="button" class="btn btn-success float-right" style="margin-left: 1.4%; padding-left: 3.8%;padding-right: 3.8%;">Save</button>
-              <button type="button" class="btn btn-danger float-right">Cancel </button>
+              <button type="button" class="btn btn-danger float-right">Reset </button>
           </div>
       </div>
     </form>
@@ -149,7 +149,6 @@
     <!-- Editable table -->
     {% include 'table.html' %}
     <!-- Editable table -->
-     <p>Total Distance:</p>
   </div>
 
     <!-- Footer -->
@@ -166,8 +165,8 @@
 
   <!-- Bootstrap core JavaScript -->
   <script src="{% static '/vendor/jquery/jquery.slim.min.js' %}"></script>
+  <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
   <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-
 
 </body>
 
