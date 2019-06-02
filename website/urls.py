@@ -1,5 +1,5 @@
 from django.urls import path
-from . import views, views_user, views_loggedin
+from . import views, views_user, views_loggedin, views_forms
 
 urlpatterns = [
     path('index', views.index, name='index'),
@@ -10,8 +10,14 @@ urlpatterns = [
     #user logged in urls
     path('home', views_loggedin.home, name='home'),
     path('aboutlog', views_loggedin.about, name='aboutlog'),
+
     path('newplan', views_loggedin.newplan, name='newplan'),
+    path('showplan', views_forms.showplan, name='showplan'),
+
     path('settings', views_loggedin.settings, name='settings'),
+    path('settinginfo', views_forms.settinginfo, name='settinginfo'),
+    path('settingpwd', views_forms.settingpwd, name='settingpwd'),
+
     path('help', views_loggedin.help, name='help'),
     path('manageplans', views_loggedin.manageplans, name='manageplans'),
     path('group', views_loggedin.group, name='group'),

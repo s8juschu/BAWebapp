@@ -17,6 +17,7 @@
 
   <!-- Custom fonts for this template-->
   <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+
 </head>
 
 <body>
@@ -93,32 +94,54 @@
     <div class="row">
       <div class="col-lg-12 text-center">
         <h1 class="mt-5">Settings</h1>
-        <p class="lead">Here you can change your profile informations</p>
+        <p class="lead">Here you can change your profile information</p>
       </div>
     </div>
     <div class="tab-content" style="padding:15px;">
     <div class="tab-pane active" id="profile">
         <div class="card">
-            <div class="card-header">Profile Settings for <b>{{user}}:</b></div>
-            <div class="card-body">
-                <ul class="list-group" style="margin:0px">
-                    <li class="list-group-item">E-Mail:
-                        <input type="text" id="email" class="form-control" style="width:66%;float:right;" value="{{email}}" onchange="changeProfile(this);">
-                    </li>
-                    <li class="list-group-item">First Name: <input type="text" id="first_name" class="form-control" style="width:66%;float:right;" value="{{first_name}}" onchange="changeProfile(this);">
-                    </li>
-                    <li class="list-group-item">Last Name: <input type="text" id="last_name" class="form-control" style="width:66%;float:right;" value="{{last_name}}" onchange="changeProfile(this);">
-                    </li>
-                </ul>
-            </div>
-            <div style="margin-bottom: 2.0%">
-              <button type="button" class="btn btn-success" style="margin-left: 2.0%; padding-left: 2.0%;padding-right: 2.0%;">Save</button>
-              <!--<button type="button" class="btn btn-danger">Cancel </button>-->
-              <a href="{% url 'home' %}" class="btn btn-danger" >Cancel</a>
-          </div>
+            <form action="{% url 'settinginfo' %}" method="post">
+                {% csrf_token %}
+                <div class="card-header">Profile settings for <b>{{user}}:</b></div>
+                <div class="card-body">
+                        <ul class="list-group" style="margin:0px">
+                            <li class="list-group-item">E-Mail:
+                                <input type="text" id="email" name="email" class="form-control" style="width:66%;float:right;" value="{{email}}">
+                            </li>
+                            <li class="list-group-item">First Name: <input type="text" id="first_name" name="first_name" class="form-control" style="width:66%;float:right;" value="{{first_name}}">
+                            </li>
+                            <li class="list-group-item">Last Name: <input type="text" id="last_name" name="last_name" class="form-control" style="width:66%;float:right;" value="{{last_name}}">
+                        </ul>
+                </div>
+                <div style="margin-bottom: 2.0%">
+                  <button type="submit" class="btn btn-success" style="margin-left: 2.0%; padding-left: 2.0%;padding-right: 2.0%;">Save</button>
+                  <!--<button type="button" class="btn btn-danger">Cancel </button>-->
+                  <a href="{% url 'settings' %}" class="btn btn-danger" >Cancel</a>
+                </div>
+          </form>
+        </div>
+        <div class="card" style="margin-top:5%;">
+            <form action="{% url 'settingpwd' %}" method="post">
+                {% csrf_token %}
+                <div class="card-body">
+                        <ul class="list-group" style="margin:0px">
+                            </li>
+                            <li class="list-group-item">New Password: <input type="password" id="pwd1" name="pwd1" class="form-control" style="width:66%;float:right;">
+                            </li>
+                            <li class="list-group-item">Confirm Password: <input type="password" id="pwd2" name="pwd2" class="form-control" style="width:66%;float:right;">
+                            </li>
+                        </ul>
+                </div>
+                <div style="margin-bottom: 2.0%">
+                  <button type="submit" class="btn btn-success" style="margin-left: 2.0%; padding-left: 2.0%;padding-right: 2.0%;">Save</button>
+                  <!--<button type="button" class="btn btn-danger">Cancel </button>-->
+                  <a href="{% url 'settings' %}" class="btn btn-danger" >Cancel</a>
+                </div>
+          </form>
         </div>
     </div>
   </div>
+
     <!-- Footer -->
     <footer class="page-footer font-small blue">
 
@@ -134,6 +157,12 @@
   <!-- Bootstrap core JavaScript -->
   <script src="{% static '/vendor/jquery/jquery.slim.min.js' %}"></script>
   <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+  {% if messages %}
+    {% for message in messages %}
+        <script>alert("{{ message }}");</script>
+    {% endfor %}
+  {% endif %}
 
 </body>
 

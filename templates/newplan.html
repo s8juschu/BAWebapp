@@ -139,8 +139,27 @@
                 </select>
            </div>
           <div class="col-sm-5">
-              <button type="button" class="btn btn-success float-right" style="margin-left: 1.4%; padding-left: 3.8%;padding-right: 3.8%;">Save</button>
-              <button type="button" class="btn btn-danger float-right">Reset </button>
+              <button type="button" id="save" name="save" class="btn btn-success float-right" style="margin-left: 1.4%; padding-left: 3.8%;padding-right: 3.8%;">Save</button>
+              <a class="btn btn-danger float-right" data-toggle="modal" style="color: white;" data-target="#resetModal">Reset</a>
+              <!--<button type="button" id="reset" name="reset" class="btn btn-danger float-right">Reset </button> onclick="return confirm('Are you sure you want to reset the plan?')" -->
+              <div class="modal fade" id="resetModal" tabindex="-1" role="dialog" aria-labelledby="resetModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="resetModalLabel">Are you sure you want to reset the plan?</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">Select "Reset" below if you want to empty the plan or "Cancel" to keep the current one.</div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                            <a class="btn btn-primary" href="{% url 'newplan' %}">Reset</a>
+                        </div>
+                    </div>
+                </div>
+              </div>
           </div>
       </div>
     </form>
