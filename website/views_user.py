@@ -18,23 +18,25 @@ def registration(request):
     if not user_exist:
         # create your user
         password = request.POST.get('pwd1', None)
-        #confirmpassword = request.POST.get('pwd2', None) if `email1` is same as `email2`,
+        confirmpassword = request.POST.get('pwd2', None)
         email = request.POST.get('email', None)
-        user = User.objects.create_user(username=username, password=password, email=email)
-        #if confirmpassword != password:
-        #    return
-        if user is not None:
-            user.save()
-            user_profile = models.UserProfile()
-            user_profile.username = username
-            user_profile.email = email
-            user_profile.user = user
-            user_profile.save()
-            auth_login(request, user)
-            return HttpResponseRedirect(reverse('home'))
-        else:
-            messages.info(request, 'Username already exists!', extra_tags='alert')
+        if confirmpassword != password:
+            messages.info(request, 'Passwords did not match!', extra_tags='alert')
             return HttpResponseRedirect(reverse('index'))
+        else:
+            user = User.objects.create_user(username=username, password=password, email=email)
+            if user is not None:
+                user.save()
+                user_profile = models.UserProfile()
+                user_profile.username = username
+                user_profile.email = email
+                user_profile.user = user
+                user_profile.save()
+                auth_login(request, user)
+                return HttpResponseRedirect(reverse('home'))
+            else:
+                messages.info(request, 'Username already exists!', extra_tags='alert')
+                return HttpResponseRedirect(reverse('index'))
     else:
         messages.info(request, 'Username already exists!', extra_tags='alert')
         return HttpResponseRedirect(reverse('index'))
