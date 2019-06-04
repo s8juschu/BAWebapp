@@ -139,7 +139,7 @@
                 </select>
            </div>
           <div class="col-sm-5">
-              <button type="button" id="save" name="save" class="btn btn-success float-right" style="margin-left: 1.4%; padding-left: 3.8%;padding-right: 3.8%;" onclick="savetable()">Save</button>
+              <button type="button" id="save" name="save" class="btn btn-success float-right save" style="margin-left: 1.4%; padding-left: 3.8%;padding-right: 3.8%;" onclick="savetable()">Save</button>
               <a class="btn btn-danger float-right" data-toggle="modal" style="color: white;" data-target="#resetModal">Reset</a>
               <!--<button type="button" id="reset" name="reset" class="btn btn-danger float-right">Reset </button> onclick="return confirm('Are you sure you want to reset the plan?')" -->
               <div class="modal fade" id="resetModal" tabindex="-1" role="dialog" aria-labelledby="resetModalLabel"
@@ -190,7 +190,8 @@
   <!--Tabelle speichern-->
   <script>
 
-    function savetable(){
+    $('.save').on('click', function() {
+        alert($('select[name="select"] :selected').attr('class'));
         var lv_input = document.getElementById("mytable").rows[1].cells[1].getElementsByClassName("distance")[0].value;
         alert("Wert distance erste Zeile:"+ " " +lv_input);
 
@@ -203,7 +204,7 @@
             var inputs = table.rows[i].cells[1].getElementsByClassName("distance")[0].value;
             alert("Distance Wert"+ i + ": " +inputs);
         }
-    }
+    });
 
   </script>
 
