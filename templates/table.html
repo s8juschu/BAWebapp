@@ -1,6 +1,4 @@
   {% load static %}
-  <form action="" method="post">
-    {% csrf_token %}
     <div>
       <div >
         <div id="table" class="table-editable">
@@ -270,7 +268,6 @@
         </div>
       </div>
     </div>
-  </form>
   <p>Total Distance: <b id="rep1val" style="color: #007bff;"></b> X <b id="rep2val" style="color: #007bff;"></b> X <b id="val" style="color: #007bff;"></b></p>
 
   <script src="{% static '/vendor/jquery/jquery.slim.min.js' %}"></script>
