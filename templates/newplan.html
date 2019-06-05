@@ -139,7 +139,7 @@
                 </select>
            </div>
           <div class="col-sm-5">
-              <button type="button" id="save" name="save" class="btn btn-success float-right save" style="margin-left: 1.4%; padding-left: 3.8%;padding-right: 3.8%;" onclick="savetable()">Save</button>
+              <button type="button" id="save" name="save" class="btn btn-success float-right save" style="margin-left: 1.4%; padding-left: 3.8%;padding-right: 3.8%;">Save</button>
               <a class="btn btn-danger float-right" data-toggle="modal" style="color: white;" data-target="#resetModal">Reset</a>
               <!--<button type="button" id="reset" name="reset" class="btn btn-danger float-right">Reset </button> onclick="return confirm('Are you sure you want to reset the plan?')" -->
               <div class="modal fade" id="resetModal" tabindex="-1" role="dialog" aria-labelledby="resetModalLabel"
@@ -191,18 +191,32 @@
   <script>
 
     $('.save').on('click', function() {
-        alert($('select[name="select"] :selected').attr('class'));
-        var lv_input = document.getElementById("mytable").rows[1].cells[1].getElementsByClassName("distance")[0].value;
-        alert("Wert distance erste Zeile:"+ " " +lv_input);
+        //alert($('select[name="select"] :selected').attr('class'));
+        //var lv_input = document.getElementById("mytable").rows[1].cells[1].getElementsByClassName("distance")[0].value;
+        //alert("Wert distance erste Zeile:"+ " " +lv_input);
 
         var table = document.getElementById("mytable");
         var len = table.rows.length;
 
-        alert("Länge:"+ " " +len);
+        //alert("Länge:"+ " " +len);
 
         for (i = 1; i < len; i++){
-            var inputs = table.rows[i].cells[1].getElementsByClassName("distance")[0].value;
-            alert("Distance Wert"+ i + ": " +inputs);
+            var rep1 = table.rows[i].cells[0].getElementsByClassName("rep1")[0].value;
+            var rep2 = table.rows[i].cells[0].getElementsByClassName("rep2")[0].value;
+            var distance = table.rows[i].cells[1].getElementsByClassName("distance")[0].value;
+            //TODO INSERT SELECT resttype
+            var resttime = table.rows[i].cells[2].getElementsByClassName("resttime")[0].value;
+            //TODO INSERT SELECT style
+            var comments = table.rows[i].cells[4].getElementsByClassName("comments")[0].value;
+            //TODO INSERT SELECT tools
+            var effort = table.rows[i].cells[6].getElementsByClassName("effort")[0].value;
+
+            alert("Rep1 Wert"+ i + ": " + rep1 + ", " +
+                "Rep2 Wert"+ i + ": " + rep2 + ", " +
+                "Distance Wert"+ i + ": " + distance + ", " +
+                "Resttime Wert"+ i + ": " + resttime + ", " +
+                "Comments Wert"+ i + ": " + comments + ", " +
+                "Effort Wert"+ i + ": " + effort);
         }
     });
 
