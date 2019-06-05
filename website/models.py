@@ -13,6 +13,11 @@ class UserProfile(models.Model):
     #def __str__(self):
     #    return self.username
 
+class Plan(models.Model):
+    name = models.CharField(max_length=128)
+    size = models.CharField(max_length=30)
+    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+
 class PlanRow(models.Model):
     reps1 = models.CharField(max_length=30)
     reps2 = models.CharField(max_length=30)
@@ -23,12 +28,7 @@ class PlanRow(models.Model):
     comments = models.CharField(max_length=828)
     tools = models.CharField(max_length=30)
     effort = models.IntegerField()
-
-class Plan(models.Model):
-    name = models.CharField(max_length=128)
-    size = models.CharField(max_length=30)
-    planrows = models.ForeignKey(PlanRow, on_delete=models.CASCADE)
-    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    plan = models.ForeignKey(Plan, on_delete=models.CASCADE)
 
 
 class Swimmer(models.Model):

@@ -125,7 +125,7 @@
       <div class="form-group row" >
         <label for="inputName" class="col-sm-2 col-form-label"><p style="font-weight: bold;">Name</p></label>
         <div class="col-sm-10">
-          <input type="name" class="form-control" id="inputName" placeholder="Enter the name of your plan">
+          <input type="name" class="form-control planname" id="inputName" placeholder="Enter the name of your plan">
         </div>
       </div>
     </form>
@@ -133,9 +133,9 @@
       <div class="form-group row">
           <label for="exampleFormControlSelect1" class="col-sm-2 col-form-label"><p style="font-weight: bold;">Pool size</p></label>
            <div class="col-sm-5">
-                <select class="form-control" id="exampleFormControlSelect1">
-                  <option>25 m</option>
-                  <option>50 m</option>
+                <select class="form-control poolsize" id="exampleFormControlSelect1" >
+                  <option value="25m">25 m</option>
+                  <option value="50m">50 m</option>
                 </select>
            </div>
           <div class="col-sm-5">
@@ -191,33 +191,47 @@
   <script>
 
     $('.save').on('click', function() {
-        //alert($('select[name="select"] :selected').attr('class'));
-        //var lv_input = document.getElementById("mytable").rows[1].cells[1].getElementsByClassName("distance")[0].value;
-        //alert("Wert distance erste Zeile:"+ " " +lv_input);
+        var plan = {};
+        plan.listarray = [];
 
         var table = document.getElementById("mytable");
         var len = table.rows.length;
 
-        //alert("Länge:"+ " " +len);
+        plan.planname = document.getElementsByClassName("planname")[0].value;
+        plan.poolsize = document.getElementsByClassName("poolsize")[0].value;
 
         for (i = 1; i < len; i++){
-            var rep1 = table.rows[i].cells[0].getElementsByClassName("rep1")[0].value;
-            var rep2 = table.rows[i].cells[0].getElementsByClassName("rep2")[0].value;
-            var distance = table.rows[i].cells[1].getElementsByClassName("distance")[0].value;
-            //TODO INSERT SELECT resttype
-            var resttime = table.rows[i].cells[2].getElementsByClassName("resttime")[0].value;
-            //TODO INSERT SELECT style
-            var comments = table.rows[i].cells[4].getElementsByClassName("comments")[0].value;
-            //TODO INSERT SELECT tools
-            var effort = table.rows[i].cells[6].getElementsByClassName("effort")[0].value;
+            var planrows = {};
 
-            alert("Rep1 Wert"+ i + ": " + rep1 + ", " +
-                "Rep2 Wert"+ i + ": " + rep2 + ", " +
-                "Distance Wert"+ i + ": " + distance + ", " +
-                "Resttime Wert"+ i + ": " + resttime + ", " +
-                "Comments Wert"+ i + ": " + comments + ", " +
-                "Effort Wert"+ i + ": " + effort);
+            planrows.rep1 = table.rows[i].cells[0].getElementsByClassName("rep1")[0].value;
+            planrows.rep2 = table.rows[i].cells[0].getElementsByClassName("rep2")[0].value;
+            planrows.distance = table.rows[i].cells[1].getElementsByClassName("distance")[0].value;
+            planrows.resttype = table.rows[i].cells[2].getElementsByClassName("resttype")[0].value;
+            planrows.resttime = table.rows[i].cells[2].getElementsByClassName("resttime")[0].value;
+            planrows.style = table.rows[i].cells[3].getElementsByClassName("style")[0].value;
+            planrows.comments = table.rows[i].cells[4].getElementsByClassName("comments")[0].value;
+            planrows.tools = table.rows[i].cells[5].getElementsByClassName("tools")[0].value;
+            planrows.effort = table.rows[i].cells[6].getElementsByClassName("effort")[0].value;
+
+            plan.listarray.push(planrows);
+
+
+
+            //alert("Rep1 Wert"+ i + ": " + rep1 + ", " +
+            //    "Rep2 Wert"+ i + ": " + rep2 + ", " +
+            //    "Distance Wert"+ i + ": " + distance + ", " +
+            //    "Resttype Wert"+ i + ": " + resttype + ", " +
+            //    "Resttime Wert"+ i + ": " + resttime + ", " +
+            //    "Style Wert"+ i + ": " + style + ", " +
+            //    "Comments Wert"+ i + ": " + comments + ", " +
+            //    "Tools Wert"+ i + ": " + tools + ", " +
+            //    "Effort Wert"+ i + ": " + effort);
         }
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", '/website/saveplan', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify(plan));
     });
 
   </script>

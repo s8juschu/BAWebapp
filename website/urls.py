@@ -13,6 +13,7 @@ urlpatterns = [
 
     path('newplan', views_loggedin.newplan, name='newplan'),
     path('showplan', views_forms.showplan, name='showplan'),
+    path('saveplan', views_forms.saveplan, name='saveplan'),
 
     path('settings', views_loggedin.settings, name='settings'),
     path('settinginfo', views_forms.settinginfo, name='settinginfo'),

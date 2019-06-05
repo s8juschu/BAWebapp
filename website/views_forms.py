@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
+import json
 
 from website import views_user
 from .models import Plan
@@ -52,6 +53,14 @@ def settingpwd(request):
 
 
 #if `email1` is same as `email2`,
+
+@login_required
+def saveplan(request):
+    getplaninfo = request.body
+    planinfo = json.loads(getplaninfo)
+    print(planinfo["poolsize"])
+    return  HttpResponse(200)
+
 
 @login_required
 def showplan(request):
