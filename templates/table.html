@@ -13,8 +13,8 @@
                 <th class="text-center" style="">Style</th>
                 <th class="text-center" style="">Comments</th>
                 <th class="text-center" style="">Tools</th>
-                <th class="text-center" style="width: 6%;">%</th>
-                <th class="text-center" style="">Delete</th>
+                <th class="text-center" title="load intensity" style="width: 6%;">%</th>
+                <th class="text-center deletehide" style="">Delete</th>
               </tr>
             </thead>
             <tbody>
@@ -22,13 +22,14 @@
                 <td>
                   <div class="form-group">
                     <input type="text" class="form-control rep1" value="1" style="float: left; width: 44%;">
-                    <p style="float: left; margin: 2%;">x</p>
+                    <p style="float: left; margin: 2%; margin-top: 7%;">x</p>
                     <input type="text" class="form-control rep2" value="1" style="float: left; width: 44%;">
                   </div>
                 </td>
                 <td>
                     <div class="form-group">
-                      <input type="text" class="form-control distance">
+                      <input type="text" class="form-control distance" style="float: left; width: 80%;">
+                      <p style="float: left; margin-left: 7%; margin-top: 7%;">m</p>
                     </div>
                 </td>
                 <td>
@@ -72,7 +73,7 @@
                 <td>
                     <input type="text"  class="form-control effort">
                 </td>
-                 <td>
+                 <td class="deletehide">
                   <span class="table-remove"><button type="button"
                       class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
                 </td>
@@ -83,13 +84,14 @@
                 <td>
                   <div class="form-group">
                     <input type="text" class="form-control rep1" value="1" style="float: left; width: 44%;">
-                    <p style="float: left; margin: 2%;">x</p>
+                    <p style="float: left; margin: 2%; margin-top: 7%;">x</p>
                     <input type="text" class="form-control rep2" value="1" style="float: left; width: 44%;">
                   </div>
                 </td>
                 <td>
                     <div class="form-group">
-                      <input type="text" class="form-control distance">
+                      <input type="text" class="form-control distance" style="float: left; width: 80%;">
+                      <p style="float: left; margin-left: 7%; margin-top: 7%;">m</p>
                     </div>
                 </td>
                 <td>
@@ -134,7 +136,7 @@
                 <td>
                     <input type="text" class="form-control effort">
                 </td>
-                 <td>
+                 <td class="deletehide">
                   <span class="table-remove"><button type="button"
                       class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
                 </td>
@@ -144,13 +146,14 @@
                 <td>
                  <div class="form-group">
                     <input type="text" class="form-control rep1" value="1" style="float: left; width: 44%;">
-                    <p style="float: left; margin: 2%;">x</p>
+                    <p style="float: left; margin: 2%; margin-top: 7%;">x</p>
                     <input type="text" class="form-control rep2" value="1" style="float: left; width: 44%;">
                   </div>
                 </td>
                 <td>
                     <div class="form-group">
-                      <input type="text" class="form-control distance">
+                      <input type="text" class="form-control distance" style="float: left; width: 80%;">
+                      <p style="float: left; margin-left: 7%; margin-top: 7%;">m</p>
                     </div>
                 </td>
                 <td>
@@ -195,7 +198,7 @@
                 <td>
                     <input type="text" class="form-control effort">
                 </td>
-                 <td>
+                 <td class="deletehide">
                   <span class="table-remove"><button type="button"
                       class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
                 </td>
@@ -205,13 +208,14 @@
                 <td>
                  <div class="form-group">
                     <input type="text" class="form-control rep1" value="1" style="float: left; width: 44%;">
-                    <p style="float: left; margin: 2%;">x</p>
+                    <p style="float: left; margin: 2%; margin-top: 7%;">x</p>
                     <input type="text" class="form-control rep2" value="1" style="float: left; width: 44%;">
                   </div>
                 </td>
                 <td>
                     <div class="form-group">
-                      <input type="text" class="form-control distance">
+                      <input type="text" class="form-control distance" style="float: left; width: 80%;">
+                      <p style="float: left; margin-left: 7%; margin-top: 7%;">m</p>
                     </div>
                 </td>
                 <td>
@@ -256,7 +260,7 @@
                 <td>
                     <input type="text" class="form-control effort">
                 </td>
-                 <td>
+                 <td class="deletehide">
                   <span class="table-remove"><button type="button"
                       class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
                 </td>
@@ -271,6 +275,20 @@
   <p>Total Distance: <b id="rep1val" style="color: #007bff;"></b> X <b id="rep2val" style="color: #007bff;"></b> X <b id="val" style="color: #007bff;"></b></p>
 
   <script src="{% static '/vendor/jquery/jquery.slim.min.js' %}"></script>
+
+  <!--set tabindex-->
+  <script>
+  $(function() {
+    var tabindex = 1;
+    $('input,select').each(function() {
+        if (this.type != "hidden") {
+            var $input = $(this);
+            $input.attr("tabindex", tabindex);
+            tabindex++;
+        }
+    });
+  });
+  </script>
 
   <!--Distanz berechnen-->
   <script>
@@ -343,13 +361,14 @@
     <td>
      <div class="form-group">
         <input type="text" class="form-control rep1" value="1" style="float: left; width: 44%;">
-        <p style="float: left; margin: 2%;">x</p>
+        <p style="float: left; margin: 2%; margin-top: 7%;">x</p>
         <input type="text" class="form-control rep2" value="1" style="float: left; width: 44%;">
       </div>
     </td>
     <td>
         <div class="form-group">
-          <input type="text" class="form-control distance">
+          <input type="text" class="form-control distance" style="float: left; width: 80%;">
+          <p style="float: left; margin-left: 7%; margin-top: 7%;">m</p>
         </div>
     </td>
     <td>
@@ -363,7 +382,7 @@
        <input type="text" class="form-control resttime" placeholder="min:sec" style="float: left;width: 39%; margin-left: 2%;">
     </td>
       <td>
-        <div class="form-group style">
+        <div class="form-group">
           <select class="form-control style">
               <option value="Freestyle">Freestyle</option>
               <option value="Backstroke">Backstroke</option>
@@ -394,7 +413,7 @@
     <td>
         <input type="text" class="form-control effort">
     </td>
-     <td>
+     <td class="deletehide">
       <span class="table-remove"><button type="button"
           class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
     </td>
