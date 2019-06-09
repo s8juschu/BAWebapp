@@ -7,7 +7,7 @@ from django.contrib.auth import update_session_auth_hash
 import json
 
 from website import views_user
-from .models import Plan
+from .models import Plan, PlanRow, UserProfile
 from . import models
 
 @login_required
@@ -51,14 +51,37 @@ def settingpwd(request):
             return HttpResponseRedirect(reverse('settings'))
 
 
-
-#if `email1` is same as `email2`,
-
 @login_required
 def saveplan(request):
-    getplaninfo = request.body
+
+    #get request payload
+    getplaninfo = request.body.decode('utf-8')
     planinfo = json.loads(getplaninfo)
-    print(planinfo["poolsize"])
+
+    #save payload to Plan database
+    planname= planinfo["planname"]
+    poolsize = planinfo["poolsize"]
+
+    #user = request.user
+    #u = UserProfile.objects.get(username=user)
+
+    #planmodel = Plan()
+    #planmodel.name = planname
+    #planmodel.size = poolsize
+    #planmodel.user = u
+    #planmodel.save()
+    #print("Planname: " + planname)
+    #print("Poolsize: " + poolsize)
+    #listitem = planinfo["listarray"]
+    #for item in listitem:
+    #    planrow = PlanRow()
+    #    planrow.plan = planmodel
+    #    #print(item)
+    #    for key, value in item.items():
+    #        print(key + ": " + value)
+    #        planrow.key =  value
+    #    planrow.save()
+
     return  HttpResponse(200)
 
 

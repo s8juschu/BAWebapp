@@ -130,4 +130,3 @@ STATIC_URL = '/static/'
 #Redirect Login User
 LOGIN_URL = '/website/index'
 
-
