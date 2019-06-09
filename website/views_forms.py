@@ -62,14 +62,14 @@ def saveplan(request):
     planname= planinfo["planname"]
     poolsize = planinfo["poolsize"]
 
-    #user = request.user
-    #u = UserProfile.objects.get(username=user)
+    user = request.user
+    u = User.objects.get(username=user)
 
-    #planmodel = Plan()
-    #planmodel.name = planname
-    #planmodel.size = poolsize
-    #planmodel.user = u
-    #planmodel.save()
+    planmodel = Plan()
+    planmodel.name = planname
+    planmodel.size = poolsize
+    planmodel.user = u
+    planmodel.save()
     #print("Planname: " + planname)
     #print("Poolsize: " + poolsize)
     #listitem = planinfo["listarray"]

@@ -16,11 +16,11 @@ class UserProfile(models.Model):
 class Plan(models.Model):
     name = models.CharField(max_length=128)
     size = models.CharField(max_length=30)
-    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 class PlanRow(models.Model):
-    reps1 = models.CharField(max_length=30)
-    reps2 = models.CharField(max_length=30)
+    rep1 = models.CharField(max_length=30)
+    rep2 = models.CharField(max_length=30)
     distance = models.IntegerField()
     resttype = models.CharField(max_length=30)
     resttime = models.IntegerField()
