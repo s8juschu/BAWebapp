@@ -2,6 +2,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import reverse, render
 from django.contrib.auth.decorators import login_required
 
+from .models import Plan, PlanRow
 from . import models
 
 
@@ -28,7 +29,7 @@ def help(request):
 
 @login_required
 def manageplans(request):
-    return render(request, 'manageplans.html')
+    return render(request, 'manageplans.html', context={'obj': Plan.objects.all()})
 
 @login_required
 def group(request):

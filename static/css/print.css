@@ -15,9 +15,39 @@ h1{
 
 #myBtn, #myBtn i{
     display:none;
-    color: #000;
+    color: #fff;
+    border: #fff;
+    background-color: #fff;
 }
 
-.btn, .btn-danger, .deletehide, .table-add, .footer-copyright{
+.btn, .btn-danger, .deletehide, .table-add, .footer-copyright, img{
  display:none;
+}
+
+.repprint{
+     width: 14% !important;
+}
+
+.styleprint{
+     width: 13% !important;
+}
+
+.distance {
+     width: 70% !important;
+}
+
+.table td{
+    padding: 0rem;
+}
+
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+}
+
+textarea {
+  resize: none;
 }

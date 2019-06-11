@@ -19,15 +19,15 @@ class Plan(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 class PlanRow(models.Model):
-    rep1 = models.IntegerField()
-    rep2 = models.IntegerField()
-    distance = models.IntegerField()
+    rep1 = models.IntegerField(default=1)
+    rep2 = models.IntegerField(default=1)
+    distance = models.IntegerField(default=0)
     resttype = models.CharField(max_length=30)
     resttime = models.CharField(max_length=10,null=True)
     style = models.CharField(max_length=30)
     comments = models.CharField(max_length=828, null=True)
     tools = models.CharField(max_length=30)
-    effort = models.IntegerField()
+    effort = models.IntegerField(default=0)
     plan = models.ForeignKey(Plan, on_delete=models.CASCADE)
 
 

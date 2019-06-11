@@ -7,7 +7,7 @@ from django.contrib.auth import update_session_auth_hash
 import json
 
 from website import views_user
-from .models import Plan, PlanRow, UserProfile
+from .models import Plan, PlanRow
 from . import models
 
 @login_required
@@ -73,14 +73,11 @@ def saveplan(request):
     #print("Planname: " + planname)
     #print("Poolsize: " + poolsize)
     listitem = planinfo["listarray"]
-    #print(listitem)
+    print(repr(listitem))
     for item in listitem:
         planrow = PlanRow(rep1=item["rep1"],rep2=item["rep2"],distance=item["distance"],resttime=item["resttime"],resttype=item["resttype"],style=item["style"],comments=item["comments"],tools=item["tools"], effort=item["effort"])
         planrow.plan = planmodel
         #print(item)
-        #for key, value in item.items():
-        #    print(key + ": " + value)
-        #    planrow.key =  value
         planrow.save()
 
     return  HttpResponse(200)

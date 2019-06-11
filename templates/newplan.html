@@ -140,7 +140,25 @@
                 </select>
            </div>
           <div class="col-sm-5">
-              <button type="button" id="save" name="save" class="btn btn-success float-right save" style="margin-left: 1.4%; padding-left: 3.8%;padding-right: 3.8%;">Save</button>
+              <button type="button" id="save" name="save" class="btn btn-success float-right save" style="margin-left: 1.4%; padding-left: 3.8%;padding-right: 3.8%;" data-toggle="modal" data-target="#saveModal">Save</button>
+              <div class="modal fade" id="saveModal" tabindex="-1" role="dialog" aria-labelledby="saveModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="saveModalLabel">Your plan was successfully saved!</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">What would you like to do next?</div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Stay on page</button>
+                            <a class="btn btn-primary" href="{% url 'home' %}">Go to Home</a>
+                        </div>
+                    </div>
+                </div>
+              </div>
               <a class="btn btn-danger float-right" data-toggle="modal" style="color: white;" data-target="#resetModal">Reset</a>
               <!--<button type="button" id="reset" name="reset" class="btn btn-danger float-right">Reset </button> onclick="return confirm('Are you sure you want to reset the plan?')" -->
               <div class="modal fade" id="resetModal" tabindex="-1" role="dialog" aria-labelledby="resetModalLabel"
@@ -167,7 +185,7 @@
   </div>
   <div class="container" style="max-width: 1340px;">
     <!-- Editable table -->
-    {% include 'table.html' %}
+    {% include 'newplantable.html' %}
     <!-- Editable table -->
       <p id="demo"></p>
   </div>
@@ -188,10 +206,22 @@
   <script src="{% static '/vendor/jquery/jquery.slim.min.js' %}"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
   <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+
+  <!--print page-->
+  <script>
+  function printPage() {
+       window.print();
+  }
+  </script>
+
   <!--Tabelle speichern-->
   <script>
 
     $('.save').on('click', function() {
+
+
+
         var plan = {};
         plan.listarray = [];
 
@@ -214,19 +244,14 @@
             planrows.tools = table.rows[i].cells[5].getElementsByClassName("tools")[0].value;
             planrows.effort = table.rows[i].cells[6].getElementsByClassName("effort")[0].value;
 
+             if (planrows.rep1==null || planrows.rep1=="" || planrows.rep2==null || planrows.rep2=="" ||planrows.distance==null || planrows.distance=="" ||planrows.effort==null || planrows.effort=="")
+            {
+                alert("Please fill all required fields in line " + i +". \nThe repetition, distance and % cannot be empty. For default, set to zero.");
+                return false;
+            }
+
             plan.listarray.push(planrows);
 
-
-
-            //alert("Rep1 Wert"+ i + ": " + rep1 + ", " +
-            //    "Rep2 Wert"+ i + ": " + rep2 + ", " +
-            //    "Distance Wert"+ i + ": " + distance + ", " +
-            //    "Resttype Wert"+ i + ": " + resttype + ", " +
-            //    "Resttime Wert"+ i + ": " + resttime + ", " +
-            //    "Style Wert"+ i + ": " + style + ", " +
-            //    "Comments Wert"+ i + ": " + comments + ", " +
-            //    "Tools Wert"+ i + ": " + tools + ", " +
-            //    "Effort Wert"+ i + ": " + effort);
         }
 
         var xhr = new XMLHttpRequest();
