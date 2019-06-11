@@ -29,7 +29,9 @@ def help(request):
 
 @login_required
 def manageplans(request):
-    return render(request, 'manageplans.html', context={'obj': Plan.objects.all()})
+    user = request.user
+    plans = Plan.objects.filter(user=user)
+    return render(request, 'manageplans.html', context={'obj': plans})
 
 @login_required
 def group(request):
@@ -38,3 +40,17 @@ def group(request):
 @login_required
 def managegroups(request):
     return render(request, 'managegroups.html')
+
+
+@login_required
+def showplan(request, plan_id):
+    plan = Plan.objects.get(pk=plan_id)
+    rows = PlanRow.objects.filter(plan=plan)
+    return render(request, 'showplan.html', context={'plan': plan, 'rows': rows, 'plan_id': plan_id})
+
+
+@login_required
+def alterplan(request, plan_id):
+    plan = Plan.objects.get(pk=plan_id)
+    rows = PlanRow.objects.filter(plan=plan)
+    return render(request, 'alterplan.html', context={'plan': plan, 'rows': rows, 'plan_id': plan_id})

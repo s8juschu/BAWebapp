@@ -18,17 +18,18 @@
               </tr>
             </thead>
             <tbody>
+             {% for b in rows %}
               <tr>
                 <td>
                   <div class="form-group">
-                    <input type="text" class="form-control rep1" value="1" style="float: left; width: 44%;">
+                    <input type="text" class="form-control rep1" value="{{b.rep1}}" style="float: left; width: 44%;">
                     <p style="float: left; margin: 2%; margin-top: 7%;">x</p>
-                    <input type="text" class="form-control rep2" value="1" style="float: left; width: 44%;">
+                    <input type="text" class="form-control rep2" value="{{b.rep2}}" style="float: left; width: 44%;">
                   </div>
                 </td>
                 <td>
                     <div class="form-group">
-                      <input type="text" class="form-control distance" value="0" style="float: left; width: 80%;">
+                      <input type="text" class="form-control distance" value="{{b.distance}}" style="float: left; width: 80%;">
                       <p style="float: left; margin-left: 7%; margin-top: 7%;">m</p>
                     </div>
                 </td>
@@ -40,7 +41,7 @@
                       <option class="Repetition" value="Repetition">Repetiton</option>
                     </select>
                   </div>
-                   <input type="text" class="form-control resttime" placeholder="min:sec" style="float: left;width: 39%; margin-left: 2%;">
+                   <input type="text" class="form-control resttime" placeholder="min:sec" style="float: left;width: 39%; margin-left: 2%;" value="{{b.resttime}}">
                 </td>
                   <td>
                     <div class="form-group">
@@ -56,7 +57,7 @@
                     </div>
                 </td>
                   <td>
-                      <textarea  class="form-control autoExpand comments" rows="1" style="min-height: 53px;"></textarea>
+                      <textarea  class="form-control autoExpand comments" rows="1" style="min-height: 53px;">{{b.comments}}</textarea>
                 </td>
                   <td>
                     <div class="form-group">
@@ -71,203 +72,16 @@
                     </div>
                 </td>
                 <td>
-                    <input type="text"  class="form-control effort" value="0" >
+                    <input type="text"  class="form-control effort" value="{{b.effort}}" >
                 </td>
                  <td class="deletehide">
                   <span class="table-remove"><button type="button"
                       class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
                 </td>
-              </tr>
-              <!-- This is our clonable table line -->
-
-              <tr>
-                <td>
-                  <div class="form-group">
-                    <input type="text" class="form-control rep1" value="1" style="float: left; width: 44%;">
-                    <p style="float: left; margin: 2%; margin-top: 7%;">x</p>
-                    <input type="text" class="form-control rep2" value="1" style="float: left; width: 44%;">
-                  </div>
-                </td>
-                <td>
-                    <div class="form-group">
-                      <input type="text" class="form-control distance"  value="0" style="float: left; width: 80%;">
-                      <p style="float: left; margin-left: 7%; margin-top: 7%;">m</p>
-                    </div>
-                </td>
-                <td>
-                  <div class="form-group" style="float: left; width: 55%;">
-                    <select class="form-control resttype" >
-                      <option value="None">None</option>
-                      <option value="Time">Time</option>
-                      <option value="Repetition">Repetiton</option>
-                    </select>
-                  </div>
-                   <input type="text" class="form-control resttime" placeholder="min:sec" style="float: left;width: 39%; margin-left: 2%;">
-                </td>
-                  <td>
-                    <div class="form-group">
-                      <select class="form-control style">
-                        <option value="Freestyle">Freestyle</option>
-                        <option value="Backstroke">Backstroke</option>
-                        <option value="Breaststroke">Breaststroke</option>
-                        <option value="Butterfly">Butterfly style</option>
-                        <option value="Free">Free</option>
-                        <option value="Mixed">Mixed</option>
-                        <option value="Training stroke">Training stroke</option>
-                      </select>
-                    </div>
-
-                </td>
-                  <td>
-                    <textarea class="form-control comments" rows="1" style="min-height: 53px;" ></textarea>
-                </td>
-                  <td>
-                    <div class="form-group">
-                      <select class="form-control tools">
-                        <option value="None">None</option>
-                        <option value="Fins">Fins</option>
-                        <option value="Kickboard">Kickboard</option>
-                        <option value="Paddles">Paddles</option>
-                        <option value="Pull Buoy">Pull Bouy</option>
-                        <option value="Snorkel">Snorkel</option>
-                      </select>
-                    </div>
-                </td>
-                <td>
-                    <input type="text" class="form-control effort" value="0" >
-                </td>
-                 <td class="deletehide">
-                  <span class="table-remove"><button type="button"
-                      class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
-                </td>
-              </tr>
-              <!-- This is our clonable table line -->
-              <tr>
-                <td>
-                 <div class="form-group">
-                    <input type="text" class="form-control rep1" value="1" style="float: left; width: 44%;">
-                    <p style="float: left; margin: 2%; margin-top: 7%;">x</p>
-                    <input type="text" class="form-control rep2" value="1" style="float: left; width: 44%;">
-                  </div>
-                </td>
-                <td>
-                    <div class="form-group">
-                      <input type="text" class="form-control distance" value="0" style="float: left; width: 80%;">
-                      <p style="float: left; margin-left: 7%; margin-top: 7%;">m</p>
-                    </div>
-                </td>
-                <td>
-                  <div class="form-group" style="float: left; width: 55%;">
-                    <select class="form-control resttype" >
-                      <option value="None">None</option>
-                      <option value="Time">Time</option>
-                      <option value="Repetition">Repetiton</option>
-                    </select>
-                  </div>
-                   <input type="text" class="form-control resttime" placeholder="min:sec" style="float: left;width: 39%; margin-left: 2%;">
-                </td>
-                  <td>
-                    <div class="form-group">
-                      <select class="form-control style">
-                        <option value="Freestyle">Freestyle</option>
-                        <option value="Backstroke">Backstroke</option>
-                        <option value="Breaststroke">Breaststroke</option>
-                        <option value="Butterfly">Butterfly style</option>
-                        <option value="Free">Free</option>
-                        <option value="Mixed">Mixed</option>
-                        <option value="Training stroke">Training stroke</option>
-                      </select>
-                    </div>
-
-                </td>
-                  <td>
-                    <textarea class="form-control comments" rows="1" style="min-height: 53px;"></textarea>
-                </td>
-                  <td>
-                    <div class="form-group">
-                      <select class="form-control tools">
-                        <option value="None">None</option>
-                        <option value="Fins">Fins</option>
-                        <option value="Kickboard">Kickboard</option>
-                        <option value="Paddles">Paddles</option>
-                        <option value="Pull Buoy">Pull Bouy</option>
-                        <option value="Snorkel">Snorkel</option>
-                      </select>
-                    </div>
-                </td>
-                <td>
-                    <input type="text" class="form-control effort" value="0" >
-                </td>
-                 <td class="deletehide">
-                  <span class="table-remove"><button type="button"
-                      class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
-                </td>
-              </tr>
-              <!-- This is our clonable table line -->
-              <tr class="hide">
-                <td>
-                 <div class="form-group">
-                    <input type="text" class="form-control rep1" value="1" style="float: left; width: 44%;">
-                    <p style="float: left; margin: 2%; margin-top: 7%;">x</p>
-                    <input type="text" class="form-control rep2" value="1" style="float: left; width: 44%;">
-                  </div>
-                </td>
-                <td>
-                    <div class="form-group">
-                      <input type="text" class="form-control distance"  value="0" style="float: left; width: 80%;">
-                      <p style="float: left; margin-left: 7%; margin-top: 7%;">m</p>
-                    </div>
-                </td>
-                <td>
-                  <div class="form-group" style="float: left; width: 55%;">
-                    <select class="form-control resttype" >
-                      <option value="None">None</option>
-                      <option value="Time">Time</option>
-                      <option value="Repetition">Repetiton</option>
-                    </select>
-                  </div>
-                   <input type="text" class="form-control resttime" placeholder="min:sec" style="float: left;width: 39%; margin-left: 2%;">
-                </td>
-                  <td>
-                    <div class="form-group">
-                      <select class="form-control style">
-                       <option value="Freestyle">Freestyle</option>
-                        <option value="Backstroke">Backstroke</option>
-                        <option value="Breaststroke">Breaststroke</option>
-                        <option value="Butterfly">Butterfly style</option>
-                        <option value="Free">Free</option>
-                        <option value="Mixed">Mixed</option>
-                        <option value="Training stroke">Training stroke</option>
-                      </select>
-                    </div>
-
-                </td>
-                  <td>
-                    <textarea class="form-control comments" rows="1" style="min-height: 53px;"></textarea>
-                </td>
-                  <td>
-                    <div class="form-group">
-                      <select class="form-control tools">
-                        <option value="None">None</option>
-                        <option value="Fins">Fins</option>
-                        <option value="Kickboard">Kickboard</option>
-                        <option value="Paddles">Paddles</option>
-                        <option value="Pull Buoy">Pull Bouy</option>
-                        <option value="Snorkel">Snorkel</option>
-                      </select>
-                    </div>
-                </td>
-                <td>
-                    <input type="text" class="form-control effort" value="0" >
-                </td>
-                 <td class="deletehide">
-                  <span class="table-remove"><button type="button"
-                      class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
-                </td>
+                {% endfor %}
               </tr>
             </tbody>
           </table>
-
           <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="icon-chevron-up"></i></button>
         </div>
       </div>
@@ -311,7 +125,7 @@
 
   <!--Distanz berechnen-->
   <script>
-   $('#val').text('0');
+   $('#val').text('{{plan.totaldistance}}');
 
    $('.rep1,.rep2,.distance').on('input',function(){
      var table = document.getElementById("mytable");

@@ -7,13 +7,17 @@ urlpatterns = [
     path('login', views_user.login_view, name='login'),
     path('logout', views_user.logout_view, name='logout'),
     path('register', views_user.registration, name='registration'),
+
     #user logged in urls
     path('home', views_loggedin.home, name='home'),
     path('aboutlog', views_loggedin.about, name='aboutlog'),
 
     path('newplan', views_loggedin.newplan, name='newplan'),
-    path('showplan', views_forms.showplan, name='showplan'),
+    path('showplan/<int:plan_id>', views_loggedin.showplan, name='showplan'),
     path('saveplan', views_forms.saveplan, name='saveplan'),
+    path('alterplan/<int:plan_id>', views_loggedin.alterplan, name='alterplan'),
+    path('deleteplan/<int:plan_id>', views_forms.deleteplan, name='deleteplan'),
+
 
     path('settings', views_loggedin.settings, name='settings'),
     path('settinginfo', views_forms.settinginfo, name='settinginfo'),

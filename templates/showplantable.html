@@ -1,0 +1,81 @@
+  {% load static %}
+    <div>
+      <div >
+        <div id="table" class="table-editable">
+          <table id="mytable" class="table table-bordered table-responsive-md table-striped text-center">
+            <thead>
+              <tr>
+                <th class="text-center repprint" style="width: 11%;">Nr. of reps</th>
+                <th class="text-center" style="width: 10%;">Distance</th>
+                <th class="text-center" style="width: 18%;">Rest</th>
+                <th class="text-center styleprint" style="width: 14%;">Style</th>
+                <th class="text-center" style="width: 24%;">Comments</th>
+                <th class="text-center" style="width: 11%;">Tools</th>
+                <th class="text-center" title="Intensity % maxHR" style="width: 6%;">%</th>
+              </tr>
+            </thead>
+            <tbody>
+             {% for b in rows %}
+              <tr>
+                <td>
+                    <p>{{b.rep1}} x {{b.rep2}}</p>
+                </td>
+                <td>
+                    <p>{{b.distance}} m</p>
+                </td>
+                <td>
+                   <p>{{b.resttype}}, {{b.resttime}} </p>
+                </td>
+                <td>
+                    <p>{{b.style}}</p>
+                </td>
+                  <td>
+                      <p>{{b.comments}}</p>
+                </td>
+                <td>
+                   <p>{{b.tools}}</p>
+                </td>
+                <td>
+                      <p>{{b.effort}} %</p>
+                </td>
+              </tr>
+             {% endfor %}
+            </tbody>
+          </table>
+
+          <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="icon-chevron-up"></i></button>
+        </div>
+      </div>
+    </div>
+  <div class="form-group row">
+      <div class="col-sm-11">
+        <p>Total Distance: <b id="val" style="color: #007bff;"> {{plan.totaldistance}} m</b></p>
+      </div>
+      <div class="col-sm-1">
+        <img style="width: 50%; " onclick="printPage()" class="float-right" src="{% static 'img/print.png' %}">
+      </div>
+  </div>
+
+
+  <script src="{% static '/vendor/jquery/jquery.slim.min.js' %}"></script>
+
+  <!--Top to Page Button-->
+  <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("myBtn").style.display = "block";
+      } else {
+        document.getElementById("myBtn").style.display = "none";
+      }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    }
+  </script>
+

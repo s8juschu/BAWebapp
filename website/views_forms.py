@@ -61,6 +61,7 @@ def saveplan(request):
     #save payload to Plan database
     planname= planinfo["planname"]
     poolsize = planinfo["poolsize"]
+    totaldistance = planinfo["totaldistance"]
 
     user = request.user
     u = User.objects.get(username=user)
@@ -68,10 +69,9 @@ def saveplan(request):
     planmodel = Plan()
     planmodel.name = planname
     planmodel.size = poolsize
+    planmodel.totaldistance = totaldistance
     planmodel.user = u
     planmodel.save()
-    #print("Planname: " + planname)
-    #print("Poolsize: " + poolsize)
     listitem = planinfo["listarray"]
     print(repr(listitem))
     for item in listitem:
@@ -80,11 +80,11 @@ def saveplan(request):
         #print(item)
         planrow.save()
 
-    return  HttpResponse(200)
+    return HttpResponse(200)
 
+def deleteplan(request, plan_id):
+    plan = Plan.objects.get(pk=plan_id)
+    rows = PlanRow.objects.filter(plan=plan).delete()
+    plan.delete()
+    return HttpResponseRedirect(reverse('manageplans'))
 
-@login_required
-def showplan(request):
-    if not request.user.is_authenticated:
-        return HttpResponseRedirect(reverse('index'))
-    return Plan.objects.all()

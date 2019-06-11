@@ -16,6 +16,8 @@ class UserProfile(models.Model):
 class Plan(models.Model):
     name = models.CharField(max_length=128)
     size = models.CharField(max_length=30)
+    totaldistance = models.IntegerField(default=0)
+    saved_at = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 class PlanRow(models.Model):
