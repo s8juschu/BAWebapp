@@ -25,7 +25,7 @@ class PlanRow(models.Model):
     rep2 = models.IntegerField(default=1)
     distance = models.IntegerField(default=0)
     resttype = models.CharField(max_length=30)
-    resttime = models.CharField(max_length=10,null=True)
+    resttime = models.CharField(max_length=10, null=True)
     style = models.CharField(max_length=30)
     comments = models.CharField(max_length=828, null=True)
     tools = models.CharField(max_length=30)
@@ -34,9 +34,12 @@ class PlanRow(models.Model):
 
 
 class Swimmer(models.Model):
-    email = models.CharField(max_length=30)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
+    birthdate = models.DateField(auto_now=False, auto_now_add=False, null=True)
+    email = models.CharField(max_length=30)
+    group = models.CharField(max_length=30, default='')
+    info = models.CharField(max_length=828, null=True, default='')
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
 
 

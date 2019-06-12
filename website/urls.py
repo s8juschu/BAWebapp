@@ -15,6 +15,7 @@ urlpatterns = [
     path('newplan', views_loggedin.newplan, name='newplan'),
     path('showplan/<int:plan_id>', views_loggedin.showplan, name='showplan'),
     path('saveplan', views_forms.saveplan, name='saveplan'),
+    path('manageplans', views_loggedin.manageplans, name='manageplans'),
     path('alterplan/<int:plan_id>', views_loggedin.alterplan, name='alterplan'),
     path('deleteplan/<int:plan_id>', views_forms.deleteplan, name='deleteplan'),
 
@@ -24,7 +25,8 @@ urlpatterns = [
     path('settingpwd', views_forms.settingpwd, name='settingpwd'),
 
     path('help', views_loggedin.help, name='help'),
-    path('manageplans', views_loggedin.manageplans, name='manageplans'),
+
+    path('newathlete', views_loggedin.newathlete, name='newathlete'),
     path('group', views_loggedin.group, name='group'),
     path('managegroups', views_loggedin.managegroups, name='managegroups'),
 ]

@@ -35,7 +35,7 @@
                 </td>
                 <td>
                   <div class="form-group" style="float: left; width: 55%;">
-                    <select class="form-control resttype" >
+                    <select class="form-control resttype" onload="setSelectedIndex(document.getElementsByClassName('resttype')[0],'Time');" >
                       <option class="None" value="None">None</option>
                       <option class="Time" value="Time">Time</option>
                       <option class="Repetition" value="Repetition">Repetiton</option>
@@ -97,6 +97,29 @@
 
 
   <script src="{% static '/vendor/jquery/jquery.slim.min.js' %}"></script>
+
+
+  <!--script>
+        function testFunction(type) {
+
+        var table = document.getElementById("mytable");
+        table.rows[1].cells[2].getElementsByClassName("resttype")[0].value = type;
+      };
+  </script-->
+
+  <script>
+
+  function setSelectedIndex(s, valsearch) {
+    console.log("bla");
+    for (i = 0; i< s.options.length; i++){
+      if (s.options[i].value == valsearch){
+        s.options[i].selected = true;
+        break;
+      }
+    }
+    return;
+  }
+  </script>
 
 
   <!--auto expand-->

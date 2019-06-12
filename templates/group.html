@@ -12,12 +12,16 @@
   <link rel="icon" href="{% static 'img/favicon.png' %}">
   <title>SwimPlanner</title>
 
-  <!-- Bootstrap core CSS -->
+    <!-- Bootstrap core CSS -->
   <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link media="screen" href="{% static 'css/plan.css' %}" rel="stylesheet">
 
   <!-- Custom fonts for this template-->
   <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
-</head>
+
+  <!-- ICON NEEDS FONT AWESOME FOR CHEVRON UP ICON -->
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+
 
 <body>
 
@@ -39,8 +43,7 @@
 			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
 			  <a class="dropdown-item" href="newplan">New plan</a>
 			  <a class="dropdown-item" href="manageplans">Library</a>
-			  <div class="dropdown-divider"></div>
-			  <a class="dropdown-item" href="#">Something else here</a>
+
 			</div>
 		  </li>
           <li class="nav-item dropdown no-arrow mx-1 active">
@@ -49,7 +52,7 @@
 			</a>
 			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
 			  <a class="dropdown-item active" href="group">My group</a>
-			  <a class="dropdown-item" href="managegroups">Change group</a>
+			  <a class="dropdown-item" href="managegroups">Manage group</a>
 			</div>
 		  </li>
 		   <li class="nav-item dropdown no-arrow">
@@ -92,16 +95,8 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-12 text-center">
-        <h1 class="mt-5">Group</h1>
-        <p class="lead">Bla</p>
-        <form action="" method="post">
-          {% csrf_token %}
-          <div style="margin-bottom: 2.0%">
-              <button type="submit" class="btn btn-success" style="margin-left: 2.0%; padding-left: 2.0%;padding-right: 2.0%;">Save</button>
-              <!--<button type="button" class="btn btn-danger">Cancel </button>-->
-              <a href="{% url 'home' %}" class="btn btn-danger" >Cancel</a>
-          </div>
-        </form>
+        <h1 class="mt-5">Your groups</h1>
+        <p class="lead">An overview of your athletes</p>
       </div>
     </div>
   </div>

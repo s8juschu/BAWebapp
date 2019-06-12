@@ -1,264 +1,54 @@
-  {% load static %}
+{% load static %}
     <div>
       <div >
         <div id="table" class="table-editable">
-          <span class="table-add float-right mb-3 mr-2"><a href="#!" class="text-success" style="margin-right: 2.0rem !important;"><i
-                class="fas fa-plus fa-2x" aria-hidden="true"></i></a></span>
+          <span class="table-add float-right mb-3 mr-2">
+              <a href="{% url 'newplan' %}" class="text-success" style="margin-right: 2.0rem !important;">
+                <i class="fas fa-plus fa-2x" aria-hidden="true"></i>
+              </a>
+          </span>
           <table id="mytable" class="table table-bordered table-responsive-md table-striped text-center">
             <thead>
               <tr>
-                <th class="text-center" style="width: 10%">First Name</th>
-                <th class="text-center" style="width: 10%;">Distance</th>
-                <th class="text-center" style="width: 18%">Rest</th>
-                <th class="text-center" style="">Style</th>
-                <th class="text-center" style="">Comments</th>
-                <th class="text-center" style="">Tools</th>
-                <th class="text-center" style="width: 6%;">%</th>
-                <th class="text-center" style="">Delete</th>
+                <th class="text-center" style="width:18%;">First Name</th>
+                <th class="text-center" style="width:18%;">Last Name</th>
+                <th class="text-center" style="width:10%;">Birthdate</th>
+                <th class="text-center" style="width:18%;">E-Mail</th>
+                <th class="text-center" style="width:18%;">Group</th>
+                <th class="text-center" style="width:18%;">Settings</th>
               </tr>
             </thead>
             <tbody>
               <tr>
+                <td> b.firstname</td>
+                <td> b.lastname </td>
+                <td> b.birthdate</td>
+                <td> b.email </td>
+                <td> b.group </td>
                 <td>
-                  <div class="form-group">
-                    <input formmethod="post" type="text" class="form-control rep1" value="1" style="float: left; width: 44%;">
-                    <p style="float: left; margin: 2%;">x</p>
-                    <input type="text" class="form-control rep2" style="float: left; width: 44%;">
-                  </div>
-                </td>
-                <td>
-                    <div class="form-group">
-                      <input type="text" class="form-control distance">
-                    </div>
-                </td>
-                <td>
-                  <div class="form-group" style="float: left; width: 55%;">
-                    <select class="form-control" >
-                      <option value="none">None</option>
-                      <option value="time">Time</option>
-                      <option value="repetition">Repetiton</option>
-                    </select>
-                  </div>
-                   <input type="text" class="form-control" placeholder="min:sec" style="float: left;width: 39%; margin-left: 2%;">
-                </td>
-                  <td>
-                    <div class="form-group">
-                      <select class="form-control" >
-                        <option value="freestyle">Freestyle</option>
-                        <option value="back">Backstroke</option>
-                        <option value="breast">Breaststroke</option>
-                        <option value="butterfly">Butterfly style</option>
-                        <option value="free">Free</option>
-                        <option value="mixed">Mixed</option>
-                        <option value="training">Training stroke</option>
-                      </select>
-                    </div>
-                </td>
-                  <td>
-                      <textarea class="form-control" rows="1" style="min-height: 53px;"></textarea>
-                </td>
-                  <td>
-                    <div class="form-group">
-                      <select class="form-control">
-                        <option value="mixed">None</option>
-                        <option value="freestyle">Fins</option>
-                        <option value="back">Kickboard</option>
-                        <option value="breast">Paddles</option>
-                        <option value="butterfly">Pull Bouy</option>
-                        <option value="free">Snorkel</option>
-                      </select>
-                    </div>
-                </td>
-                <td>
-                    <input type="text" class="form-control">
-                </td>
-                 <td>
-                  <span class="table-remove"><button type="button"
-                      class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
-                </td>
-              </tr>
-              <!-- This is our clonable table line -->
+                  <a href="" class="btn btn-secondary btn-rounded btn-sm my-0" style="padding-left: 3%; padding-right:3%; margin-right:5%;" >View</a>
+                  <a href="" class="btn btn-success btn-rounded btn-sm my-0" style="padding-left: 3%; padding-right:3%; margin-right:5%;" >Edit</a>
 
-              <tr>
-                <td>
-                  <div class="form-group">
-                    <input type="text" class="form-control rep1" value="1" style="float: left; width: 44%;">
-                    <p style="float: left; margin: 2%;">x</p>
-                    <input type="text" class="form-control rep2" style="float: left; width: 44%;">
-                  </div>
-                </td>
-                <td>
-                    <div class="form-group">
-                      <input type="text" class="form-control distance">
+                  <span>
+                    <a href="" class="btn btn-danger btn-rounded btn-sm my-0"  data-toggle="modal" data-target="#deleteModal" >Delete</a>
+                    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+                       aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                              <div class="modal-header">
+                                  <h5 class="modal-title" id="deleteModalLabel">Are you sure you want to delete the athlete?</h5>
+                                  <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">×</span>
+                                  </button>
+                              </div>
+                              <div class="modal-footer">
+                                  <a class="btn btn-secondary" href="">Yes</a>
+                                  <a class="btn btn-primary" href="">No</a>
+                              </div>
+                          </div>
+                      </div>
                     </div>
-                </td>
-                <td>
-                  <div class="form-group" style="float: left; width: 55%;">
-                    <select class="form-control" >
-                      <option value="none">None</option>
-                      <option value="time">Time</option>
-                      <option value="repetition">Repetiton</option>
-                    </select>
-                  </div>
-                   <input type="text" class="form-control" placeholder="min:sec" style="float: left;width: 39%; margin-left: 2%;">
-                </td>
-                  <td>
-                    <div class="form-group">
-                      <select class="form-control">
-                        <option value="freestyle">Freestyle</option>
-                        <option value="back">Backstroke</option>
-                        <option value="breast">Breaststroke</option>
-                        <option value="butterfly">Butterfly style</option>
-                        <option value="free">Free</option>
-                        <option value="mixed">Mixed</option>
-                        <option value="training">Training stroke</option>
-                      </select>
-                    </div>
-
-                </td>
-                  <td>
-                    <textarea class="form-control" rows="1" style="min-height: 53px;" ></textarea>
-                </td>
-                  <td>
-                    <div class="form-group">
-                      <select class="form-control">
-                        <option value="mixed">None</option>
-                        <option value="freestyle">Fins</option>
-                        <option value="back">Kickboard</option>
-                        <option value="breast">Paddles</option>
-                        <option value="butterfly">Pull Bouy</option>
-                        <option value="free">Snorkel</option>
-                      </select>
-                    </div>
-                </td>
-                <td>
-                    <input type="text" class="form-control">
-                </td>
-                 <td>
-                  <span class="table-remove"><button type="button"
-                      class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
-                </td>
-              </tr>
-              <!-- This is our clonable table line -->
-              <tr>
-                <td>
-                 <div class="form-group">
-                    <input type="text" class="form-control rep1" value="1" style="float: left; width: 44%;">
-                    <p style="float: left; margin: 2%;">x</p>
-                    <input type="text" class="form-control rep2" style="float: left; width: 44%;">
-                  </div>
-                </td>
-                <td>
-                    <div class="form-group">
-                      <input type="text" class="form-control distance">
-                    </div>
-                </td>
-                <td>
-                  <div class="form-group" style="float: left; width: 55%;">
-                    <select class="form-control" >
-                      <option value="none">None</option>
-                      <option value="time">Time</option>
-                      <option value="repetition">Repetiton</option>
-                    </select>
-                  </div>
-                   <input type="text" class="form-control" placeholder="min:sec" style="float: left;width: 39%; margin-left: 2%;">
-                </td>
-                  <td>
-                    <div class="form-group">
-                      <select class="form-control">
-                        <option value="freestyle">Freestyle</option>
-                        <option value="back">Backstroke</option>
-                        <option value="breast">Breaststroke</option>
-                        <option value="butterfly">Butterfly style</option>
-                        <option value="free">Free</option>
-                        <option value="mixed">Mixed</option>
-                        <option value="training">Training stroke</option>
-                      </select>
-                    </div>
-
-                </td>
-                  <td>
-                    <textarea class="form-control" rows="1" style="min-height: 53px;"></textarea>
-                </td>
-                  <td>
-                    <div class="form-group">
-                      <select class="form-control">
-                        <option value="mixed">None</option>
-                        <option value="freestyle">Fins</option>
-                        <option value="back">Kickboard</option>
-                        <option value="breast">Paddles</option>
-                        <option value="butterfly">Pull Bouy</option>
-                        <option value="free">Snorkel</option>
-                      </select>
-                    </div>
-                </td>
-                <td>
-                    <input type="text" class="form-control">
-                </td>
-                 <td>
-                  <span class="table-remove"><button type="button"
-                      class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
-                </td>
-              </tr>
-              <!-- This is our clonable table line -->
-              <tr class="hide">
-                <td>
-                 <div class="form-group">
-                    <input type="text" class="form-control rep1" value="1" style="float: left; width: 44%;">
-                    <p style="float: left; margin: 2%;">x</p>
-                    <input type="text" class="form-control rep2" style="float: left; width: 44%;">
-                  </div>
-                </td>
-                <td>
-                    <div class="form-group">
-                      <input type="text" class="form-control distance">
-                    </div>
-                </td>
-                <td>
-                  <div class="form-group" style="float: left; width: 55%;">
-                    <select class="form-control" >
-                      <option value="none">None</option>
-                      <option value="time">Time</option>
-                      <option value="repetition">Repetiton</option>
-                    </select>
-                  </div>
-                   <input type="text" class="form-control" placeholder="min:sec" style="float: left;width: 39%; margin-left: 2%;">
-                </td>
-                  <td>
-                    <div class="form-group">
-                      <select class="form-control">
-                        <option value="freestyle">Freestyle</option>
-                        <option value="back">Backstroke</option>
-                        <option value="breast">Breaststroke</option>
-                        <option value="butterfly">Butterfly style</option>
-                        <option value="free">Free</option>
-                        <option value="mixed">Mixed</option>
-                        <option value="training">Training stroke</option>
-                      </select>
-                    </div>
-
-                </td>
-                  <td>
-                    <textarea class="form-control" rows="1" style="min-height: 53px;"></textarea>
-                </td>
-                  <td>
-                    <div class="form-group">
-                      <select class="form-control">
-                        <option value="mixed">None</option>
-                        <option value="freestyle">Fins</option>
-                        <option value="back">Kickboard</option>
-                        <option value="breast">Paddles</option>
-                        <option value="butterfly">Pull Bouy</option>
-                        <option value="free">Snorkel</option>
-                      </select>
-                    </div>
-                </td>
-                <td>
-                    <input type="text" class="form-control">
-                </td>
-                 <td>
-                  <span class="table-remove"><button type="button"
-                      class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
+                  </span>
                 </td>
               </tr>
             </tbody>
@@ -268,49 +58,9 @@
         </div>
       </div>
     </div>
-  <p>Total Distance: <b id="rep1val" style="color: #007bff;"></b> X <b id="rep2val" style="color: #007bff;"></b> X <b id="val" style="color: #007bff;"></b></p>
 
   <script src="{% static '/vendor/jquery/jquery.slim.min.js' %}"></script>
 
-  <!--Distanz berechnen-->
-  <script>
-
-    $('#val').text('0\xa0m');
-    $('.form-group').on('input','.distance',function(){
-        var totalSum = 0;
-        $('.form-group .distance').each(function(){
-            var inputVal = $(this).val();
-            if($.isNumeric(inputVal)){
-              totalSum += parseFloat(inputVal);
-            }
-        });
-        $('#val').text(totalSum + '\xa0m');
-    });
-
-    $('#rep1val').text('0\xa0m');
-    $('.form-group').on('input','.rep1',function(){
-        var rep1mul = 0;
-        $('.form-group .rep1').each(function(){
-          var mul = $(this).val();
-          if($.isNumeric(mul)){
-            rep1mul += parseFloat(mul);
-          }
-      });
-      $('#rep1val').text(rep1mul + '\xa0m');
-    });
-
-    $('#rep2val').text('0\xa0m');
-    $('.form-group').on('input','.rep2',function(){
-        var rep2mul = 0;
-          $('.form-group .rep2').each(function(){
-          var mul2 = $(this).val();
-          if($.isNumeric(mul2)){
-            rep2mul += parseFloat(mul2);
-          }
-      });
-      $('#rep2val').text(rep2mul + '\xa0m');
-    });
-  </script>
 
   <!--Top to Page Button-->
   <script>
@@ -332,139 +82,3 @@
     }
   </script>
 
-  <!--Funktionalität Tabelle-->
-  <script>
-    const $tableID = $('#table');
-    const $BTN = $('#export-btn');
-    const $EXPORT = $('#export');
-
-    const newTr = `
-   <tr class="hide">
-    <td>
-     <div class="form-group">
-        <input type="text" class="form-control rep1" value="1" style="float: left; width: 44%;">
-        <p style="float: left; margin: 2%;">x</p>
-        <input type="text" class="form-control rep2" style="float: left; width: 44%;">
-      </div>
-    </td>
-    <td>
-        <div class="form-group">
-          <input type="text" class="form-control distance">
-        </div>
-    </td>
-    <td>
-      <div class="form-group" style="float: left; width: 55%;">
-        <select class="form-control" >
-          <option value="none">None</option>
-          <option value="time">Time</option>
-          <option value="repetition">Repetiton</option>
-        </select>
-      </div>
-       <input type="text" class="form-control" placeholder="min:sec" style="float: left;width: 39%; margin-left: 2%;">
-    </td>
-      <td>
-        <div class="form-group">
-          <select class="form-control">
-            <option value="freestyle">Freestyle</option>
-            <option value="back">Backstroke</option>
-            <option value="breast">Breaststroke</option>
-            <option value="butterfly">Butterfly style</option>
-            <option value="free">Free</option>
-            <option value="mixed">Mixed</option>
-            <option value="training">Training stroke</option>
-          </select>
-        </div>
-
-    </td>
-      <td>
-        <textarea class="form-control" rows="1" style="min-height: 53px;"></textarea>
-    </td>
-      <td>
-        <div class="form-group">
-          <select class="form-control">
-            <option value="mixed">None</option>
-            <option value="freestyle">Fins</option>
-            <option value="back">Kickboard</option>
-            <option value="breast">Paddles</option>
-            <option value="butterfly">Pull Bouy</option>
-            <option value="free">Snorkel</option>
-          </select>
-        </div>
-    </td>
-    <td>
-        <input type="text" class="form-control">
-    </td>
-     <td>
-      <span class="table-remove"><button type="button"
-          class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
-    </td>
-  </tr>`;
-
-    $('.table-add').on('click', 'i', () => {
-
-      const $clone = $tableID.find('tbody tr').last().clone(true).removeClass('hide table-line');
-
-      if ($tableID.find('tbody tr').length === 0) {
-
-        $('tbody').append(newTr);
-      }
-
-      $tableID.find('table').append($clone);
-    });
-
-    $tableID.on('click', '.table-remove', function () {
-
-      $(this).parents('tr').detach();
-    });
-
-    $tableID.on('click', '.table-up', function () {
-
-      const $row = $(this).parents('tr');
-
-      if ($row.index() === 1) {
-        return;
-      }
-
-      $row.prev().before($row.get(0));
-    });
-
-    $tableID.on('click', '.table-down', function () {
-
-      const $row = $(this).parents('tr');
-      $row.next().after($row.get(0));
-    });
-
-    // A few jQuery helpers for exporting only
-    jQuery.fn.pop = [].pop;
-    jQuery.fn.shift = [].shift;
-
-    $BTN.on('click', () => {
-
-      const $rows = $tableID.find('tr:not(:hidden)');
-      const headers = [];
-      const data = [];
-
-      // Get the headers (add special header logic here)
-      $($rows.shift()).find('th:not(:empty)').each(function () {
-
-        headers.push($(this).text().toLowerCase());
-      });
-
-      // Turn all existing rows into a loopable array
-      $rows.each(function () {
-        const $td = $(this).find('td');
-        const h = {};
-
-        // Use the headers from earlier to name our hash keys
-        headers.forEach((header, i) => {
-
-          h[header] = $td.eq(i).text();
-        });
-
-        data.push(h);
-      });
-
-      // Output the result
-      $EXPORT.text(JSON.stringify(data));
-    });
-  </script>

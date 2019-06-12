@@ -34,6 +34,10 @@ def manageplans(request):
     return render(request, 'manageplans.html', context={'obj': plans})
 
 @login_required
+def newathlete(request):
+    return render(request, 'newathlete.html')
+
+@login_required
 def group(request):
     return render(request, 'group.html')
 
@@ -54,3 +58,9 @@ def alterplan(request, plan_id):
     plan = Plan.objects.get(pk=plan_id)
     rows = PlanRow.objects.filter(plan=plan)
     return render(request, 'alterplan.html', context={'plan': plan, 'rows': rows, 'plan_id': plan_id})
+
+@login_required
+def showgroup(request, plan_id):
+    plan = Plan.objects.get(pk=plan_id)
+    rows = PlanRow.objects.filter(plan=plan)
+    return render(request, 'showplan.html', context={'plan': plan, 'rows': rows, 'plan_id': plan_id})
