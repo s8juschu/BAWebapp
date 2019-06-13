@@ -27,6 +27,8 @@ urlpatterns = [
     path('help', views_loggedin.help, name='help'),
 
     path('newathlete', views_loggedin.newathlete, name='newathlete'),
+    path('showathlete/<int:athlete_id>', views_loggedin.showathlete, name='showathlete'),
+    path('saveathlete', views_forms.saveathlete, name='saveathlete'),
     path('group', views_loggedin.group, name='group'),
-    path('managegroups', views_loggedin.managegroups, name='managegroups'),
+    path('alterathlete/<int:athlete_id>', views_loggedin.alterathlete, name='alterathlete')
 ]

@@ -7,7 +7,7 @@ from django.contrib.auth import update_session_auth_hash
 import json
 
 from website import views_user
-from .models import Plan, PlanRow
+from .models import Plan, PlanRow, Swimmer
 from . import models
 
 @login_required
@@ -87,4 +87,35 @@ def deleteplan(request, plan_id):
     rows = PlanRow.objects.filter(plan=plan).delete()
     plan.delete()
     return HttpResponseRedirect(reverse('manageplans'))
+
+@login_required
+def saveathlete(request):
+
+    #get request payload
+    getathleteinfo = request.body.decode('utf-8')
+    athleteinfo = json.loads(getathleteinfo)
+
+    #save payload to Plan database
+    firstname= athleteinfo["firstname"]
+    lastname = athleteinfo["lastname"]
+    email = athleteinfo["email"]
+    birthdate = athleteinfo["birthdate"]
+    group = athleteinfo["group"]
+    info = athleteinfo["info"]
+
+    user = request.user
+    u = User.objects.get(username=user)
+
+    swimmer = Swimmer()
+    swimmer.first_name = firstname
+    swimmer.last_name = lastname
+    swimmer.email = email
+    swimmer.birthdate = birthdate
+    swimmer.group = group
+    swimmer.info = info
+    swimmer.user = u
+    swimmer.save()
+
+    return HttpResponse(200)
+
 

@@ -10,24 +10,27 @@
           <table id="mytable" class="table table-bordered table-responsive-md table-striped text-center">
             <thead>
               <tr>
-                <th class="text-center" style="width:18%;">First Name</th>
-                <th class="text-center" style="width:18%;">Last Name</th>
-                <th class="text-center" style="width:10%;">Birthdate</th>
-                <th class="text-center" style="width:18%;">E-Mail</th>
-                <th class="text-center" style="width:18%;">Group</th>
+                <th class="text-center" style="width:16%;">First Name</th>
+                <th class="text-center" style="width:16%;">Last Name</th>
+                <th class="text-center" style="width:8%;">Birthdate</th>
+                <th class="text-center" style="width:16%;">E-Mail</th>
+                <th class="text-center" style="width:14%;">Group</th>
+                <th class="text-center" style="width:14%;">Info</th>
                 <th class="text-center" style="width:18%;">Settings</th>
               </tr>
             </thead>
             <tbody>
+             {% for b in swimmer %}
               <tr>
-                <td> b.firstname</td>
-                <td> b.lastname </td>
-                <td> b.birthdate</td>
-                <td> b.email </td>
-                <td> b.group </td>
+                <td>{{ b.first_name}}</td>
+                <td>{{ b.last_name }}</td>
+                <td>{{ b.birthdate}}</td>
+                <td>{{ b.email }}</td>
+                <td>{{ b.group }}</td>
+                <td>{{ b.info }}</td>
                 <td>
-                  <a href="" class="btn btn-secondary btn-rounded btn-sm my-0" style="padding-left: 3%; padding-right:3%; margin-right:5%;" >View</a>
-                  <a href="" class="btn btn-success btn-rounded btn-sm my-0" style="padding-left: 3%; padding-right:3%; margin-right:5%;" >Edit</a>
+                  <a href="{% url 'showathlete' athlete_id=b.pk %}" class="btn btn-secondary btn-rounded btn-sm my-0" style="padding-left: 3%; padding-right:3%; margin-right:5%;" >View</a>
+                  <a href="{% url 'alterathlete' athlete_id=b.pk %}" class="btn btn-success btn-rounded btn-sm my-0" style="padding-left: 3%; padding-right:3%; margin-right:5%;" >Edit</a>
 
                   <span>
                     <a href="" class="btn btn-danger btn-rounded btn-sm my-0"  data-toggle="modal" data-target="#deleteModal" >Delete</a>
@@ -51,6 +54,7 @@
                   </span>
                 </td>
               </tr>
+             {% endfor %}
             </tbody>
           </table>
 

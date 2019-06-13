@@ -36,10 +36,10 @@ class PlanRow(models.Model):
 class Swimmer(models.Model):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
-    birthdate = models.DateField(auto_now=False, auto_now_add=False, null=True)
+    birthdate = models.CharField(max_length=30, null=True, default='')
     email = models.CharField(max_length=30)
     group = models.CharField(max_length=30, default='')
     info = models.CharField(max_length=828, null=True, default='')
-    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 

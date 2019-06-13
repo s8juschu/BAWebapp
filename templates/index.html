@@ -61,15 +61,15 @@
   <br>
       <!-- Login View -->
     <div class="container login-dialog" id="login" >
-        <div class="card bg-light text-dark">
+        <div class="card text-dark">
             <div class="card-body">
                 <form action="{% url 'login' %}" method="post">
                     <div class="form-group">
-                        <label for="user">Username:</label>
+                        <label for="user" style="font-weight: bold;" >Username:</label>
                         <input class="form-control" id="user" name="user" type="text">
                     </div>
                     <div class="form-group">
-                        <label for="pwd">Password:</label>
+                        <label for="pwd" style="font-weight: bold;">Password:</label>
                         <input class="form-control" id="pwd" name="pwd" type="password">
                     </div>
                     {% csrf_token %}
@@ -82,22 +82,22 @@
     </div>
     <!-- Registration View -->
     <div class="container register-dialog" hidden id="register">
-        <div class="card bg-light text-dark">
+        <div class="card text-dark">
             <div class="card-body">
                 <form action="{% url 'registration' %}" method="post">
                     <div class="form-group">
-                        <label for="user">Username:</label>
+                        <label for="user" style="font-weight: bold;">Username:</label>
                         <input class="form-control" id="user" name="user" type="text">
                     </div>
                     <div class="form-group">
-                        <label for="email">Email address:</label>
+                        <label for="email" style="font-weight: bold;">Email address:</label>
                         <input class="form-control" id="email" name="email" type="email">
                     </div>
                     <div class="form-group">
-                        <label for="pwd1">Password:</label>
+                        <label for="pwd1" style="font-weight: bold;">Password:</label>
                         <input class="form-control" id="pwd1" name="pwd1" type="password">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" style="font-weight: bold;">
                         <label for="pwd2">Confirm password:</label>
                         <input class="form-control" id="pwd2" name="pwd2" type="password">
                     </div>
