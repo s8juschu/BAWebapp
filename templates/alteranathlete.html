@@ -190,6 +190,7 @@
   <script src="{% static '/vendor/jquery/jquery.slim.min.js' %}"></script>
   <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
+  <!--auto expand-->
   <script>
   $('textarea').each(function () {
       this.setAttribute('style', 'height:' + (this.scrollHeight) + 'px;overflow-y:hidden; float:right; width:66%;');
@@ -197,6 +198,30 @@
       this.style.height = 'auto';
       this.style.height = (this.scrollHeight) + 'px';
   });
+  </script>
+
+  <!--save athlete-->
+  <script>
+      $('.save').on('click', function() {
+
+        var athlete = {};
+        var params = {{swimmer.pk}};
+
+        athlete.firstname = document.getElementById("first_name").value;
+        athlete.lastname = document.getElementById("last_name").value;
+        athlete.email = document.getElementById("email").value;
+        athlete.birthdate = document.getElementById("birthdate").value;
+        athlete.group = document.getElementById("group").value;
+        athlete.info = document.getElementById("info").value;
+
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", '/website/updateathlete'+'/'+params, true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify(athlete));
+    });
+
+
   </script>
 
 </body>

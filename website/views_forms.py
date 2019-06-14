@@ -51,6 +51,8 @@ def settingpwd(request):
             return HttpResponseRedirect(reverse('settings'))
 
 
+
+
 @login_required
 def saveplan(request):
 
@@ -89,7 +91,7 @@ def deleteplan(request, plan_id):
     return HttpResponseRedirect(reverse('manageplans'))
 
 @login_required
-def updateplan(request):
+def updateplan(request, plan_id):
 
     #get request payload
     getplaninfo = request.body.decode('utf-8')
@@ -100,24 +102,23 @@ def updateplan(request):
     poolsize = planinfo["poolsize"]
     totaldistance = planinfo["totaldistance"]
 
-    user = request.user
-    u = User.objects.get(username=user)
 
-    planmodel = Plan()
+    planmodel = Plan.objects.get(pk=plan_id)
     planmodel.name = planname
     planmodel.size = poolsize
     planmodel.totaldistance = totaldistance
-    planmodel.user = u
     planmodel.save()
-    listitem = planinfo["listarray"]
-    print(repr(listitem))
-    for item in listitem:
-        planrow = PlanRow(rep1=item["rep1"],rep2=item["rep2"],distance=item["distance"],resttime=item["resttime"],resttype=item["resttype"],style=item["style"],comments=item["comments"],tools=item["tools"], effort=item["effort"])
-        planrow.plan = planmodel
-        #print(item)
-        planrow.save()
+
+    # listitem = planinfo["listarray"]
+    # # print(repr(listitem))
+    # for item in listitem:
+    #     planrow = PlanRow(rep1=item["rep1"],rep2=item["rep2"],distance=item["distance"],resttime=item["resttime"],resttype=item["resttype"],style=item["style"],comments=item["comments"],tools=item["tools"], effort=item["effort"]).objects.filter(plan=plan)
+    #     planrow.plan = planmodel
+    #     planrow.save()
 
     return HttpResponse(200)
+
+
 
 
 
@@ -157,7 +158,7 @@ def deleteathlete(request, athlete_id):
 
 
 @login_required
-def updateathlete(request):
+def updateathlete(request, athlete_id):
 
     #get request payload
     getathleteinfo = request.body.decode('utf-8')
@@ -171,19 +172,17 @@ def updateathlete(request):
     group = athleteinfo["group"]
     info = athleteinfo["info"]
 
-    user = request.user
-    u = User.objects.get(username=user)
 
-    swimmer = Swimmer()
+    swimmer = Swimmer.objects.get(pk=athlete_id)
     swimmer.first_name = firstname
     swimmer.last_name = lastname
     swimmer.email = email
     swimmer.birthdate = birthdate
     swimmer.group = group
     swimmer.info = info
-    swimmer.user = u
     swimmer.save()
 
     return HttpResponse(200)
+
 
 
