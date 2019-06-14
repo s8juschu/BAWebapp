@@ -89,7 +89,75 @@ def deleteplan(request, plan_id):
     return HttpResponseRedirect(reverse('manageplans'))
 
 @login_required
+def updateplan(request):
+
+    #get request payload
+    getplaninfo = request.body.decode('utf-8')
+    planinfo = json.loads(getplaninfo)
+
+    #save payload to Plan database
+    planname= planinfo["planname"]
+    poolsize = planinfo["poolsize"]
+    totaldistance = planinfo["totaldistance"]
+
+    user = request.user
+    u = User.objects.get(username=user)
+
+    planmodel = Plan()
+    planmodel.name = planname
+    planmodel.size = poolsize
+    planmodel.totaldistance = totaldistance
+    planmodel.user = u
+    planmodel.save()
+    listitem = planinfo["listarray"]
+    print(repr(listitem))
+    for item in listitem:
+        planrow = PlanRow(rep1=item["rep1"],rep2=item["rep2"],distance=item["distance"],resttime=item["resttime"],resttype=item["resttype"],style=item["style"],comments=item["comments"],tools=item["tools"], effort=item["effort"])
+        planrow.plan = planmodel
+        #print(item)
+        planrow.save()
+
+    return HttpResponse(200)
+
+
+
+@login_required
 def saveathlete(request):
+
+    #get request payload
+    getathleteinfo = request.body.decode('utf-8')
+    athleteinfo = json.loads(getathleteinfo)
+
+    #save payload to Plan database
+    firstname= athleteinfo["firstname"]
+    lastname = athleteinfo["lastname"]
+    email = athleteinfo["email"]
+    birthdate = athleteinfo["birthdate"]
+    group = athleteinfo["group"]
+    info = athleteinfo["info"]
+
+    user = request.user
+    u = User.objects.get(username=user)
+
+    swimmer = Swimmer()
+    swimmer.first_name = firstname
+    swimmer.last_name = lastname
+    swimmer.email = email
+    swimmer.birthdate = birthdate
+    swimmer.group = group
+    swimmer.info = info
+    swimmer.user = u
+    swimmer.save()
+
+    return HttpResponse(200)
+
+def deleteathlete(request, athlete_id):
+    swimmer = Swimmer.objects.filter(pk=athlete_id).delete()
+    return HttpResponseRedirect(reverse('group'))
+
+
+@login_required
+def updateathlete(request):
 
     #get request payload
     getathleteinfo = request.body.decode('utf-8')

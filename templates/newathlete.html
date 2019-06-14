@@ -99,7 +99,7 @@
       </div>
     </div>
     <div class="tab-content" style="padding:15px;">
-    <div class="tab-pane active" id="profile">
+      <div class="tab-pane active" id="profile">
         <div>
             <div class="card-body">
                     <ul class="list-group" style="margin:0px">
@@ -128,7 +128,7 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="saveModalLabel">Your plan was successfully saved!</h5>
+                            <h5 class="modal-title" id="saveModalLabel">The athlete was successfully saved!</h5>
                             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                             </button>
@@ -136,7 +136,7 @@
                         <div class="modal-body">What would you like to do next?</div>
                         <div class="modal-footer">
                             <a class="btn btn-secondary" href="{% url 'group' %}">View all athletes</a>
-                            <a class="btn btn-primary" href="{% url 'home' %}">Go to home</a>
+                            <a class="btn btn-primary" href="{% url 'newathlete' %}">Add another athlete</a>
                         </div>
                     </div>
                 </div>
@@ -144,6 +144,7 @@
               <a href="{% url 'home' %}" class="btn btn-danger" >Cancel</a>
             </div>
         </div>
+      </div>
     </div>
   </div>
   </div>

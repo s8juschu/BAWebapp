@@ -3,7 +3,7 @@
       <div >
         <div id="table" class="table-editable">
           <span class="table-add float-right mb-3 mr-2">
-              <a href="{% url 'newplan' %}" class="text-success" style="margin-right: 2.0rem !important;">
+              <a href="{% url 'newathlete' %}" class="text-success" style="margin-right: 2.0rem !important;">
                 <i class="fas fa-plus fa-2x" aria-hidden="true"></i>
               </a>
           </span>
@@ -33,20 +33,20 @@
                   <a href="{% url 'alterathlete' athlete_id=b.pk %}" class="btn btn-success btn-rounded btn-sm my-0" style="padding-left: 3%; padding-right:3%; margin-right:5%;" >Edit</a>
 
                   <span>
-                    <a href="" class="btn btn-danger btn-rounded btn-sm my-0"  data-toggle="modal" data-target="#deleteModal" >Delete</a>
-                    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+                    <a href="" class="btn btn-danger btn-rounded btn-sm my-0"  data-toggle="modal" data-target="#deleteModal{{b.pk}}" >Delete</a>
+                    <div class="modal fade" id="deleteModal{{b.pk}}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel{{b.pk}}"
                        aria-hidden="true">
                       <div class="modal-dialog" role="document">
                           <div class="modal-content">
                               <div class="modal-header">
-                                  <h5 class="modal-title" id="deleteModalLabel">Are you sure you want to delete the athlete?</h5>
+                                  <h5 class="modal-title" id="deleteModalLabel{{b.pk}}">Are you sure you want to delete the athlete?</h5>
                                   <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                       <span aria-hidden="true">×</span>
                                   </button>
                               </div>
                               <div class="modal-footer">
-                                  <a class="btn btn-secondary" href="">Yes</a>
-                                  <a class="btn btn-primary" href="">No</a>
+                                  <a class="btn btn-secondary" href="{% url 'deleteathlete' athlete_id=b.pk %}">Yes</a>
+                                  <a class="btn btn-primary" href="{% url 'group' %}">No</a>
                               </div>
                           </div>
                       </div>

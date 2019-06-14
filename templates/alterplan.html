@@ -115,7 +115,7 @@
                     </select>
                </div>
             <div class="col-sm-3">
-            <button type="button" id="save" name="save" class="btn btn-success save" style="margin-left: 42%;"  data-toggle="modal" data-target="#saveModal">Save</button>
+              <button type="button" id="save" name="save" class="btn btn-success save" style="margin-left: 42%;"  data-toggle="modal" data-target="#saveModal">Save</button>
               <div class="modal fade" id="saveModal" tabindex="-1" role="dialog" aria-labelledby="saveModalLabel"
                  aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -136,7 +136,6 @@
                 </div>
               </div>
               <a class="btn btn-danger" data-toggle="modal" style="color: white;" data-target="#resetModal">Discard</a>
-              <!--<button type="button" id="reset" name="reset" class="btn btn-danger float-right">Reset </button> onclick="return confirm('Are you sure you want to reset the plan?')" -->
               <div class="modal fade" id="resetModal" tabindex="-1" role="dialog" aria-labelledby="resetModalLabel"
                  aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -191,52 +190,52 @@
   }
   </script>
 
-  <script>
-    $('.save').on('click', function() {
+<!--  <script>-->
+<!--    $('.save').on('click', function() {-->
 
 
 
-        var plan = {};
-        plan.listarray = [];
+<!--        var plan = {};-->
+<!--        plan.listarray = [];-->
 
-        var table = document.getElementById("mytable");
-        var len = table.rows.length;
+<!--        var table = document.getElementById("mytable");-->
+<!--        var len = table.rows.length;-->
 
-        plan.planname = document.getElementsByClassName("planname")[0].value;
-        plan.poolsize = document.getElementsByClassName("poolsize")[0].value;
-        plan.totaldistance = $( ".totaldistance" ).text();
+<!--        plan.planname = document.getElementsByClassName("planname")[0].value;-->
+<!--        plan.poolsize = document.getElementsByClassName("poolsize")[0].value;-->
+<!--        plan.totaldistance = $( ".totaldistance" ).text();-->
 
 
-        for (i = 1; i < len; i++){
-            var planrows = {};
+<!--        for (i = 1; i < len; i++){-->
+<!--            var planrows = {};-->
 
-            planrows.rep1 = table.rows[i].cells[0].getElementsByClassName("rep1")[0].value;
-            planrows.rep2 = table.rows[i].cells[0].getElementsByClassName("rep2")[0].value;
-            planrows.distance = table.rows[i].cells[1].getElementsByClassName("distance")[0].value;
-            planrows.resttype = table.rows[i].cells[2].getElementsByClassName("resttype")[0].value;
-            planrows.resttime = table.rows[i].cells[2].getElementsByClassName("resttime")[0].value;
-            planrows.style = table.rows[i].cells[3].getElementsByClassName("style")[0].value;
-            planrows.comments = table.rows[i].cells[4].getElementsByClassName("comments")[0].value;
-            planrows.tools = table.rows[i].cells[5].getElementsByClassName("tools")[0].value;
-            planrows.effort = table.rows[i].cells[6].getElementsByClassName("effort")[0].value;
+<!--            planrows.rep1 = table.rows[i].cells[0].getElementsByClassName("rep1")[0].value;-->
+<!--            planrows.rep2 = table.rows[i].cells[0].getElementsByClassName("rep2")[0].value;-->
+<!--            planrows.distance = table.rows[i].cells[1].getElementsByClassName("distance")[0].value;-->
+<!--            planrows.resttype = table.rows[i].cells[2].getElementsByClassName("resttype")[0].value;-->
+<!--            planrows.resttime = table.rows[i].cells[2].getElementsByClassName("resttime")[0].value;-->
+<!--            planrows.style = table.rows[i].cells[3].getElementsByClassName("style")[0].value;-->
+<!--            planrows.comments = table.rows[i].cells[4].getElementsByClassName("comments")[0].value;-->
+<!--            planrows.tools = table.rows[i].cells[5].getElementsByClassName("tools")[0].value;-->
+<!--            planrows.effort = table.rows[i].cells[6].getElementsByClassName("effort")[0].value;-->
 
-             if (planrows.rep1==null || planrows.rep1=="" || planrows.rep2==null || planrows.rep2=="" ||planrows.distance==null || planrows.distance=="" ||planrows.effort==null || planrows.effort=="")
-            {
-                alert("Please fill all required fields in line " + i +". \nThe repetition, distance and % cannot be empty. For default, set to zero.");
-                return false;
-            }
+<!--             if (planrows.rep1==null || planrows.rep1=="" || planrows.rep2==null || planrows.rep2=="" ||planrows.distance==null || planrows.distance=="" ||planrows.effort==null || planrows.effort=="")-->
+<!--            {-->
+<!--                alert("Please fill all required fields in line " + i +". \nThe repetition, distance and % cannot be empty. For default, set to zero.");-->
+<!--                return false;-->
+<!--            }-->
 
-            plan.listarray.push(planrows);
+<!--            plan.listarray.push(planrows);-->
 
-        }
+<!--        }-->
 
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", '/website/saveplan', true);
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.send(JSON.stringify(plan));
-    });
+<!--        var xhr = new XMLHttpRequest();-->
+<!--        xhr.open("POST", '/website/saveplan', true);-->
+<!--        xhr.setRequestHeader('Content-Type', 'application/json');-->
+<!--        xhr.send(JSON.stringify(plan));-->
+<!--    });-->
 
-  </script>
+<!--  </script>-->
 
 </body>
 

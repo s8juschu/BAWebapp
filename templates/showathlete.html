@@ -118,20 +118,20 @@
                         </ul>
                 </div>
                 <div style="margin-bottom: 2.0%">
-                <a  href="{% url 'alterplan' plan_id=swimmer.pk %}" id="save" name="save" class="btn btn-success save" style=" margin-left: 2.0%;padding-left: 2.0%;padding-right: 2.0%;">Edit</a>
+                <a  href="{% url 'alterathlete' athlete_id=swimmer.pk %}" id="edit" name="edit" class="btn btn-success" style=" margin-left: 2.0%;padding-left: 2.0%;padding-right: 2.0%;">Edit</a>
                 <a href="" class="btn btn-danger" data-toggle="modal" style="color: white;" data-toggle="modal" data-target="#deleteModal" >Delete</a>
                 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
                    aria-hidden="true">
                   <div class="modal-dialog" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
-                              <h5 class="modal-title" id="deleteModalLabel">Are you sure you want to delete the plan?</h5>
+                              <h5 class="modal-title" id="deleteModalLabel">Are you sure you want to delete the athlete?</h5>
                               <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                   <span aria-hidden="true">×</span>
                               </button>
                           </div>
                           <div class="modal-footer">
-                              <a class="btn btn-secondary" href="">Yes</a>
+                              <a class="btn btn-secondary" href="{% url 'deleteathlete' athlete_id=swimmer.pk %}">Yes</a>
                               <button class="btn btn-primary" type="button" data-dismiss="modal">No</button>
                           </div>
                       </div>
