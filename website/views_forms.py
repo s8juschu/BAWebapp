@@ -93,6 +93,10 @@ def deleteplan(request, plan_id):
 @login_required
 def updateplan(request, plan_id):
 
+    #delte old planrows
+    plan = Plan.objects.get(pk=plan_id)
+    PlanRow.objects.filter(plan=plan).delete()
+
     #get request payload
     getplaninfo = request.body.decode('utf-8')
     planinfo = json.loads(getplaninfo)
@@ -109,12 +113,13 @@ def updateplan(request, plan_id):
     planmodel.totaldistance = totaldistance
     planmodel.save()
 
-    # listitem = planinfo["listarray"]
-    # # print(repr(listitem))
-    # for item in listitem:
-    #     planrow = PlanRow(rep1=item["rep1"],rep2=item["rep2"],distance=item["distance"],resttime=item["resttime"],resttype=item["resttype"],style=item["style"],comments=item["comments"],tools=item["tools"], effort=item["effort"]).objects.filter(plan=plan)
-    #     planrow.plan = planmodel
-    #     planrow.save()
+    listitem = planinfo["listarray"]
+    for item in listitem:
+        planrow = PlanRow(rep1=item["rep1"], rep2=item["rep2"], distance=item["distance"], resttime=item["resttime"],
+                          resttype=item["resttype"], style=item["style"], comments=item["comments"],
+                          tools=item["tools"], effort=item["effort"])
+        planrow.plan = planmodel
+        planrow.save()
 
     return HttpResponse(200)
 
