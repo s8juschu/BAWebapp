@@ -32,6 +32,12 @@ class PlanRow(models.Model):
     effort = models.IntegerField(default=0)
     plan = models.ForeignKey(Plan, on_delete=models.CASCADE)
 
+class Group(models.Model):
+    name = models.CharField(max_length=30)
+    num = models.IntegerField(default=0)
+    comments = models.CharField(max_length=828, null=True)
+    place = models.CharField(max_length=255, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 class Swimmer(models.Model):
     first_name = models.CharField(max_length=30)
@@ -41,5 +47,6 @@ class Swimmer(models.Model):
     group = models.CharField(max_length=30, default='')
     info = models.CharField(max_length=828, null=True, default='')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    #groupforeignkey= models.ForeignKey(Group, on_delete=models.CASCADE)
 
 

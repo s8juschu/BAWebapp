@@ -18,8 +18,47 @@
     font-weight: bold;
     font-size: 2.0rem;
 }
-.abouttext{
+.abouttext, .submitform{
     margin-top: 0.5rem;
-    margin-left: 1.5rem;
-    margin-right: 0.5rem;
+    margin-left: 2.0rem;
+    margin-right: 1.7rem;
+    margin-bottom: 1.5rem;
+}
+
+
+
+.submitform  input[type=text]{
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+.submitform  input[type=email]{
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  /*margin-left: 0.1rem;*/
+}
+
+.submitform  textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+.submitform input[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+  margin-bottom: 0.5rem;
 }

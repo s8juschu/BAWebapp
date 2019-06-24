@@ -16,12 +16,17 @@
   <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
   <link media="screen" href="{% static 'css/plan.css' %}" rel="stylesheet">
 
+
   <!-- Custom fonts for this template-->
   <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
 
   <!-- ICON NEEDS FONT AWESOME FOR CHEVRON UP ICON -->
   <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 
+
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 
 <body>
 
@@ -34,15 +39,15 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item ">
-            <a class="nav-link" href="../home">Home</a>
+            <a class="nav-link" href="home">Home</a>
           </li>
 		  <li class="nav-item dropdown no-arrow mx-1">
 			<a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					Trainings
 			</a>
 			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
-			  <a class="dropdown-item" href="../newplan">New plan</a>
-			  <a class="dropdown-item" href="../manageplans">Library</a>
+			  <a class="dropdown-item" href="newplan">New plan</a>
+			  <a class="dropdown-item" href="manageplans">Library</a>
 
 			</div>
 		  </li>
@@ -51,8 +56,8 @@
 					Group
 			</a>
 			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
-			  <a class="dropdown-item" href="../group">My group</a>
-			  <a class="dropdown-item" href="../newathlete">Add athlete</a>
+			  <a class="dropdown-item" href="group">My group</a>
+			  <a class="dropdown-item active" href="newathlete">Add athlete</a>
 			</div>
 		  </li>
 		   <li class="nav-item dropdown no-arrow">
@@ -60,12 +65,12 @@
 			  <i class="fas fa-user-circle fa-fw"></i>
 			</a>
 			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-			  <a class="dropdown-item" href="../settings">Settings
+			  <a class="dropdown-item" href="settings">Settings
                 <span class="sr-only">(current)</span>
               </a>
 			  <a class="dropdown-item" href="#"data-toggle="modal" data-target="#logoutModal">Logout</a>
 			  <div class="dropdown-divider"></div>
-			  <a class="dropdown-item" href="../aboutlog">About</a>
+			  <a class="dropdown-item" href="aboutlog">About</a>
 			</div>
 		  </li>
         </ul>
@@ -95,7 +100,7 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-12 text-center">
-        <h1 class="mt-5">Change info of: {{swimmer.first_name}} {{swimmer.last_name}}</h1>
+        <h1 class="mt-5">Create a new group</h1>
       </div>
     </div>
     <div class="tab-content" style="padding:15px;">
@@ -103,76 +108,45 @@
         <div>
             <div class="card-body">
                     <ul class="list-group" style="margin:0px">
-                        <li class="list-group-item">First Name: <input type="text" id="first_name" name="first_name" class="form-control" value="{{swimmer.first_name}}" style="width:66%;float:right;">
+                        <li class="list-group-item">Name: <input type="text" id="name" name="name" class="form-control" style="width:66%;float:right;">
                         </li>
-                        <li class="list-group-item">Last Name: <input type="text" id="last_name" name="last_name" class="form-control" value="{{swimmer.last_name}}" style="width:66%;float:right;">
+                        <li class="list-group-item">Training Location:
+                            <textarea id="location" name="info" class="form-control" rows="1" ></textarea>
                         </li>
-                        <li class="list-group-item">E-Mail:
-                            <input type="text" id="email" name="email" class="form-control" value="{{swimmer.email}}" style="width:66%;float:right;">
-                        </li>
-                        <li class="list-group-item">Birthdate:
-                            <input type="text" id="birthdate" name="birthdate" placeholder="dd/mm/yy" class="form-control" value="{{swimmer.birthdate}}" style="width:66%;float:right;">
-                        </li>
-                        <li class="list-group-item">Group:
-                            <input type="text" id="group" name="group" class="form-control" value="{{swimmer.group}}" style="width:66%;float:right;">
-                        </li>
-                        <li class="list-group-item">Info:
-                            <textarea id="info" name="info" class="form-control" rows="1" >{{swimmer.info}}</textarea>
+                         <li class="list-group-item">Comments:
+                            <textarea id="comments" name="info" class="form-control" rows="1" ></textarea>
                         </li>
                     </ul>
             </div>
+            <div class="col">
             <div style="margin-bottom: 2.0%">
-              <button type="button" id="save" name="save" class="btn btn-success save" style=" margin-left: 1.9%;padding-left: 2.0%;padding-right: 2.0%;"  data-toggle="modal" data-target="#saveModal">Save</button>
-              <div class="modal fade" id="saveModal" tabindex="-1" role="dialog" aria-labelledby="saveModalLabel"
+              <button type="button" id="save" name="save" class="btn btn-success save"  style="margin-left: 0.6%; padding-left: 2.0%;padding-right: 2.0%;"data-toggle="modal" data-target="#saveModal">Save</button>
+                <div class="modal fade" id="saveModal" tabindex="-1" role="dialog" aria-labelledby="saveModalLabel"
                  aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="saveModalLabel">the athlete was successfully saved!</h5>
+                            <h5 class="modal-title" id="saveModalLabel">The athlete was successfully saved!</h5>
                             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                             </button>
                         </div>
                         <div class="modal-body">What would you like to do next?</div>
                         <div class="modal-footer">
-
-                            <a class="btn btn-secondary" href="{% url 'group' %}">View all athletes</a>
-                            <a class="btn btn-primary" href="{% url 'home' %}">Go to home</a>
+                            <a class="btn btn-secondary" href="{% url 'groupnew' %}">View all groups</a>
+                            <a class="btn btn-primary" href="{% url 'newgroup' %}">Add another group</a>
                         </div>
                     </div>
                 </div>
               </div>
-              <a class="btn btn-danger" data-toggle="modal" style="color: white;" data-target="#resetModal">Discard</a>
-              <div class="modal fade" id="resetModal" tabindex="-1" role="dialog" aria-labelledby="resetModalLabel"
-                 aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="resetModalLabel">Are you sure you want to discard your changes to the athlete?</h5>
-                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-secondary" type="button" data-dismiss="modal">No</button>
-                            <a class="btn btn-primary" href="{% url 'group' %}">Yes</a>
-                        </div>
-                    </div>
-                </div>
-              </div>
+              <a href="{% url 'home' %}" class="btn btn-danger" >Cancel</a>
             </div>
         </div>
       </div>
     </div>
   </div>
-
   </div>
 
-  <br>
-  <div class="container" style="max-width: 1340px;">
-  <!-- Editable table -->
-
-  </div>
 
     <!-- Footer -->
     <footer class="page-footer font-small blue">
@@ -190,6 +164,7 @@
   <script src="{% static '/vendor/jquery/jquery.slim.min.js' %}"></script>
   <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
+
   <!--auto expand-->
   <script>
   $('textarea').each(function () {
@@ -204,23 +179,24 @@
   <script>
       $('.save').on('click', function() {
 
-        var athlete = {};
-        var params = {{swimmer.pk}};
+        var group = {};
 
-        athlete.firstname = document.getElementById("first_name").value;
-        athlete.lastname = document.getElementById("last_name").value;
-        athlete.email = document.getElementById("email").value;
-        athlete.birthdate = document.getElementById("birthdate").value;
-        athlete.group = document.getElementById("group").value;
-        athlete.info = document.getElementById("info").value;
+        group.name = document.getElementById("name").value;
+        group.location  = document.getElementById("location").value;
+        group.comments  = document.getElementById("comments").value;
+
+        if (group.name==null || group.name=="")
+           {
+               alert("Please name the group!");
+               return false;
+           }
 
 
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", '/website/updateathlete'+'/'+params, true);
+        xhr.open("POST", '/website/savegroup', true);
         xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.send(JSON.stringify(athlete));
+        xhr.send(JSON.stringify(group));
     });
-
 
   </script>
 

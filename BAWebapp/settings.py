@@ -25,7 +25,7 @@ SECRET_KEY = '84aup#3wpnzh5!u@@5b&-1a&_@o(zkimo5#^j=y&d3j1-2$zc_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -130,3 +130,5 @@ STATIC_URL = '/static/'
 #Redirect Login User
 LOGIN_URL = '/website/index'
 
+#SEnd email in about
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

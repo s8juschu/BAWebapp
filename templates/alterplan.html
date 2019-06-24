@@ -172,7 +172,7 @@
 
   <!-- Copyright -->
   <div class="footer-copyright text-center py-3">
-    <a href="help"> FAQ</a>
+    <a href="../help"> FAQ</a>
   </div>
   <!-- Copyright -->
 
@@ -204,6 +204,12 @@
         plan.poolsize = document.getElementsByClassName("poolsize")[0].value;
         plan.totaldistance = $( ".totaldistance" ).text();
 
+        if (plan.planname==null || plan.planname==""){
+            alert("Please name the plan!");
+                return false;
+        }
+
+
 
         for (i = 1; i < len; i++){
             var planrows = {};
@@ -218,10 +224,33 @@
             planrows.tools = table.rows[i].cells[5].getElementsByClassName("tools")[0].value;
             planrows.effort = table.rows[i].cells[6].getElementsByClassName("effort")[0].value;
 
-             if (planrows.rep1==null || planrows.rep1=="" || planrows.rep2==null || planrows.rep2=="" ||planrows.distance==null || planrows.distance=="" ||planrows.effort==null || planrows.effort=="")
+            if (planrows.rep1==null || planrows.rep1=="" || planrows.rep2==null || planrows.rep2=="" ||planrows.distance==null || planrows.distance=="" ||planrows.effort==null || planrows.effort=="")
             {
                 alert("Please fill all required fields in line " + i +". \nThe repetition, distance and % cannot be empty. For default, set to zero.");
                 return false;
+            }
+
+            if (planrows.resttype=="Time")
+            {
+                if (planrows.resttime==null || planrows.resttime=="" || planrows.resttime=="min:sec")
+                {
+                    alert("Please fill the 'min:sec' field for Time in line " + i +". \nFor default, set to 00:00.");
+                    return false;
+                }
+            }
+
+            if (planrows.resttype=="Repetition")
+            {
+                if (planrows.resttime==null || planrows.resttime=="" || planrows.resttime=="à x sec")
+                {
+                    alert("Please fill the 'à x sec' field for Repetition in line " + i +". \nFor default, set to 0.");
+                    return false;
+                }
+            }
+
+            if (planrows.resttype=="None")
+            {
+                planrows.resttime = "--";
             }
 
             plan.listarray.push(planrows);

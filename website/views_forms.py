@@ -7,7 +7,7 @@ from django.contrib.auth import update_session_auth_hash
 import json
 
 from website import views_user
-from .models import Plan, PlanRow, Swimmer
+from .models import Plan, PlanRow, Swimmer, Group
 from . import models
 
 @login_required
@@ -134,7 +134,7 @@ def saveathlete(request):
     getathleteinfo = request.body.decode('utf-8')
     athleteinfo = json.loads(getathleteinfo)
 
-    #save payload to Plan database
+    #save payload to Swimmer database
     firstname= athleteinfo["firstname"]
     lastname = athleteinfo["lastname"]
     email = athleteinfo["email"]
@@ -169,7 +169,7 @@ def updateathlete(request, athlete_id):
     getathleteinfo = request.body.decode('utf-8')
     athleteinfo = json.loads(getathleteinfo)
 
-    #save payload to Plan database
+    #save payload to Swimmer database
     firstname= athleteinfo["firstname"]
     lastname = athleteinfo["lastname"]
     email = athleteinfo["email"]
@@ -188,6 +188,38 @@ def updateathlete(request, athlete_id):
     swimmer.save()
 
     return HttpResponse(200)
+
+
+
+
+@login_required
+def savegroup(request):
+
+    #get request payload
+    getgroupinfo = request.body.decode('utf-8')
+    groupinfo = json.loads(getgroupinfo)
+
+    #save payload to Group database
+    name= groupinfo["name"]
+    location = groupinfo["location"]
+    comments = groupinfo["comments"]
+
+
+    user = request.user
+    u = User.objects.get(username=user)
+
+    group = Group()
+    group.name = name
+    group.comments = comments
+    group.place = location
+    group.user = u
+    group.save()
+
+    return HttpResponse(200)
+
+def deletegroup(request, group_id):
+    group = Group.objects.filter(pk=group_id).delete()
+    return HttpResponseRedirect(reverse('groupnew'))
 
 
 

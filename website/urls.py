@@ -30,8 +30,16 @@ urlpatterns = [
     path('newathlete', views_loggedin.newathlete, name='newathlete'),
     path('showathlete/<int:athlete_id>', views_loggedin.showathlete, name='showathlete'),
     path('saveathlete', views_forms.saveathlete, name='saveathlete'),
-    path('group', views_loggedin.group, name='group'),
     path('alterathlete/<int:athlete_id>', views_loggedin.alterathlete, name='alterathlete'),
     path('deleteathlete/<int:athlete_id>', views_forms.deleteathlete, name='deleteathlete'),
-    path('updateathlete/<int:athlete_id>', views_forms.updateathlete, name='updateathlete')
+    path('updateathlete/<int:athlete_id>', views_forms.updateathlete, name='updateathlete'),
+
+    path('group', views_loggedin.group, name='group'),
+    path('groupnew', views_loggedin.groupnew, name='groupnew'),
+    path('newgroup', views_loggedin.newgroup, name='newgroup'),
+    #path('showgroup/<int:plan_id>', views_loggedin.showgroup, name='showgroup'),
+    path('savegroup', views_forms.savegroup, name='savegroup'),
+    #path('altergroup/<int:plan_id>', views_loggedin.altergroup, name='altergroup'),
+    path('deletegroup/<int:group_id>', views_forms.deletegroup, name='deletegroup'),
+    #path('updategroup/<int:plan_id>', views_forms.updategroup, name='updategroup')
 ]

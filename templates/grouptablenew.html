@@ -1,0 +1,107 @@
+{% load static %}
+    <div>
+      <div >
+        <div id="table" class="table-editable">
+          <span class="table-add float-right mb-3 mr-2">
+              <a href="{% url 'newgroup' %}" class="text-success" style="margin-right: 2.0rem !important;">
+                <i class="fas fa-plus fa-2x" aria-hidden="true"></i>
+              </a>
+          </span>
+          <table id="mytable" class="table table-bordered table-responsive-md table-striped text-center">
+            <thead>
+              <tr>
+                <th class="text-center" style="width:18%;">Name</th>
+                <th class="text-center" style="width:18%;">Training location</th>
+                <th class="text-center" style="width:22%;">Comments</th>
+                <th class="text-center" title="Number of swimmers in group" style="width:8%;">Nr.</th>
+                <th class="text-center" style="width:14%;">Share</th>
+                <th class="text-center" style="width:18%;">Settings</th>
+              </tr>
+            </thead>
+            <tbody>
+             {% for b in group %}
+              <tr>
+                <td>{{ b.name}}</td>
+                <td>{{ b.place }}</td>
+                <td>{{ b.comments}}</td>
+                <td>{{ b.num }}</td>
+                <td>
+                  <span>
+                    <a href="" class="btn btn-info btn-rounded btn-sm my-0"  data-toggle="modal" data-target="#shareModal{{b.pk}}" >Share</a>
+                    <div class="modal fade" id="shareModal{{b.pk}}" tabindex="-1" role="dialog" aria-labelledby="shareModalLabel{{b.pk}}"
+                       aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                              <div class="modal-header">
+                                  <h5 class="modal-title" id="shareModalLabel{{b.pk}}">You want to share a plan with your athletes?</h5>
+                                  <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">×</span>
+                                  </button>
+                              </div>
+                              <div class="modal-footer">
+                                  <a class="btn btn-secondary" href="{% url 'groupnew' %}">Yes</a>
+                                  <a class="btn btn-primary" href="{% url 'groupnew' %}">No</a>
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                  </span>
+                </td>
+                <td>
+                  <a href="{% url 'showathlete' athlete_id=b.pk %}" class="btn btn-secondary btn-rounded btn-sm my-0" style="padding-left: 3%; padding-right:3%; margin-right:5%;" >View</a>
+                  <a href="{% url 'alterathlete' athlete_id=b.pk %}" class="btn btn-success btn-rounded btn-sm my-0" style="padding-left: 3%; padding-right:3%; margin-right:5%;" >Edit</a>
+
+                  <span>
+                    <a href="" class="btn btn-danger btn-rounded btn-sm my-0"  data-toggle="modal" data-target="#deleteModal{{b.pk}}" >Delete</a>
+                    <div class="modal fade" id="deleteModal{{b.pk}}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel{{b.pk}}"
+                       aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                              <div class="modal-header">
+                                  <h5 class="modal-title" id="deleteModalLabel{{b.pk}}">Are you sure you want to delete the group?</h5>
+                                  <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">×</span>
+                                  </button>
+                              </div>
+                              <div class="modal-footer">
+                                  <a class="btn btn-secondary" href="{% url 'deletegroup' group_id=b.pk %}">Yes</a>
+                                  <a class="btn btn-primary" href="{% url 'groupnew' %}">No</a>
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                  </span>
+                </td>
+              </tr>
+             {% endfor %}
+            </tbody>
+          </table>
+
+          <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="icon-chevron-up"></i></button>
+        </div>
+      </div>
+    </div>
+
+  <script src="{% static '/vendor/jquery/jquery.slim.min.js' %}"></script>
+
+
+  <!--Top to Page Button-->
+  <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("myBtn").style.display = "block";
+      } else {
+        document.getElementById("myBtn").style.display = "none";
+      }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    }
+  </script>
+

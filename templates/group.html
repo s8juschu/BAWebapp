@@ -117,6 +117,12 @@
 
     </footer>
     <!-- Footer -->
+    {% if messages %}
+     {% for message in messages %}
+         <script>alert("{{ message }}");</script>
+     {% endfor %}
+
+  {% endif %}
 
   <!-- Bootstrap core JavaScript -->
   <script src="{% static '/vendor/jquery/jquery.slim.min.js' %}"></script>

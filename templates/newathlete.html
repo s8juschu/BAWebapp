@@ -128,7 +128,7 @@
             </div>
             <div class="col">
             <div style="margin-bottom: 2.0%">
-              <button type="button" id="save" name="save" class="btn btn-success save"  style="margin-left: 2.0%; padding-left: 2.0%;padding-right: 2.0%;"data-toggle="modal" data-target="#saveModal">Save</button>
+              <button type="button" id="save" name="save" class="btn btn-success save"  style="margin-left: 0.6%; padding-left: 2.0%;padding-right: 2.0%;"data-toggle="modal" data-target="#saveModal">Save</button>
                 <div class="modal fade" id="saveModal" tabindex="-1" role="dialog" aria-labelledby="saveModalLabel"
                  aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -161,7 +161,7 @@
 
       <!-- Copyright -->
       <div class="footer-copyright text-center py-3">
-        <a href="help"> FAQ</a>
+        <a href="../help"> FAQ</a>
       </div>
       <!-- Copyright -->
 
@@ -195,6 +195,12 @@
         athlete.birthdate = document.getElementById("birthdate").value;
         athlete.group = document.getElementById("group").value;
         athlete.info = document.getElementById("info").value;
+
+        if (athlete.firstname==null || athlete.firstname=="" || athlete.lastname==null || athlete.lastname=="" )
+           {
+               alert("Please fill all required fields.\nThe first name and last name fields should not be empty.");
+               return false;
+           }
 
 
         var xhr = new XMLHttpRequest();

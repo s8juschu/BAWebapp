@@ -2,8 +2,12 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import reverse, render
 from django.contrib.auth.decorators import login_required
 
-from .models import Plan, PlanRow, Swimmer
+from .models import Plan, PlanRow, Swimmer, Group
 from . import models
+from .forms import ContactForm
+from django.core.mail import send_mail
+from django.contrib import messages
+
 
 
 @login_required
@@ -12,7 +16,23 @@ def home(request):
 
 @login_required
 def about(request):
-    return render(request, 'aboutlog.html')
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            # send email code goes here
+            sender_name = form.cleaned_data['name']
+            sender_email = form.cleaned_data['email']
+
+            message = "{0} has sent you a new message:\n\n{1}".format(sender_name, form.cleaned_data['message'])
+            send_mail('New Enquiry', message, sender_email, ['enquiry@exampleco.com'])
+
+            messages.info(request, 'Your message was successfully send!', extra_tags='alert')
+
+            return HttpResponseRedirect(reverse('aboutlog'))
+    else:
+        form = ContactForm()
+
+    return render(request, 'aboutlog.html', {'form': form})
 
 @login_required
 def settings(request):
@@ -39,16 +59,33 @@ def manageplans(request):
 
 @login_required
 def showplan(request, plan_id):
-    plan = Plan.objects.get(pk=plan_id)
-    rows = PlanRow.objects.filter(plan=plan)
-    return render(request, 'showplan.html', context={'plan': plan, 'rows': rows, 'plan_id': plan_id})
+    if Plan.objects.filter(pk=plan_id).exists():
+        plan = Plan.objects.get(pk=plan_id)
+        if plan.user == request.user:
+            rows = PlanRow.objects.filter(plan=plan)
+            return render(request, 'showplan.html', context={'plan': plan, 'rows': rows, 'plan_id': plan_id})
+        else:
+            messages.info(request, 'Access denied. You are not the owner of this plan!', extra_tags='alert')
+            return HttpResponseRedirect(reverse('manageplans'))
+    else:
+        messages.info(request, 'The plan with the id '+str(plan_id)+' does not exist.', extra_tags='alert')
+        return HttpResponseRedirect(reverse('manageplans'))
+
 
 
 @login_required
 def alterplan(request, plan_id):
-    plan = Plan.objects.get(pk=plan_id)
-    rows = PlanRow.objects.filter(plan=plan)
-    return render(request, 'alterplan.html', context={'plan': plan, 'rows': rows, 'plan_id': plan_id})
+    if Plan.objects.filter(pk=plan_id).exists():
+        plan = Plan.objects.get(pk=plan_id)
+        if plan.user == request.user:
+            rows = PlanRow.objects.filter(plan=plan)
+            return render(request, 'alterplan.html', context={'plan': plan, 'rows': rows, 'plan_id': plan_id})
+        else:
+            messages.info(request, 'Access denied. You are not the owner of this plan!', extra_tags='alert')
+            return HttpResponseRedirect(reverse('manageplans'))
+    else:
+        messages.info(request, 'The plan with the id '+str(plan_id)+' does not exist.', extra_tags='alert')
+        return HttpResponseRedirect(reverse('manageplans'))
 
 
 
@@ -64,11 +101,37 @@ def group(request):
     return render(request, 'group.html', context={'swimmer': swimmer})
 
 @login_required
+def groupnew(request):
+    user = request.user
+    group = Group.objects.filter(user=user)
+    return render(request, 'groupnew.html', context={'group': group})
+
+@login_required
+def newgroup(request):
+    return render(request, 'newgroup.html')
+
+@login_required
 def showathlete(request, athlete_id):
-    swimmer = Swimmer.objects.get(pk=athlete_id)
-    return render(request, 'showathlete.html', context={'swimmer': swimmer, 'athlete_id': athlete_id})
+    if Swimmer.objects.filter(pk=athlete_id).exists():
+        swimmer = Swimmer.objects.get(pk=athlete_id)
+        if swimmer.user == request.user:
+            return render(request, 'showathlete.html', context={'swimmer': swimmer, 'athlete_id': athlete_id})
+        else:
+            messages.info(request, 'Access denied. You are not the trainer of this athlete!', extra_tags='alert')
+            return HttpResponseRedirect(reverse('group'))
+    else:
+        messages.info(request, 'The athlete with the id ' + str(athlete_id) + ' does not exist.', extra_tags='alert')
+        return HttpResponseRedirect(reverse('group'))
 
 @login_required
 def alterathlete(request, athlete_id):
-    swimmer = Swimmer.objects.get(pk=athlete_id)
-    return render(request, 'alteranathlete.html', context={'swimmer': swimmer, 'athlete_id': athlete_id})
+    if Swimmer.objects.filter(pk=athlete_id).exists():
+        swimmer = Swimmer.objects.get(pk=athlete_id)
+        if swimmer.user == request.user:
+            return render(request, 'alteranathlete.html', context={'swimmer': swimmer, 'athlete_id': athlete_id})
+        else:
+            messages.info(request, 'Access denied. You are not the trainer of this athlete!', extra_tags='alert')
+            return HttpResponseRedirect(reverse('group'))
+    else:
+        messages.info(request, 'The athlete with the id ' + str(athlete_id) + ' does not exist.', extra_tags='alert')
+        return HttpResponseRedirect(reverse('group'))
