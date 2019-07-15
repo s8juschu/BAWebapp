@@ -13,8 +13,8 @@
                 <th class="text-center" style="width:18%;">Name</th>
                 <th class="text-center" style="width:18%;">Training location</th>
                 <th class="text-center" style="width:22%;">Comments</th>
-                <th class="text-center" title="Number of swimmers in group" style="width:8%;">Nr.</th>
-                <th class="text-center" style="width:14%;">Share</th>
+                <th class="text-center" style="width:8%;">Swimmer</th>
+                <th class="text-center" style="width:14%;">Send plans</th>
                 <th class="text-center" style="width:18%;">Settings</th>
               </tr>
             </thead>
@@ -39,8 +39,8 @@
                                   </button>
                               </div>
                               <div class="modal-footer">
-                                  <a class="btn btn-secondary" href="{% url 'groupnew' %}">Yes</a>
-                                  <a class="btn btn-primary" href="{% url 'groupnew' %}">No</a>
+                                  <a class="btn btn-secondary" href="{% url 'group' %}">Yes</a>
+                                  <a class="btn btn-primary" href="{% url 'group' %}">No</a>
                               </div>
                           </div>
                       </div>
@@ -65,7 +65,7 @@
                               </div>
                               <div class="modal-footer">
                                   <a class="btn btn-secondary" href="{% url 'deletegroup' group_id=b.pk %}">Yes</a>
-                                  <a class="btn btn-primary" href="{% url 'groupnew' %}">No</a>
+                                  <a class="btn btn-primary" href="{% url 'group' %}">No</a>
                               </div>
                           </div>
                       </div>

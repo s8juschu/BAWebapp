@@ -39,6 +39,7 @@
                                 <option class="None" value="None">None</option>
                                 <option class="Time" value="Time">Time</option>
                                 <option class="Repetition" value="Repetition">Repetiton</option>
+                                <option class="Distance" value="Distance">Distance</option>
                             </select>
                         </div>
                         <input type="text" class="form-control resttime"
@@ -104,6 +105,7 @@
                                 <option value="None">None</option>
                                 <option value="Time">Time</option>
                                 <option value="Repetition">Repetiton</option>
+                                <option class="Distance" value="Distance">Distance</option>
                             </select>
                         </div>
                         <input type="text" class="form-control resttime"
@@ -168,6 +170,7 @@
                                 <option value="None">None</option>
                                 <option value="Time">Time</option>
                                 <option value="Repetition">Repetiton</option>
+                                <option class="Distance" value="Distance">Distance</option>
                             </select>
                         </div>
                         <input type="text" class="form-control resttime"
@@ -232,6 +235,7 @@
                                 <option value="None">None</option>
                                 <option value="Time">Time</option>
                                 <option value="Repetition">Repetiton</option>
+                                <option class="Distance" value="Distance">Distance</option>
                             </select>
                         </div>
                         <input type="text" class="form-control resttime"
@@ -313,6 +317,9 @@
             }
             else if (type[i].value == "Repetition") {
               item.placeholder = "à x sec";
+            }
+            else if (type[i].value == "Distance") {
+              item.placeholder = "m";
             }
           }
       }
@@ -442,6 +449,7 @@
             <option class="None" value="None">None</option>
             <option class="Time" value="Time">Time</option>
             <option class="Repetition" value="Repetition">Repetiton</option>
+            <option class="Distance" value="Distance">Distance</option>
           </select>
         </div>
          <input type="text" class="form-control resttime" style="float: left;width: 39%; margin-left: 2%;">

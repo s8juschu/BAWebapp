@@ -51,7 +51,9 @@
 					Group
 			</a>
 			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
-			  <a class="dropdown-item active" href="group">My group</a>
+              <a class="dropdown-item active" href="#">My group</a>
+              <a class="dropdown-item" href="athletes">My athletes</a>
+              <a class="dropdown-item" href="newgroup">Add group</a>
 			  <a class="dropdown-item" href="newathlete">Add athlete</a>
 			</div>
 		  </li>
@@ -96,13 +98,13 @@
     <div class="row">
       <div class="col-lg-12 text-center">
         <h1 class="mt-5">Your group</h1>
-        <p class="lead">An overview of your athletes</p>
+        <p class="lead">An overview of your training groups</p>
       </div>
     </div>
   </div>
     <div class="container" style="max-width: 1340px;">
     <!-- Editable table -->
-    {% include 'grouptable.html' %}
+    {% include 'grouptablenew.html' %}
     <!-- Editable table -->
   </div>
 

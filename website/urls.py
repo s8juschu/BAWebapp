@@ -35,7 +35,8 @@ urlpatterns = [
     path('updateathlete/<int:athlete_id>', views_forms.updateathlete, name='updateathlete'),
 
     path('group', views_loggedin.group, name='group'),
-    path('groupnew', views_loggedin.groupnew, name='groupnew'),
+    path('athletes', views_loggedin.athletes, name='athletes'),
+    #path('groupnew', views_loggedin.groupnew, name='groupnew'),
     path('newgroup', views_loggedin.newgroup, name='newgroup'),
     #path('showgroup/<int:plan_id>', views_loggedin.showgroup, name='showgroup'),
     path('savegroup', views_forms.savegroup, name='savegroup'),

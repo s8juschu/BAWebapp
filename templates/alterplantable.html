@@ -35,10 +35,11 @@
                 </td>
                 <td>
                   <div class="form-group" style="float: left; width: 55%;">
-                    <select class="form-control resttype" onload="setSelectedIndex(document.getElementsByClassName('resttype')[0],'Time');" >
+                    <select class="form-control resttype" >
                       <option class="None" value="None">None</option>
                       <option class="Time" value="Time">Time</option>
                       <option class="Repetition" value="Repetition">Repetiton</option>
+                      <option class="Distance" value="Distance">Distance</option>
                     </select>
                   </div>
                    <input type="text" class="form-control resttime" placeholder="min:sec" style="float: left;width: 39%; margin-left: 2%;" value="{{b.resttime}}">
@@ -98,10 +99,17 @@
 
   <script src="{% static '/vendor/jquery/jquery.slim.min.js' %}"></script>
 
+  <!--set selct option field to saved values-->
   <script>
+  var index = 0;
+   {% for b in rows %}
+      setSelectedIndex(document.getElementsByClassName('resttype')[index],'{{b.resttype}}');
+      setSelectedIndex(document.getElementsByClassName('style')[index],'{{b.style}}');
+      setSelectedIndex(document.getElementsByClassName('tools')[index],'{{b.tools}}');
+      index++;
+   {% endfor %}
 
   function setSelectedIndex(s, valsearch) {
-    console.log("bla");
     for (i = 0; i< s.options.length; i++){
       if (s.options[i].value == valsearch){
         s.options[i].selected = true;
@@ -131,6 +139,9 @@
               }
               else if (type[i].value == "Repetition") {
                 item.placeholder = "à x sec";
+              }
+              else if (type[i].value == "Distance") {
+                item.placeholder = "m";
               }
             }
         }
@@ -259,6 +270,7 @@
             <option class="None" value="None">None</option>
             <option class="Time" value="Time">Time</option>
             <option class="Repetition" value="Repetition">Repetiton</option>
+             <option class="Distance" value="Distance">Distance</option>
           </select>
         </div>
          <input type="text" class="form-control resttime" style="float: left;width: 39%; margin-left: 2%;">

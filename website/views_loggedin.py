@@ -95,16 +95,16 @@ def newathlete(request):
     return render(request, 'newathlete.html')
 
 @login_required
-def group(request):
+def athletes(request):
     user = request.user
     swimmer = Swimmer.objects.filter(user=user)
-    return render(request, 'group.html', context={'swimmer': swimmer})
+    return render(request, 'athletes.html', context={'swimmer': swimmer})
 
 @login_required
-def groupnew(request):
+def group(request):
     user = request.user
     group = Group.objects.filter(user=user)
-    return render(request, 'groupnew.html', context={'group': group})
+    return render(request, 'group.html', context={'group': group})
 
 @login_required
 def newgroup(request):

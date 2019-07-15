@@ -24,7 +24,7 @@
                     <p>{{b.distance}} m</p>
                 </td>
                 <td>
-                   <p>{{b.resttype}}, {{b.resttime}} </p>
+                   <p class="resttime">{{b.resttype}}, </p>
                 </td>
                 <td>
                     <p>{{b.style}}</p>
@@ -58,6 +58,25 @@
 
 
   <script src="{% static '/vendor/jquery/jquery.slim.min.js' %}"></script>
+
+  <script>
+  var index = 0;
+   {% for b in rows %}
+      if ("{{b.resttype}}" == "Time"){
+            document.getElementsByClassName("resttime")[index].append("{{b.resttime}} sec");
+      }
+      if ("{{b.resttype}}" == "Repetition"){
+            document.getElementsByClassName("resttime")[index].append(" à {{b.resttime}} sec");
+      }
+      if ("{{b.resttype}}" == "Distance"){
+             document.getElementsByClassName("resttime")[index].append("{{b.resttime}} m");
+      }
+      if ("{{b.resttype}}" == "None"){
+             document.getElementsByClassName("resttime")[index].append("{{b.resttime}}");
+      }
+      index++;
+   {% endfor %}
+  </script>
 
   <!--Top to Page Button-->
   <script>
