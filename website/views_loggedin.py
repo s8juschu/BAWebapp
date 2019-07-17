@@ -111,6 +111,34 @@ def newgroup(request):
     return render(request, 'newgroup.html')
 
 @login_required
+def showgroup(request, group_id):
+    if Group.objects.filter(pk=group_id).exists():
+        group = Group.objects.get(pk=group_id)
+        if group.user == request.user:
+            return render(request, 'showgroup.html', context={'group': group, 'group_id': group_id})
+        else:
+            messages.info(request, 'Access denied. You are not the owner of this group!', extra_tags='alert')
+            return HttpResponseRedirect(reverse('group'))
+    else:
+        messages.info(request, 'The group with the id ' + str(group_id) + ' does not exist.', extra_tags='alert')
+        return HttpResponseRedirect(reverse('group'))
+
+@login_required
+def altergroup(request, group_id):
+    if Group.objects.filter(pk=group_id).exists():
+        group = Group.objects.get(pk=group_id)
+        if group.user == request.user:
+            return render(request, 'altergroup.html', context={'group': group, 'group_id': group_id})
+        else:
+            messages.info(request, 'Access denied. You are not the owner of this group!', extra_tags='alert')
+            return HttpResponseRedirect(reverse('group'))
+    else:
+        messages.info(request, 'The group with the id ' + str(group_id) + ' does not exist.', extra_tags='alert')
+        return HttpResponseRedirect(reverse('group'))
+
+
+
+@login_required
 def showathlete(request, athlete_id):
     if Swimmer.objects.filter(pk=athlete_id).exists():
         swimmer = Swimmer.objects.get(pk=athlete_id)
@@ -118,10 +146,10 @@ def showathlete(request, athlete_id):
             return render(request, 'showathlete.html', context={'swimmer': swimmer, 'athlete_id': athlete_id})
         else:
             messages.info(request, 'Access denied. You are not the trainer of this athlete!', extra_tags='alert')
-            return HttpResponseRedirect(reverse('group'))
+            return HttpResponseRedirect(reverse('athletes'))
     else:
         messages.info(request, 'The athlete with the id ' + str(athlete_id) + ' does not exist.', extra_tags='alert')
-        return HttpResponseRedirect(reverse('group'))
+        return HttpResponseRedirect(reverse('athletes'))
 
 @login_required
 def alterathlete(request, athlete_id):
@@ -131,7 +159,7 @@ def alterathlete(request, athlete_id):
             return render(request, 'alteranathlete.html', context={'swimmer': swimmer, 'athlete_id': athlete_id})
         else:
             messages.info(request, 'Access denied. You are not the trainer of this athlete!', extra_tags='alert')
-            return HttpResponseRedirect(reverse('group'))
+            return HttpResponseRedirect(reverse('athletes'))
     else:
         messages.info(request, 'The athlete with the id ' + str(athlete_id) + ' does not exist.', extra_tags='alert')
-        return HttpResponseRedirect(reverse('group'))
+        return HttpResponseRedirect(reverse('athletes'))

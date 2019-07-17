@@ -12,10 +12,10 @@
   <link rel="icon" href="{% static 'img/favicon.png' %}">
   <title>SwimPlanner</title>
 
-    <!-- Bootstrap core CSS -->
+  <!-- Bootstrap core CSS -->
   <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
   <link media="screen" href="{% static 'css/plan.css' %}" rel="stylesheet">
-
+  <link media="print" href="{% static 'css/print.css' %}" rel="stylesheet">
 
   <!-- Custom fonts for this template-->
   <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
@@ -23,12 +23,10 @@
   <!-- ICON NEEDS FONT AWESOME FOR CHEVRON UP ICON -->
   <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 
-
-
-  <!-- jQuery -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+</head>
 
 <body>
+
 
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
@@ -39,15 +37,15 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item ">
-            <a class="nav-link" href="home">Home</a>
+            <a class="nav-link" href="../home">Home</a>
           </li>
 		  <li class="nav-item dropdown no-arrow mx-1">
 			<a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					Trainings
 			</a>
 			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
-			  <a class="dropdown-item" href="newplan">New plan</a>
-			  <a class="dropdown-item" href="manageplans">Library</a>
+			  <a class="dropdown-item" href="../newplan">New plan</a>
+			  <a class="dropdown-item" href="../manageplans">Library</a>
 
 			</div>
 		  </li>
@@ -56,10 +54,10 @@
 					Group
 			</a>
 			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
-              <a class="dropdown-item" href="group">My group</a>
-              <a class="dropdown-item" href="athletes">My athletes</a>
-              <a class="dropdown-item active" href="#">Add group</a>
-			  <a class="dropdown-item" href="newathlete">Add athlete</a>
+			  <a class="dropdown-item" href="../group">My group</a>
+              <a class="dropdown-item" href="../athletes">My athletes</a>
+              <a class="dropdown-item" href="../newgroup">Add group</a>
+			  <a class="dropdown-item" href="../newathlete">Add athlete</a>
 			</div>
 		  </li>
 		   <li class="nav-item dropdown no-arrow">
@@ -67,12 +65,12 @@
 			  <i class="fas fa-user-circle fa-fw"></i>
 			</a>
 			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-			  <a class="dropdown-item" href="settings">Settings
+			  <a class="dropdown-item" href="../settings">Settings
                 <span class="sr-only">(current)</span>
               </a>
 			  <a class="dropdown-item" href="#"data-toggle="modal" data-target="#logoutModal">Logout</a>
 			  <div class="dropdown-divider"></div>
-			  <a class="dropdown-item" href="aboutlog">About</a>
+			  <a class="dropdown-item" href="../aboutlog">About</a>
 			</div>
 		  </li>
         </ul>
@@ -102,21 +100,21 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-12 text-center">
-        <h1 class="mt-5">Create a new group</h1>
+        <h1 class="mt-5">Change info of: {{group.name}}</h1>
       </div>
     </div>
     <div class="tab-content" style="padding:15px;">
       <div class="tab-pane active" id="profile">
         <div>
-            <div class="card-body">
+             <div class="card-body">
                     <ul class="list-group" style="margin:0px">
-                        <li class="list-group-item">Name: <input type="text" id="name" name="name" class="form-control" style="width:66%;float:right;">
+                        <li class="list-group-item">Name: <input type="text" id="name" name="name" class="form-control" value="{{group.name}}" style="width:66%;float:right;">
                         </li>
                         <li class="list-group-item">Training Location:
-                            <textarea id="location" name="info" class="form-control textarea" rows="1" ></textarea>
+                            <textarea id="location" name="info" class="form-control textarea" rows="1"  >{{group.place}}</textarea>
                         </li>
                          <li class="list-group-item">Comments:
-                            <textarea style="height: 108px;" id="comments" name="info" class="form-control textarea" rows="1" ></textarea>
+                            <textarea style="height: 108px;" id="comments" name="info" class="form-control textarea" rows="1" >{{group.comments}}</textarea>
                         </li>
                         <li class="list-group-item">Add Swimmer:
                             <button type="button" id="add" name="add" class="btn btn-success add"  style="margin-left: 23.1%; padding-left: 2.0%;padding-right: 2.0%;"data-toggle="modal" data-target="#addModal">Add</button>
@@ -160,9 +158,8 @@
                         </li>
                     </ul>
             </div>
-            <div class="col">
             <div style="margin-bottom: 2.0%">
-              <button type="button" id="save" name="save" class="btn btn-success save"  style="margin-left: 0.6%; padding-left: 2.0%;padding-right: 2.0%;" data-toggle="modal" data-target="#saveModal">Save</button>
+              <button type="button" id="save" name="save" class="btn btn-success save"  style="margin-left: 1.9%; padding-left: 2.0%;padding-right: 2.0%;" data-toggle="modal" data-target="#saveModal">Save</button>
                 <div class="modal fade" id="saveModal" tabindex="-1" role="dialog" aria-labelledby="saveModalLabel"
                  aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -181,12 +178,36 @@
                     </div>
                 </div>
               </div>
-              <a href="{% url 'home' %}" class="btn btn-danger" >Cancel</a>
+              <a class="btn btn-danger" data-toggle="modal" style="color: white;" data-target="#resetModal">Discard</a>
+              <div class="modal fade" id="resetModal" tabindex="-1" role="dialog" aria-labelledby="resetModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="resetModalLabel">Are you sure you want to discard your changes to the group?</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">No</button>
+                            <a class="btn btn-primary" href="{% url 'group' %}">Yes</a>
+                        </div>
+                    </div>
+                </div>
+              </div>
             </div>
         </div>
       </div>
     </div>
   </div>
+
+  </div>
+
+  <br>
+  <div class="container" style="max-width: 1340px;">
+  <!-- Editable table -->
+
   </div>
 
 
@@ -206,40 +227,20 @@
   <script src="{% static '/vendor/jquery/jquery.slim.min.js' %}"></script>
   <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
-
-  <!--auto expand-->
+  <!--print page-->
   <script>
+  function printPage() {
+       window.print();
+  }
+  </script>
+
+ <script>
   $('.textarea').each(function () {
       this.setAttribute('style', 'height:' + (this.scrollHeight) + 'px;overflow-y:hidden; float:right; width:66%;');
     }).on('input', function () {
       this.style.height = 'auto';
       this.style.height = (this.scrollHeight) + 'px';
   });
-  </script>
-
-  <!--save athlete-->
-  <script>
-      $('.save').on('click', function() {
-
-        var group = {};
-
-        group.name = document.getElementById("name").value;
-        group.location  = document.getElementById("location").value;
-        group.comments  = document.getElementById("comments").value;
-
-        if (group.name==null || group.name=="")
-           {
-               alert("Please name the group!");
-               return false;
-           }
-
-
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", '/website/savegroup', true);
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.send(JSON.stringify(group));
-    });
-
   </script>
 
 </body>

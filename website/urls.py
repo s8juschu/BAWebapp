@@ -36,11 +36,10 @@ urlpatterns = [
 
     path('group', views_loggedin.group, name='group'),
     path('athletes', views_loggedin.athletes, name='athletes'),
-    #path('groupnew', views_loggedin.groupnew, name='groupnew'),
     path('newgroup', views_loggedin.newgroup, name='newgroup'),
-    #path('showgroup/<int:plan_id>', views_loggedin.showgroup, name='showgroup'),
+    path('showgroup/<int:group_id>', views_loggedin.showgroup, name='showgroup'),
     path('savegroup', views_forms.savegroup, name='savegroup'),
-    #path('altergroup/<int:plan_id>', views_loggedin.altergroup, name='altergroup'),
+    path('altergroup/<int:group_id>', views_loggedin.altergroup, name='altergroup'),
     path('deletegroup/<int:group_id>', views_forms.deletegroup, name='deletegroup'),
-    #path('updategroup/<int:plan_id>', views_forms.updategroup, name='updategroup')
+    #path('updategroup/<int:group_id>', views_forms.updategroup, name='updategroup')
 ]

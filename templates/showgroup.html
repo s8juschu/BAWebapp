@@ -12,9 +12,10 @@
   <link rel="icon" href="{% static 'img/favicon.png' %}">
   <title>SwimPlanner</title>
 
-    <!-- Bootstrap core CSS -->
+  <!-- Bootstrap core CSS -->
   <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
   <link media="screen" href="{% static 'css/plan.css' %}" rel="stylesheet">
+  <link media="print" href="{% static 'css/print.css' %}" rel="stylesheet">
 
   <!-- Custom fonts for this template-->
   <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
@@ -22,8 +23,10 @@
   <!-- ICON NEEDS FONT AWESOME FOR CHEVRON UP ICON -->
   <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 
+</head>
 
 <body>
+
 
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
@@ -34,15 +37,15 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item ">
-            <a class="nav-link" href="home">Home</a>
+            <a class="nav-link" href="../home">Home</a>
           </li>
 		  <li class="nav-item dropdown no-arrow mx-1">
 			<a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					Trainings
 			</a>
 			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
-			  <a class="dropdown-item" href="newplan">New plan</a>
-			  <a class="dropdown-item" href="manageplans">Library</a>
+			  <a class="dropdown-item" href="../newplan">New plan</a>
+			  <a class="dropdown-item" href="../manageplans">Library</a>
 
 			</div>
 		  </li>
@@ -51,8 +54,10 @@
 					Group
 			</a>
 			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
-			  <a class="dropdown-item active" href="group">My group</a>
-			  <a class="dropdown-item" href="newathlete">Add athlete</a>
+			  <a class="dropdown-item" href="../group">My group</a>
+              <a class="dropdown-item" href="../athletes">My athletes</a>
+              <a class="dropdown-item" href="../newgroup">Add group</a>
+			  <a class="dropdown-item" href="../newathlete">Add athlete</a>
 			</div>
 		  </li>
 		   <li class="nav-item dropdown no-arrow">
@@ -60,12 +65,12 @@
 			  <i class="fas fa-user-circle fa-fw"></i>
 			</a>
 			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-			  <a class="dropdown-item" href="settings">Settings
+			  <a class="dropdown-item" href="../settings">Settings
                 <span class="sr-only">(current)</span>
               </a>
 			  <a class="dropdown-item" href="#"data-toggle="modal" data-target="#logoutModal">Logout</a>
 			  <div class="dropdown-divider"></div>
-			  <a class="dropdown-item" href="aboutlog">About</a>
+			  <a class="dropdown-item" href="../aboutlog">About</a>
 			</div>
 		  </li>
         </ul>
@@ -91,19 +96,59 @@
     </div>
    </div>
 
-  <!-- Page Content -->
+ <!-- Page Content -->
   <div class="container">
     <div class="row">
       <div class="col-lg-12 text-center">
-        <h1 class="mt-5">Your group</h1>
-        <p class="lead">An overview of your training groups</p>
+          <h2 class="mt-5">{{group.name}}</h2>
       </div>
     </div>
+    <div class="tab-content" style="padding:15px;">
+        <div class="tab-pane active" id="profile">
+            <div>
+                <div class="card-body">
+                        <ul class="list-group" style="margin:0px">
+                            <li class="list-group-item"><b>Name:</b> {{group.name}}
+                            </li>
+                            <li class="list-group-item"><b>Location:</b> {{group.place}}
+                            </li>
+                            <li class="list-group-item"><b>Comments:</b> {{group.comments}}
+                            </li>
+                            <li class="list-group-item"><b>Swimmer:</b> {{group.num}}
+                            </li>
+                        </ul>
+                </div>
+                <div style="margin-bottom: 2.0%">
+                <a  href="{% url 'altergroup' group_id=group.pk %}" id="edit" name="edit" class="btn btn-success" style=" margin-left: 1.9%;padding-left: 2.0%;padding-right: 2.0%;">Edit</a>
+                <a href="" class="btn btn-danger" data-toggle="modal" style="color: white;" data-toggle="modal" data-target="#deleteModal" >Delete</a>
+                <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+                   aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                              <h5 class="modal-title" id="deleteModalLabel">Are you sure you want to delete the athlete?</h5>
+                              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">×</span>
+                              </button>
+                          </div>
+                          <div class="modal-footer">
+                              <a class="btn btn-secondary" href="{% url 'deleteathlete' athlete_id=group.pk %}">Yes</a>
+                              <button class="btn btn-primary" type="button" data-dismiss="modal">No</button>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
   </div>
-    <div class="container" style="max-width: 1340px;">
-    <!-- Editable table -->
-    {% include 'grouptablenew.html' %}
-    <!-- Editable table -->
+
+  </div>
+
+  <br>
+  <div class="container" style="max-width: 1340px;">
+  <!-- Editable table -->
+
   </div>
 
     <!-- Footer -->
@@ -111,22 +156,23 @@
 
       <!-- Copyright -->
       <div class="footer-copyright text-center py-3">
-        <a href="help"> FAQ</a>
+        <a href="../help"> FAQ</a>
       </div>
       <!-- Copyright -->
 
     </footer>
     <!-- Footer -->
-    {% if messages %}
-     {% for message in messages %}
-         <script>alert("{{ message }}");</script>
-     {% endfor %}
-
-  {% endif %}
 
   <!-- Bootstrap core JavaScript -->
   <script src="{% static '/vendor/jquery/jquery.slim.min.js' %}"></script>
   <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+  <!--print page-->
+  <script>
+  function printPage() {
+       window.print();
+  }
+  </script>
 
 </body>
 
