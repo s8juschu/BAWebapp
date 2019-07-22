@@ -10,9 +10,6 @@ class UserProfile(models.Model):
     first_name = models.CharField(max_length=30, blank=True, null=True,  default='')
     last_name = models.CharField(max_length=30, blank=True, null=True, default='')
 
-    #def __str__(self):
-    #    return self.username
-
 class Plan(models.Model):
     name = models.CharField(max_length=128)
     size = models.CharField(max_length=30)
@@ -35,6 +32,7 @@ class PlanRow(models.Model):
 class Group(models.Model):
     name = models.CharField(max_length=30)
     num = models.IntegerField(default=0)
+    timeslot = models.CharField(max_length=255, default='')
     comments = models.CharField(max_length=828, null=True)
     place = models.CharField(max_length=255, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -44,9 +42,13 @@ class Swimmer(models.Model):
     last_name = models.CharField(max_length=30)
     birthdate = models.CharField(max_length=30, null=True, default='')
     email = models.CharField(max_length=30)
-    group = models.CharField(max_length=30, default='')
     info = models.CharField(max_length=828, null=True, default='')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    #groupforeignkey= models.ForeignKey(Group, on_delete=models.CASCADE)
+
+class RelationsSwimGroup(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    group = models.ForeignKey(Group, on_delete=models.CASCADE)
+    swimmer = models.ForeignKey(Swimmer, on_delete=models.CASCADE)
+
 
 
