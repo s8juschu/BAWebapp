@@ -113,9 +113,6 @@
                         <li class="list-group-item">Training Location:
                             <textarea id="location" name="info" class="form-control textarea" rows="1"  >{{group.place}}</textarea>
                         </li>
-                         <li class="list-group-item">Comments:
-                            <textarea style="height: 108px;" id="comments" name="info" class="form-control textarea" rows="1" >{{group.comments}}</textarea>
-                        </li>
                         <li class="list-group-item">Add Swimmer:
                             <button type="button" id="add" name="add" class="btn btn-success add"  style="margin-left: 23.1%; padding-left: 2.0%;padding-right: 2.0%;"data-toggle="modal" data-target="#addModal">Add</button>
                             <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
@@ -129,24 +126,8 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <ul class="list-group" style="margin:0px">
-                                            <li class="list-group-item">First Name: <input type="text" id="first_name" name="first_name" class="form-control" style="width:66%;float:right;">
-                                            </li>
-                                            <li class="list-group-item">Last Name: <input type="text" id="last_name" name="last_name" class="form-control" style="width:66%;float:right;">
-                                            </li>
-                                            <li class="list-group-item">E-Mail:
-                                                <input type="text" id="email" name="email" class="form-control" style="width:66%;float:right;">
-                                            </li>
-                                            <li class="list-group-item">Birthdate:
-                                                <input type="text" id="birthdate" name="birthdate" placeholder="dd/mm/yy" class="form-control" style="width:66%;float:right;">
-                                            </li>
-                                            <li class="list-group-item">Group:
-                                                <input type="text" id="group" name="group" class="form-control" style="width:66%;float:right;">
-                                            </li>
-                                            <li class="list-group-item">Info:
-                                                <textarea style="height: 108px;" id="info" name="info" class="form-control" rows="1" ></textarea>
-                                            </li>
-                                        </ul>
+                                        <p>ADD SEARCH</p>
+                                        <p>DISPLAY ATHLETES WITH SELECT BOX</p>
                                     </div>
                                     <div class="modal-footer">
                                         <a class="btn btn-secondary" href="">Exit</a>
@@ -155,6 +136,42 @@
                                 </div>
                             </div>
                           </div>
+                          <button type="button" id="create" name="create" class="btn btn-secondary" style="margin-left: 0.1%;" data-toggle="modal" data-target="#createModal">Create</button>
+                          <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="createModalLabel">Create a new athlete</h5>
+                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <ul class="list-group" style="margin:0px">
+                                        <li class="list-group-item">First Name: <input type="text" id="first_name" name="first_name" class="form-control" style="width:66%;float:right;">
+                                        </li>
+                                        <li class="list-group-item">Last Name: <input type="text" id="last_name" name="last_name" class="form-control" style="width:66%;float:right;">
+                                        </li>
+                                        <li class="list-group-item">E-Mail:
+                                            <input type="text" id="email" name="email" class="form-control" style="width:66%;float:right;">
+                                        </li>
+                                        <li class="list-group-item">Birthdate:
+                                            <input type="text" id="birthdate" name="birthdate" placeholder="dd/mm/yy" class="form-control" style="width:66%;float:right;">
+                                        </li>
+                                        <li class="list-group-item">Info:
+                                            <textarea style="height: 108px;" id="info" name="info" class="form-control" rows="1" ></textarea>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="modal-footer">
+                                    <a class="btn btn-secondary"  href="">Exit</a>
+                                    <a class="btn btn-primary" href="">Save</a>
+                                </div>
+                            </div>
+                          </div>
+                        </li>
+                         <li class="list-group-item">Comments:
+                            <textarea style="height: 108px;" id="comments" name="info" class="form-control textarea" rows="1" >{{group.comments}}</textarea>
                         </li>
                     </ul>
             </div>

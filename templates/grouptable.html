@@ -14,7 +14,7 @@
                 <th class="text-center" style="width:16%;">Last Name</th>
                 <th class="text-center" style="width:8%;">Birthdate</th>
                 <th class="text-center" style="width:16%;">E-Mail</th>
-                <th class="text-center" style="width:14%;">Group</th>
+                <th class="text-center" title="To assign an athlete to a group please use the 'my group' site" style="width:14%;">Group</th>
                 <th class="text-center" style="width:14%;">Info</th>
                 <th class="text-center" style="width:18%;">Settings</th>
               </tr>
@@ -46,7 +46,7 @@
                               </div>
                               <div class="modal-footer">
                                   <a class="btn btn-secondary" href="{% url 'deleteathlete' athlete_id=b.pk %}">Yes</a>
-                                  <a class="btn btn-primary" href="{% url 'group' %}">No</a>
+                                  <a class="btn btn-primary" href="{% url 'athletes' %}">No</a>
                               </div>
                           </div>
                       </div>

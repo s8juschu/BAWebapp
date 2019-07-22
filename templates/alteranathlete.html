@@ -115,9 +115,6 @@
                         <li class="list-group-item">Birthdate:
                             <input type="text" id="birthdate" name="birthdate" placeholder="dd/mm/yy" class="form-control" value="{{swimmer.birthdate}}" style="width:66%;float:right;">
                         </li>
-                        <li class="list-group-item">Group:
-                            <input type="text" id="group" name="group" class="form-control" value="{{swimmer.group}}" style="width:66%;float:right;">
-                        </li>
                         <li class="list-group-item">Info:
                             <textarea id="info" name="info" class="form-control" rows="1" >{{swimmer.info}}</textarea>
                         </li>
@@ -138,7 +135,7 @@
                         <div class="modal-body">What would you like to do next?</div>
                         <div class="modal-footer">
 
-                            <a class="btn btn-secondary" href="{% url 'group' %}">View all athletes</a>
+                            <a class="btn btn-secondary" href="{% url 'athletes' %}">View all athletes</a>
                             <a class="btn btn-primary" href="{% url 'home' %}">Go to home</a>
                         </div>
                     </div>
@@ -157,7 +154,7 @@
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-secondary" type="button" data-dismiss="modal">No</button>
-                            <a class="btn btn-primary" href="{% url 'group' %}">Yes</a>
+                            <a class="btn btn-primary" href="{% url 'athletes' %}">Yes</a>
                         </div>
                     </div>
                 </div>

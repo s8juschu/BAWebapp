@@ -139,7 +139,6 @@ def saveathlete(request):
     lastname = athleteinfo["lastname"]
     email = athleteinfo["email"]
     birthdate = athleteinfo["birthdate"]
-    group = athleteinfo["group"]
     info = athleteinfo["info"]
 
     user = request.user
@@ -150,7 +149,6 @@ def saveathlete(request):
     swimmer.last_name = lastname
     swimmer.email = email
     swimmer.birthdate = birthdate
-    swimmer.group = group
     swimmer.info = info
     swimmer.user = u
     swimmer.save()
@@ -159,7 +157,7 @@ def saveathlete(request):
 
 def deleteathlete(request, athlete_id):
     swimmer = Swimmer.objects.filter(pk=athlete_id).delete()
-    return HttpResponseRedirect(reverse('group'))
+    return HttpResponseRedirect(reverse('athletes'))
 
 
 @login_required
@@ -174,7 +172,6 @@ def updateathlete(request, athlete_id):
     lastname = athleteinfo["lastname"]
     email = athleteinfo["email"]
     birthdate = athleteinfo["birthdate"]
-    group = athleteinfo["group"]
     info = athleteinfo["info"]
 
 
@@ -183,7 +180,6 @@ def updateathlete(request, athlete_id):
     swimmer.last_name = lastname
     swimmer.email = email
     swimmer.birthdate = birthdate
-    swimmer.group = group
     swimmer.info = info
     swimmer.save()
 

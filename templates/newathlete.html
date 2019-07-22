@@ -120,9 +120,6 @@
                         <li class="list-group-item">Birthdate:
                             <input type="text" id="birthdate" name="birthdate" placeholder="dd/mm/yy" class="form-control" style="width:66%;float:right;">
                         </li>
-                        <li class="list-group-item">Group:
-                            <input type="text" id="group" name="group" class="form-control" style="width:66%;float:right;">
-                        </li>
                         <li class="list-group-item">Info:
                             <textarea style="height: 108px;" id="info" name="info" class="form-control" rows="1" ></textarea>
                         </li>
@@ -143,7 +140,7 @@
                         </div>
                         <div class="modal-body">What would you like to do next?</div>
                         <div class="modal-footer">
-                            <a class="btn btn-secondary" href="{% url 'group' %}">View all athletes</a>
+                            <a class="btn btn-secondary" href="{% url 'athletes' %}">View all athletes</a>
                             <a class="btn btn-primary" href="{% url 'newathlete' %}">Add another athlete</a>
                         </div>
                     </div>
@@ -195,7 +192,6 @@
         athlete.lastname = document.getElementById("last_name").value;
         athlete.email = document.getElementById("email").value;
         athlete.birthdate = document.getElementById("birthdate").value;
-        athlete.group = document.getElementById("group").value;
         athlete.info = document.getElementById("info").value;
 
         if (athlete.firstname==null || athlete.firstname=="" || athlete.lastname==null || athlete.lastname=="" )
