@@ -108,7 +108,10 @@ def group(request):
 
 @login_required
 def newgroup(request):
-    return render(request, 'newgroup.html')
+    user = request.user
+    if Swimmer.objects.filter(user=request.user).exists():
+        swimmer = Swimmer.objects.filter(user=user)
+        return render(request, 'newgroup.html', context={'swimmer': swimmer})
 
 @login_required
 def showgroup(request, group_id):

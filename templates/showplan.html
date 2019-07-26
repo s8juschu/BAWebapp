@@ -102,6 +102,42 @@
       <div class="col-lg-12 text-center">
         <h2 class="mt-5">Name: {{plan.name}}</h2>
         <p class="lead">Poolsize: {{plan.size}}</p>
+        <a href="" class="btn btn-info btn-rounded"  data-toggle="modal" data-target="#shareModal{{b.pk}}" style="padding-left: 1.4%;padding-right: 1.4%;">Share</a>
+        <div class="modal fade" id="shareModal{{b.pk}}" tabindex="-1" role="dialog" aria-labelledby="shareModalLabel{{b.pk}}"
+           aria-hidden="true">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="shareModalLabel{{b.pk}}">You want to share a plan with your athletes?</h5>
+                      <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">×</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                      <label class="form-check-label" for="inlineRadio1">via E-Mail</label>
+                    </div>
+                    <div class="form-check" style="padding-left: 7%;">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                      <label class="form-check-label" for="inlineRadio2">as Excel file</label>
+                    </div>
+                    <div class="form-check" style="padding-left: 1.5%;">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+                      <label class="form-check-label" for="inlineRadio3">as fit file</label>
+                    </div>
+                  </div>
+                  <div>
+                      <h6>Please select the group you want to send the plan to. </h6>
+                      TODO
+                  </div>
+                  <div class="modal-footer">
+                      <a class="btn btn-secondary" href="{% url 'group' %}">Yes</a>
+                      <a class="btn btn-primary" href="{% url 'group' %}">No</a>
+                  </div>
+              </div>
+          </div>
+        </div>
         <a  href="{% url 'alterplan' plan_id=plan.pk %}" id="save" name="save" class="btn btn-success save" style="padding-left: 1.4%;padding-right: 1.4%;">Edit</a>
         <a href="" class="btn btn-danger" data-toggle="modal" style="color: white;" data-toggle="modal" data-target="#deleteModal{{plan.pk}}" >Delete</a>
         <div class="modal fade" id="deleteModal{{plan.pk}}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel{{plan.pk}}"
