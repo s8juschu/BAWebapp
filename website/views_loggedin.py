@@ -140,6 +140,8 @@ def newgroup(request):
     if Swimmer.objects.filter(user=request.user).exists():
         swimmer = Swimmer.objects.filter(user=user)
         return render(request, 'newgroup.html', context={'swimmer': swimmer})
+    else:
+        return render(request, 'newgroup.html')
 
 @login_required
 def showgroup(request, group_id):
