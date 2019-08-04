@@ -2,7 +2,10 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import reverse, render
 from django.contrib.auth.decorators import login_required
 
-from .models import Plan, PlanRow, Swimmer, Group
+from collections import defaultdict
+from django.template.defaultfilters import register
+
+from .models import Plan, PlanRow, Swimmer, Group, RelationsSwimGroup
 from . import models
 from .forms import ContactForm
 from django.core.mail import send_mail
@@ -94,17 +97,42 @@ def alterplan(request, plan_id):
 def newathlete(request):
     return render(request, 'newathlete.html')
 
+@register.filter(name='dict_key')
+def dict_key(d, k):
+    #Returns the given key from a dictionary
+    return d.get(k)
+
 @login_required
 def athletes(request):
     user = request.user
+    array = defaultdict(list)
     swimmer = Swimmer.objects.filter(user=user)
-    return render(request, 'athletes.html', context={'swimmer': swimmer})
+    for s in swimmer:
+        if RelationsSwimGroup.objects.filter(swimmer=s, user= user).exists():
+            relationgroup =  RelationsSwimGroup.objects.filter(swimmer=s, user=user)
+            for g in relationgroup:
+                array[s.pk].append(g.group.name)
+    arraydict = dict(array) #transform defaultdict to dict
+    return render(request, 'athletes.html', context={'swimmer': swimmer, 'array': arraydict})
 
 @login_required
 def group(request):
     user = request.user
+    array = defaultdict(list)
+    numarr = defaultdict(list)
     group = Group.objects.filter(user=user)
-    return render(request, 'group.html', context={'group': group})
+    for g in group:
+        if RelationsSwimGroup.objects.filter(group=g, user= user).exists():
+            relationgroup =  RelationsSwimGroup.objects.filter(group=g, user=user)
+            number = RelationsSwimGroup.objects.filter(group=g, user=user).count()
+            numarr[g.pk].append(number)
+            for r in relationgroup:
+                bla = (r.swimmer.first_name, r.swimmer.last_name)
+                blanew = " ".join(bla)
+                array[g.pk].append(blanew)
+    arraydict = dict(array) #transform defaultdict to dict
+    numarrdict = dict(numarr)  # transform defaultdict to dict
+    return render(request, 'group.html', context={'group': group, 'array': arraydict, 'number': numarrdict})
 
 @login_required
 def newgroup(request):
@@ -115,10 +143,20 @@ def newgroup(request):
 
 @login_required
 def showgroup(request, group_id):
+    array = []
     if Group.objects.filter(pk=group_id).exists():
         group = Group.objects.get(pk=group_id)
         if group.user == request.user:
-            return render(request, 'showgroup.html', context={'group': group, 'group_id': group_id})
+            if RelationsSwimGroup.objects.filter(group=group, user=request.user).exists():
+                relationgroup = RelationsSwimGroup.objects.filter(group=group, user=request.user)
+                number =  RelationsSwimGroup.objects.filter(group=group, user=request.user).count()
+                for g in relationgroup:
+                    bla = (g.swimmer.first_name, g.swimmer.last_name)
+                    blanew = " ".join(bla)
+                    array.append(blanew)
+            else:
+                number= 0
+            return render(request, 'showgroup.html', context={'group': group, 'group_id': group_id, 'array': array, 'number': number})
         else:
             messages.info(request, 'Access denied. You are not the owner of this group!', extra_tags='alert')
             return HttpResponseRedirect(reverse('group'))
@@ -143,10 +181,15 @@ def altergroup(request, group_id):
 
 @login_required
 def showathlete(request, athlete_id):
+    array = []
     if Swimmer.objects.filter(pk=athlete_id).exists():
         swimmer = Swimmer.objects.get(pk=athlete_id)
         if swimmer.user == request.user:
-            return render(request, 'showathlete.html', context={'swimmer': swimmer, 'athlete_id': athlete_id})
+            if RelationsSwimGroup.objects.filter(swimmer=swimmer, user=request.user).exists():
+                relationgroup = RelationsSwimGroup.objects.filter(swimmer=swimmer, user=request.user)
+                for g in relationgroup:
+                    array.append(g.group.name)
+            return render(request, 'showathlete.html', context={'swimmer': swimmer, 'athlete_id': athlete_id, 'array': array})
         else:
             messages.info(request, 'Access denied. You are not the trainer of this athlete!', extra_tags='alert')
             return HttpResponseRedirect(reverse('athletes'))

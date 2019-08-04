@@ -108,12 +108,23 @@
         <div>
              <div class="card-body">
                     <ul class="list-group" style="margin:0px">
-                        <li class="list-group-item">Name: <input type="text" id="name" name="name" class="form-control" value="{{group.name}}" style="width:66%;float:right;">
+                        <li class="list-group-item"><b>Name:</b> <input type="text" id="name" name="name" class="form-control" value="{{group.name}}" style="width:66%;float:right;">
                         </li>
-                        <li class="list-group-item">Training Location:
+                        <li class="list-group-item"><b>Training </b>
                             <textarea id="location" name="info" class="form-control textarea" rows="1"  >{{group.place}}</textarea>
                         </li>
-                        <li class="list-group-item">Add Swimmer:
+                        <li class="list-group-item">
+                            <div class="row">
+                              <div class="col-lg-2"><b>Timeslot:</b></div>
+                              <div class="col-lg-2"></div>
+                              <div class="col-lg-1">from:</div>
+                              <div class="col-lg-2"><input class="form-control" type="time" value="{{group.starttime}}" id="starttime" ></div>
+                              <div class="col-lg-1">to:</div>
+                              <div class="col-lg-2"><input class="form-control" type="time" value="{{group.endtime}}" id="endtime"></div>
+                              <div class="col-lg-2"></div>
+                            </div>
+                        </li>
+                        <li class="list-group-item"><b>Add Swimmer:</b>
                             <button type="button" id="add" name="add" class="btn btn-success add"  style="margin-left: 23.1%; padding-left: 2.0%;padding-right: 2.0%;"data-toggle="modal" data-target="#addModal">Add</button>
                             <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
                              aria-hidden="true">
@@ -170,7 +181,7 @@
                             </div>
                           </div>
                         </li>
-                         <li class="list-group-item">Comments:
+                         <li class="list-group-item"><b>Comments:</b>
                             <textarea style="height: 108px;" id="comments" name="info" class="form-control textarea" rows="1" >{{group.comments}}</textarea>
                         </li>
                     </ul>
@@ -258,6 +269,35 @@
       this.style.height = 'auto';
       this.style.height = (this.scrollHeight) + 'px';
   });
+  </script>
+
+<!--save group-->
+  <script>
+      $('.save').on('click', function() {
+
+        var group = {};
+        var params = {{group.pk}};
+
+        group.name = document.getElementById("name").value;
+        group.location  = document.getElementById("location").value;
+        group.starttime  = document.getElementById("starttime").value;
+        group.endtime  = document.getElementById("endtime").value;
+        group.comments  = document.getElementById("comments").value;
+
+        if (group.name==null || group.name=="")
+           {
+               alert("Please name the group!");
+               return false;
+           }
+
+        console.log("Hello world!");
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", '/website/updategroup'+'/'+params, true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify(group));
+    });
+
   </script>
 
 </body>

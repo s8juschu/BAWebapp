@@ -194,10 +194,13 @@ def savegroup(request):
     #get request payload
     getgroupinfo = request.body.decode('utf-8')
     groupinfo = json.loads(getgroupinfo)
+    print(groupinfo)
 
     #save payload to Group database
-    name= groupinfo["name"]
+    name = groupinfo["name"]
     location = groupinfo["location"]
+    starttime = groupinfo["starttime"]
+    endtime = groupinfo["endtime"]
     comments = groupinfo["comments"]
 
 
@@ -208,6 +211,8 @@ def savegroup(request):
     group.name = name
     group.comments = comments
     group.place = location
+    group.starttime = starttime
+    group.endtime = endtime
     group.user = u
     group.save()
 
@@ -215,7 +220,32 @@ def savegroup(request):
 
 def deletegroup(request, group_id):
     group = Group.objects.filter(pk=group_id).delete()
-    return HttpResponseRedirect(reverse('groupnew'))
+    return HttpResponseRedirect(reverse('group'))
 
+
+@login_required
+def updategroup(request, group_id):
+    # get request payload
+    getgroupinfo = request.body.decode('utf-8')
+    groupinfo = json.loads(getgroupinfo)
+    print(groupinfo)
+
+    # save payload to Group database
+    name = groupinfo["name"]
+    location = groupinfo["location"]
+    starttime = groupinfo["starttime"]
+    endtime = groupinfo["endtime"]
+    comments = groupinfo["comments"]
+
+
+    group = Group.objects.get(pk=group_id)
+    group.name = name
+    group.comments = comments
+    group.place = location
+    group.starttime = starttime
+    group.endtime = endtime
+    group.save()
+
+    return HttpResponse(200)
 
 

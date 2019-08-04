@@ -41,5 +41,5 @@ urlpatterns = [
     path('savegroup', views_forms.savegroup, name='savegroup'),
     path('altergroup/<int:group_id>', views_loggedin.altergroup, name='altergroup'),
     path('deletegroup/<int:group_id>', views_forms.deletegroup, name='deletegroup'),
-    #path('updategroup/<int:group_id>', views_forms.updategroup, name='updategroup')
+    path('updategroup/<int:group_id>', views_forms.updategroup, name='updategroup')
 ]

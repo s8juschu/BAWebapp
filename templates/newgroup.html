@@ -110,16 +110,27 @@
         <div>
             <div class="card-body">
                     <ul class="list-group" style="margin:0px">
-                        <li class="list-group-item">Name: <input type="text" id="name" name="name" class="form-control" style="width:66%;float:right;">
+                        <li class="list-group-item"><b>Name: </b><input type="text" id="name" name="name" class="form-control" style="width:66%;float:right;">
                         </li>
-                        <li class="list-group-item">Training Location:
+                        <li class="list-group-item"><b>Training Location:</b>
                             <textarea id="location" name="info" class="form-control textarea" rows="1" ></textarea>
                         </li>
-                         <li class="list-group-item">Comments:
+                        <li class="list-group-item">
+                            <div class="row">
+                              <div class="col-lg-2"><b>Timeslot:</b></div>
+                              <div class="col-lg-2"></div>
+                              <div class="col-lg-1">from:</div>
+                              <div class="col-lg-2"><input class="form-control" id="starttime" type="time" value="--:--:" id="example-time-input" ></div>
+                              <div class="col-lg-1">to:</div>
+                              <div class="col-lg-2"><input class="form-control" id="endtime" type="time" value="--:--:--" id="example-time-input"></div>
+                              <div class="col-lg-2"></div>
+                            </div>
+                        </li>
+                        <li class="list-group-item"><b>Comments:</b>
                             <textarea style="height: 108px;" id="comments" name="info" class="form-control textarea" rows="1" ></textarea>
                         </li>
-                        <li class="list-group-item">Add Swimmer:
-                            <button type="button" id="add" name="add" class="btn btn-success add"  style="margin-left: 23.1%; padding-left: 2.0%;padding-right: 2.0%;"data-toggle="modal" data-target="#addModal">Add new</button>
+                        <li class="list-group-item"><b>Assign Swimmer:</b>
+                            <button type="button" id="add" name="add" class="btn btn-success add"  style="margin-left: 20.1%; padding-left: 2.0%;padding-right: 2.0%;"data-toggle="modal" data-target="#addModal">Add new</button>
                             <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
                              aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -142,9 +153,6 @@
                                             <li class="list-group-item">Birthdate:
                                                 <input type="text" id="birthdate" name="birthdate" placeholder="dd/mm/yy" class="form-control" style="width:66%;float:right;">
                                             </li>
-                                            <li class="list-group-item">Group:
-                                                <input type="text" id="group" name="group" class="form-control" style="width:66%;float:right;">
-                                            </li>
                                             <li class="list-group-item">Info:
                                                 <textarea style="height: 108px;" id="info" name="info" class="form-control" rows="1" ></textarea>
                                             </li>
@@ -152,7 +160,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <a class="btn btn-secondary" href="">Exit</a>
-                                        <a class="btn btn-primary" href="">Save</a>
+                                        <a id="newswim" name="newswim" class="btn btn-primary newswim" href="">Save</a>
                                     </div>
                                 </div>
                             </div>
@@ -169,21 +177,23 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <div style="max-height:350px;overflow:auto;">
-                                            <ul>
-                                            {% for b in swimmer %}
-                                              <ul>
-                                                  <input class="form-check-input swiminput" type="checkbox" value="{{b.first_name}} {{b.last_name}}" id="defaultCheck1{{b.pk}}">
-                                                  <label class="form-check-label" for="defaultCheck1{{b.pk}}">
-                                                    {{b.first_name}} {{b.last_name}}
-                                                    <p style="display: none;" class="swimmerpk">
-                                                        {{b.pk}}
-                                                    </p>
-                                                  </label>
-                                              </ul>
-                                            {% endfor %}
-                                            </ul>
-                                        </div>
+                                        <form>
+                                            <div style="max-height:350px;overflow:auto;">
+                                                <ul>
+                                                {% for b in swimmer %}
+                                                  <ul>
+                                                      <input class="form-check-input swiminput" type="checkbox" value="{{b.first_name}} {{b.last_name}}" id="defaultCheck1{{b.pk}}">
+                                                      <label class="form-check-label" for="defaultCheck1{{b.pk}}">
+                                                        {{b.first_name}} {{b.last_name}}
+                                                        <p style="display: none;" class="swimmerpk">
+                                                            {{b.pk}}
+                                                        </p>
+                                                      </label>
+                                                  </ul>
+                                                {% endfor %}
+                                                </ul>
+                                            </div>
+                                        </form>
                                     </div>
                                     <div class="modal-footer">
                                         <a class="btn btn-secondary" id="exitswim" href="">Exit</a>
@@ -192,8 +202,8 @@
                                 </div>
                             </div>
                           </div>
-                          <div style="margin-left: 34.1%;">
-                              Test
+                          <div style="margin-left: 34.1%; margin-top:2%;">
+                              <b>Group member</b>
                               <ul id="myList">
                                   <li>Coffee</li>
                                   <li>Tea</li>
@@ -259,7 +269,7 @@
   });
   </script>
 
-  <!--save athlete-->
+  <!--save group-->
   <script>
       $('.save').on('click', function() {
 
@@ -267,11 +277,24 @@
 
         group.name = document.getElementById("name").value;
         group.location  = document.getElementById("location").value;
+        group.starttime  = document.getElementById("starttime").value;
+        group.endtime  = document.getElementById("endtime").value;
         group.comments  = document.getElementById("comments").value;
 
         if (group.name==null || group.name=="")
            {
                alert("Please name the group!");
+               return false;
+           }
+
+        if (group.starttime==null || group.starttime=="")
+           {
+               alert("Please enter a valid start time in the timeslot!");
+               return false;
+           }
+        if (group.endtime==null || group.endtime=="")
+           {
+               alert("Please enter a valid end time in the timeslot!");
                return false;
            }
 
@@ -300,6 +323,32 @@
             node.appendChild(textnode);
             document.getElementById("myList").appendChild(node);
          }
+    });
+
+  </script>
+
+<script>
+      $('.newswim').on('click', function() {
+
+        var athlete = {};
+
+        athlete.firstname = document.getElementById("first_name").value;
+        athlete.lastname = document.getElementById("last_name").value;
+        athlete.email = document.getElementById("email").value;
+        athlete.birthdate = document.getElementById("birthdate").value;
+        athlete.info = document.getElementById("info").value;
+
+        if (athlete.firstname==null || athlete.firstname=="" || athlete.lastname==null || athlete.lastname=="" )
+           {
+               alert("Please fill all required fields.\nThe first name and last name fields should not be empty.");
+               return false;
+           }
+
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", '/website/saveathlete', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify(athlete));
     });
 
   </script>

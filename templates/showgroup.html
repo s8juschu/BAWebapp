@@ -112,9 +112,11 @@
                             </li>
                             <li class="list-group-item"><b>Location:</b> {{group.place}}
                             </li>
-                            <li class="list-group-item"><b>Swimmer:</b> TODO
+                            <li class="list-group-item"><b>Timeslot:</b> {{group.starttime}} - {{group.endtime}}
                             </li>
-                            <li class="list-group-item"><b>Nr. of members:</b> {{group.num}}
+                            <li class="list-group-item"><b>Swimmer:</b> {{ array|join:", " }}
+                            </li>
+                            <li class="list-group-item"><b>Nr. of members:</b> {{number}}
                             </li>
                              <li class="list-group-item"><b>Comments:</b> {{group.comments}}
                             </li>

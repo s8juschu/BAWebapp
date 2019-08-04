@@ -12,10 +12,11 @@
               <tr>
                 <th class="text-center" style="width:17%;">Name</th>
                 <th class="text-center" style="width:17%;">Training location</th>
-                <th class="text-center" style="width:18%;">Swimmer</th>
+                  <th class="text-center" style="width:12%;">Timeslot</th>
+                <th class="text-center" style="width:8%;">Swimmer</th>
                 <th class="text-center" style="width:8%;">Nr. Members</th>
                 <th class="text-center" style="width:22%;">Comments</th>
-                <th class="text-center" style="width:18%;">Settings</th>
+                <th class="text-center" style="width:16%;">Settings</th>
               </tr>
             </thead>
             <tbody>
@@ -23,8 +24,31 @@
               <tr>
                 <td>{{ b.name}}</td>
                 <td>{{ b.place }}</td>
-                <td>TODO</td>
-                <td>{{ b.num }}</td>
+                <td>{{b.starttime}} - {{b.endtime}}</td>
+                <td>
+                    <div>
+                       <a class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal{{b.pk}}"><i class="fa fa-user-o" style="color:red;"></i></a>
+                        <div class="modal fade" id="exampleModal{{b.pk}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel{{b.pk}}" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel{{b.pk}}">A list of all the swimmers in this group:</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                {{array|dict_key:b.pk|join:", " }}
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </td>
+                <td>{{number|dict_key:b.pk|join:", " }}</td>
                 <td>{{ b.comments}}</td>
                 <td>
                   <a href="{% url 'showgroup' group_id=b.pk %}" class="btn btn-secondary btn-rounded btn-sm my-0" style="padding-left: 3%; padding-right:3%; margin-right:5%;" >View</a>

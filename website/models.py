@@ -32,7 +32,8 @@ class PlanRow(models.Model):
 class Group(models.Model):
     name = models.CharField(max_length=30)
     num = models.IntegerField(default=0)
-    timeslot = models.CharField(max_length=255, default='')
+    starttime = models.CharField(max_length=25, default='')
+    endtime = models.CharField(max_length=25, default='')
     comments = models.CharField(max_length=828, null=True)
     place = models.CharField(max_length=255, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)

@@ -10,9 +10,9 @@
           <table id="mytable" class="table table-bordered table-responsive-md table-striped text-center">
             <thead>
               <tr>
-                <th class="text-center" style="width:16%;">First Name</th>
-                <th class="text-center" style="width:16%;">Last Name</th>
-                <th class="text-center" style="width:8%;">Birthdate</th>
+                <th class="text-center" style="width:14%;">First Name</th>
+                <th class="text-center" style="width:14%;">Last Name</th>
+                <th class="text-center" style="width:12%;">Birthdate</th>
                 <th class="text-center" style="width:16%;">E-Mail</th>
                 <th class="text-center" title="To assign an athlete to a group please use the 'my group' site" style="width:14%;">Group</th>
                 <th class="text-center" style="width:14%;">Info</th>
@@ -26,7 +26,7 @@
                 <td>{{ b.last_name }}</td>
                 <td>{{ b.birthdate}}</td>
                 <td>{{ b.email }}</td>
-                <td>{{ b.group }}</td>
+                <td>{{array|dict_key:b.pk|join:", " }}</td>
                 <td>{{ b.info }}</td>
                 <td>
                   <a href="{% url 'showathlete' athlete_id=b.pk %}" class="btn btn-secondary btn-rounded btn-sm my-0" style="padding-left: 3%; padding-right:3%; margin-right:5%;" >View</a>

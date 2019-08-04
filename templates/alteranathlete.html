@@ -113,7 +113,7 @@
                             <input type="text" id="email" name="email" class="form-control" value="{{swimmer.email}}" style="width:66%;float:right;">
                         </li>
                         <li class="list-group-item">Birthdate:
-                            <input type="text" id="birthdate" name="birthdate" placeholder="dd/mm/yy" class="form-control" value="{{swimmer.birthdate}}" style="width:66%;float:right;">
+                            <input id="birthdate" name="birthdate" class="form-control" type="date"  value="{{swimmer.birthdate}}" style="width:66%;float:right;">
                         </li>
                         <li class="list-group-item">Info:
                             <textarea id="info" name="info" class="form-control" rows="1" >{{swimmer.info}}</textarea>
@@ -210,7 +210,6 @@
         athlete.lastname = document.getElementById("last_name").value;
         athlete.email = document.getElementById("email").value;
         athlete.birthdate = document.getElementById("birthdate").value;
-        athlete.group = document.getElementById("group").value;
         athlete.info = document.getElementById("info").value;
 
 
