@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 
 from collections import defaultdict
 from django.template.defaultfilters import register
+import json
 
 from .models import Plan, PlanRow, Swimmer, Group, RelationsSwimGroup
 from . import models
@@ -136,6 +137,9 @@ def group(request):
 
 @login_required
 def newgroup(request):
+    if request.method == 'POST':
+        data = request.POST.get("form_first", "")
+        print(data)
     user = request.user
     if Swimmer.objects.filter(user=request.user).exists():
         swimmer = Swimmer.objects.filter(user=user)

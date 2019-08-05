@@ -118,7 +118,7 @@
                             <input type="text" id="email" name="email" class="form-control" style="width:66%;float:right;">
                         </li>
                         <li class="list-group-item"><b>Birthdate:</b>
-                            <input id="birthdate" name="birthdate" class="form-control" type="date" value="2019-01-01" id="example-date-input" style="width:66%;float:right;">
+                            <input id="birthdate" name="birthdate" class="form-control" type="date" value="yyyy-mm-dd" id="example-date-input" style="width:66%;float:right;">
                         </li>
                         <li class="list-group-item"><b>Info:</b>
                             <textarea style="height: 108px;" id="info" name="info" class="form-control" rows="1" ></textarea>
@@ -197,6 +197,12 @@
         if (athlete.firstname==null || athlete.firstname=="" || athlete.lastname==null || athlete.lastname=="" )
            {
                alert("Please fill all required fields.\nThe first name and last name fields should not be empty.");
+               return false;
+           }
+
+        if (athlete.birthdate==null || athlete.birthdate=="" || athlete.birthdate=="yyyy-mm-dd" )
+           {
+               alert("Please enter a valid birthdate");
                return false;
            }
 

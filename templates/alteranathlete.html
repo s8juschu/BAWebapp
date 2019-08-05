@@ -212,6 +212,18 @@
         athlete.birthdate = document.getElementById("birthdate").value;
         athlete.info = document.getElementById("info").value;
 
+        if (athlete.firstname==null || athlete.firstname=="" || athlete.lastname==null || athlete.lastname=="" )
+           {
+               alert("Please fill all required fields.\nThe first name and last name fields should not be empty.");
+               return false;
+           }
+
+        if (athlete.birthdate==null || athlete.birthdate=="" || athlete.birthdate=="yyyy-mm-dd" )
+           {
+               alert("Please enter a valid birthdate");
+               return false;
+           }
+
 
         var xhr = new XMLHttpRequest();
         xhr.open("POST", '/website/updateathlete'+'/'+params, true);
