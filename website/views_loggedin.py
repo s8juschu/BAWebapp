@@ -109,11 +109,11 @@ def athletes(request):
     array = defaultdict(list)
     swimmer = Swimmer.objects.filter(user=user)
     for s in swimmer:
-        if RelationsSwimGroup.objects.filter(swimmer=s, user= user).exists():
-            relationgroup =  RelationsSwimGroup.objects.filter(swimmer=s, user=user)
+        if RelationsSwimGroup.objects.filter(swimmer=s, user=user).exists():
+            relationgroup = RelationsSwimGroup.objects.filter(swimmer=s, user=user)
             for g in relationgroup:
                 array[s.pk].append(g.group.name)
-    arraydict = dict(array) #transform defaultdict to dict
+    arraydict = dict(array)  # transform defaultdict to dict
     return render(request, 'athletes.html', context={'swimmer': swimmer, 'array': arraydict})
 
 @login_required
@@ -124,26 +124,35 @@ def group(request):
     group = Group.objects.filter(user=user)
     for g in group:
         if RelationsSwimGroup.objects.filter(group=g, user= user).exists():
-            relationgroup =  RelationsSwimGroup.objects.filter(group=g, user=user)
+            relationgroup = RelationsSwimGroup.objects.filter(group=g, user=user)
             number = RelationsSwimGroup.objects.filter(group=g, user=user).count()
             numarr[g.pk].append(number)
             for r in relationgroup:
                 bla = (r.swimmer.first_name, r.swimmer.last_name)
                 blanew = " ".join(bla)
                 array[g.pk].append(blanew)
-    arraydict = dict(array) #transform defaultdict to dict
+    arraydict = dict(array)  # transform defaultdict to dict
     numarrdict = dict(numarr)  # transform defaultdict to dict
     return render(request, 'group.html', context={'group': group, 'array': arraydict, 'number': numarrdict})
 
 @login_required
 def newgroup(request):
-    if request.method == 'POST':
-        data = request.POST.get("form_first", "")
-        print(data)
+    array = defaultdict(list)
+    if request.body:
+        getnewswimmer = request.body.decode('utf-8')
+        newswimmer = json.loads(getnewswimmer)
+        listitem = newswimmer["tuple"]
+        for item in listitem:
+            name = item["name"]
+            pk = item["id"]
+            bla = (name, pk)
+            array[pk].append(bla)
+    arraydict = dict(array)
+    print(arraydict)
     user = request.user
     if Swimmer.objects.filter(user=request.user).exists():
         swimmer = Swimmer.objects.filter(user=user)
-        return render(request, 'newgroup.html', context={'swimmer': swimmer})
+        return render(request, 'newgroup.html', context={'swimmer': swimmer, 'array': list})
     else:
         return render(request, 'newgroup.html')
 

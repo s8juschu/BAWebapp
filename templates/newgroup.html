@@ -14,7 +14,7 @@
 
     <!-- Bootstrap core CSS -->
   <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-  <link media="screen" href="{% static 'css/plan.css' %}" rel="stylesheet">
+  <link href="{% static 'css/button.css' %}" rel="stylesheet">
 
 
   <!-- Custom fonts for this template-->
@@ -22,6 +22,7 @@
 
   <!-- ICON NEEDS FONT AWESOME FOR CHEVRON UP ICON -->
   <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
 
@@ -182,9 +183,8 @@
                                                 <ul>
                                                 {% for b in swimmer %}
                                                   <ul>
-                                                      <input class="form-check-input swiminput" type="checkbox" value="{{b.first_name}} {{b.last_name}}" id="defaultCheck1{{b.pk}}">
-                                                      <label class="form-check-label" for="defaultCheck1{{b.pk}}">
-                                                        {{b.first_name}} {{b.last_name}}
+                                                      <input class="form-check-input swiminput" type="checkbox" value="{{b.first_name}} {{b.last_name}}" name="{{b.pk}}" id="defaultCheck1{{b.pk}}">
+                                                      <label class="form-check-label" for="defaultCheck1{{b.pk}}"> {{b.first_name}} {{b.last_name}}
                                                         <p style="display: none;" class="swimmerpk">
                                                             {{b.pk}}
                                                         </p>
@@ -203,11 +203,11 @@
                             </div>
                           </div>
                           <div style="margin-left: 34.1%; margin-top:2%;">
-                              <b>Group member</b>
-                              <ul id="myList">
-                                  <li>Coffee</li>
-                                  <li>Tea</li>
-                                </ul>
+                              <p><b>Group member:</b></p>
+
+                              {% for x in array %}
+                                <p>{{x}}<button type="button" class="btn btn-danger btn-circle btn-sm"><i class="fa fa-close"></i></button></p>
+                              {% endfor %}
                           </div>
                         </li>
                     </ul>
@@ -307,27 +307,31 @@
 
   </script>
 
+   <!--save choosen swimmer in add swimmer and their pk-->
   <script>
       $('.addswim').on('click', function() {
 
-        var key;
-        let a = [];
+        var array = {}
+        array.tuple = [];
+
         $('.swiminput:checkbox:checked').each(function() {
-            a.push(this.value);
+            var rows = {};
+            rows.name= this.value;
+            rows.id = this.getAttribute("name");
+            array.tuple.push(rows);
         });
 
-        for (key in a) {
-            console.log(a[key]);
-            var node = document.createElement("LI");
-            var textnode = document.createTextNode("Water");
-            node.appendChild(textnode);
-            document.getElementById("myList").appendChild(node);
-         }
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", '/website/newgroup', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify(array));
+
+
     });
 
   </script>
 
-<script>
+  <script>
       $('.newswim').on('click', function() {
 
         var athlete = {};
