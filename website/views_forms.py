@@ -202,6 +202,7 @@ def savegroup(request):
     endtime = groupinfo["endtime"]
     comments = groupinfo["comments"]
     tuple = groupinfo["tuple"]
+    print(tuple)
 
 
     user = request.user
@@ -216,12 +217,12 @@ def savegroup(request):
     group.user = u
     group.save()
 
-    #for item in tuple:
+    for item in tuple:
     #    relation = RelationsSwimGroup()
     #    relation.swimmer = item
     #    relation.group = group.id
     #    relation.save()
-    #    print(item)
+        print(item)
 
     #print(group.id)
 

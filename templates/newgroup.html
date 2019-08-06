@@ -183,7 +183,7 @@
                                                 <ul>
                                                 {% for b in swimmer %}
                                                   <ul>
-                                                      <input class="form-check-input swiminput" type="checkbox" value="{{b.first_name}} {{b.last_name}}" name="{{b.pk}}" id="defaultCheck1{{b.pk}}">
+                                                      <input class="form-check-input swiminput" type="checkbox" value="{{b.first_name}} {{b.last_name}}" name="{{b.pk}}" id="defaultCheck1{{b.pk}}" style="position:inherit;">
                                                       <label class="form-check-label" for="defaultCheck1{{b.pk}}"> {{b.first_name}} {{b.last_name}}
                                                         <p style="display: none;" class="swimmerpk">
                                                             {{b.pk}}
