@@ -7,7 +7,7 @@ from django.contrib.auth import update_session_auth_hash
 import json
 
 from website import views_user
-from .models import Plan, PlanRow, Swimmer, Group
+from .models import Plan, PlanRow, Swimmer, Group, RelationsSwimGroup
 from . import models
 
 @login_required
@@ -194,7 +194,6 @@ def savegroup(request):
     #get request payload
     getgroupinfo = request.body.decode('utf-8')
     groupinfo = json.loads(getgroupinfo)
-    print(groupinfo)
 
     #save payload to Group database
     name = groupinfo["name"]
@@ -202,6 +201,7 @@ def savegroup(request):
     starttime = groupinfo["starttime"]
     endtime = groupinfo["endtime"]
     comments = groupinfo["comments"]
+    tuple = groupinfo["tuple"]
 
 
     user = request.user
@@ -215,6 +215,15 @@ def savegroup(request):
     group.endtime = endtime
     group.user = u
     group.save()
+
+    #for item in tuple:
+    #    relation = RelationsSwimGroup()
+    #    relation.swimmer = item
+    #    relation.group = group.id
+    #    relation.save()
+    #    print(item)
+
+    #print(group.id)
 
     return HttpResponse(200)
 

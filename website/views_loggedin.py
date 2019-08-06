@@ -137,22 +137,10 @@ def group(request):
 
 @login_required
 def newgroup(request):
-    array = defaultdict(list)
-    if request.body:
-        getnewswimmer = request.body.decode('utf-8')
-        newswimmer = json.loads(getnewswimmer)
-        listitem = newswimmer["tuple"]
-        for item in listitem:
-            name = item["name"]
-            pk = item["id"]
-            bla = (name, pk)
-            array[pk].append(bla)
-    arraydict = dict(array)
-    print(arraydict)
     user = request.user
     if Swimmer.objects.filter(user=request.user).exists():
         swimmer = Swimmer.objects.filter(user=user)
-        return render(request, 'newgroup.html', context={'swimmer': swimmer, 'array': list})
+        return render(request, 'newgroup.html', context={'swimmer': swimmer})
     else:
         return render(request, 'newgroup.html')
 

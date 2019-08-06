@@ -29,7 +29,7 @@
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 
-<body>
+<body onload="myFunction()">
 
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
@@ -123,7 +123,7 @@
                               <div class="col-lg-1">from:</div>
                               <div class="col-lg-2"><input class="form-control" id="starttime" type="time" value="--:--:" id="example-time-input" ></div>
                               <div class="col-lg-1">to:</div>
-                              <div class="col-lg-2"><input class="form-control" id="endtime" type="time" value="--:--:--" id="example-time-input"></div>
+                              <div class="col-lg-2"><input class="form-control" id="endtime" type="time" value="--:--:--" id="example-time-input2"></div>
                               <div class="col-lg-2"></div>
                             </div>
                         </li>
@@ -196,18 +196,17 @@
                                         </form>
                                     </div>
                                     <div class="modal-footer">
-                                        <a class="btn btn-secondary" id="exitswim" href="">Exit</a>
-                                        <a class="btn btn-primary addswim" id="addswim" href="">Add</a>
+                                        <button class="btn btn-secondary exitswim" id="exitswim" data-dismiss="modal">Exit</button>
+                                        <button class="btn btn-primary addswim" id="addswim" data-dismiss="modal">Add</button>
                                     </div>
                                 </div>
                             </div>
                           </div>
                           <div style="margin-left: 34.1%; margin-top:2%;">
                               <p><b>Group member:</b></p>
+                              <div class="listswimmer" id="listswimmer">
 
-                              {% for x in array %}
-                                <p> {{x}} <button type="button" class="btn btn-danger btn-circle btn-sm"><i class="fa fa-close"></i></button></p>
-                              {% endfor %}
+                              </div>
                           </div>
                         </li>
                     </ul>
@@ -240,6 +239,8 @@
     </div>
   </div>
   </div>
+   <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="icon-chevron-up"></i></button>
+
 
 
     <!-- Footer -->
@@ -259,6 +260,12 @@
   <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
 
+  <script>
+  function myFunction() {
+    localStorage.clear();
+  }
+  </script>
+
   <!--auto expand-->
   <script>
   $('.textarea').each(function () {
@@ -274,6 +281,7 @@
       $('.save').on('click', function() {
 
         var group = {};
+        group.tuple = [];
 
         group.name = document.getElementById("name").value;
         group.location  = document.getElementById("location").value;
@@ -298,6 +306,10 @@
                return false;
            }
 
+        for (var i = 0; i < localStorage.length; i++){
+            storevalue = localStorage.key(i);
+            group.tuple.push(storevalue);
+        }
 
         var xhr = new XMLHttpRequest();
         xhr.open("POST", '/website/savegroup', true);
@@ -309,25 +321,44 @@
 
    <!--save choosen swimmer in add swimmer and their pk-->
   <script>
-      $('.addswim').on('click', function() {
+        $('.addswim').on('click', function() {
 
-        var array = {}
-        array.tuple = [];
+            var array = {}
+            array.tuple = [];
 
-        $('.swiminput:checkbox:checked').each(function() {
-            var rows = {};
-            rows.name= this.value;
-            rows.id = this.getAttribute("name");
-            array.tuple.push(rows);
+            $('.swiminput:checkbox:checked').each(function() {
+                var rows = {};
+                rows.name= this.value;
+                rows.id = this.getAttribute("name");
+                array.tuple.push(rows);
+
+                localStorage.setItem(rows.id, rows.name);
+            });
+
+
+            //var xhr = new XMLHttpRequest();
+            //xhr.open("POST", '/website/newgroup', true);
+            //xhr.setRequestHeader('Content-Type', 'application/json');
+            //xhr.send(JSON.stringify(array));
+
+            $('.listswimmer').children("p").remove();
+
+            for (var i = 0; i < localStorage.length; i++){
+                //console.log(localStorage.key(i));
+                $('.listswimmer').append('<p id="'+localStorage.key(i)+'">'+localStorage.getItem(localStorage.key(i))+'<button type="button" class="btn btn-danger btn-circle btn-sm removeswim" onclick="removeSwimmerFunction('+localStorage.key(i)+')"><i class="fa fa-close"></i></button></p>');
+            }
+
         });
 
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", '/website/newgroup', true);
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.send(JSON.stringify(array));
-
-
-    });
+        function removeSwimmerFunction(i) {
+          localStorage.removeItem(i);
+          document.getElementById(i).remove();
+          $('.swiminput:checkbox:checked').each(function() {
+            if (this.name == i){
+                this.checked = false;
+            }
+          });
+        }
 
   </script>
 
@@ -362,6 +393,26 @@
     });
 
   </script>
+    <!--Top to Page Button-->
+    <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {scrollFunction()};
+
+        function scrollFunction() {
+          if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("myBtn").style.display = "block";
+          } else {
+            document.getElementById("myBtn").style.display = "none";
+          }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+          document.body.scrollTop = 0; // For Safari
+          document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        }
+
+    </script>
 
 </body>
 
